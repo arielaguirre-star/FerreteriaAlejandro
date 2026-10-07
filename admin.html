@@ -3,16 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Ferretería</title>
+  <title>Admin - Panel de Ferretería</title>
   <style>
-    body { font-family: system-ui, sans-serif; background: #f0f2f5; padding: 20px; }
-    .container { max-width: 500px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    h2 { margin-top: 0; color: #1a73e8; }
-    label { display: block; margin-top: 10px; font-weight: bold; }
-    input, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-    button { background: #1a73e8; color: white; font-weight: bold; border: none; cursor: pointer; margin-top: 15px; }
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+    body { background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 550px; margin: 20px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    h2 { margin-top: 0; color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 10px; }
+    h3 { margin-top: 25px; color: #3c4043; font-size: 1.1rem; }
+    label { display: block; margin-top: 12px; font-weight: 600; font-size: 0.9rem; color: #4a5568; }
+    input, textarea, button { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; }
+    input:focus, textarea:focus { outline: none; border-color: #1a73e8; box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
+    button { background: #1a73e8; color: white; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
     button:hover { background: #1557b0; }
-    #status { margin-top: 15px; font-weight: bold; }
+    .config-section { background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; margin-bottom: 20px; }
+    #status { margin-top: 15px; padding: 10px; border-radius: 6px; font-weight: 600; text-align: center; display: none; }
+    .status-info { background: #ebf8ff; color: #2b6cb0; display: block !important; }
+    .status-success { background: #f0fff4; color: #276749; display: block !important; }
+    .status-error { background: #fff5f5; color: #9b2c2c; display: block !important; }
   </style>
 </head>
 <body>
@@ -20,36 +27,44 @@
 <div class="container">
   <h2>Panel de Administración</h2>
   
-  <label>Configuración de GitHub</label>
-  <input type="text" id="ghToken" placeholder="GitHub Personal Access Token (PAT)">
-  <input type="text" id="ghUser" placeholder="Tu Usuario de GitHub">
-  <input type="text" id="ghRepo" placeholder="Nombre del Repositorio">
+  <div class="config-section">
+    <h3>Configuración de Conexión</h3>
+    <label for="ghToken">GitHub Personal Access Token</label>
+    <input type="password" id="ghToken" value="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">
 
-  <hr style="margin: 20px 0;">
+    <label for="ghUser">Usuario de GitHub</label>
+    <input type="text" id="ghUser" placeholder="Tu-Usuario-GitHub">
 
-  <h3>Agregar Nuevo Producto</h3>
-  <label>Título del Producto</label>
-  <input type="text" id="titulo" placeholder="Ej: Taladro Percutor">
+    <label for="ghRepo">Nombre del Repositorio</label>
+    <input type="text" id="ghRepo" placeholder="nombre-de-tu-repo">
+  </div>
 
-  <label>Precio ($)</label>
+  <h3>Cargar Nuevo Producto</h3>
+  
+  <label for="titulo">Título del Producto</label>
+  <input type="text" id="titulo" placeholder="Ej: Taladro Percutor 750W">
+
+  <label for="precio">Precio ($)</label>
   <input type="number" id="precio" placeholder="Ej: 45000">
 
-  <label>URL de la Foto (o formato WebP)</label>
-  <input type="text" id="imagen" placeholder="https://ejemplo.com/foto.webp">
+  <label for="imagen">URL de la Foto (Formato WebP / JPG)</label>
+  <input type="text" id="imagen" placeholder="https://ejemplo.com/fotos/taladro.webp">
 
-  <label>Descripción</label>
-  <textarea id="descripcion" rows="3" placeholder="Descripción breve..."></textarea>
+  <label for="descripcion">Descripción</label>
+  <textarea id="descripcion" rows="3" placeholder="Descripción breve del producto..."></textarea>
 
-  <button onclick="guardarProducto()">Guardar y Actualizar JSON en GitHub</button>
+  <button onclick="guardarProducto()">Guardar y Actualizar Catálogo</button>
 
   <div id="status"></div>
 </div>
 
 <script>
-  // Cargar datos previos de GitHub guardados localmente
-  document.getElementById('ghToken').value = localStorage.getItem('ghToken') || '';
-  document.getElementById('ghUser').value = localStorage.getItem('ghUser') || '';
-  document.getElementById('ghRepo').value = localStorage.getItem('ghRepo') || '';
+  // Al cargar la página, recuperar datos guardados previamente en el navegador
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('ghToken')) document.getElementById('ghToken').value = localStorage.getItem('ghToken');
+    if (localStorage.getItem('ghUser')) document.getElementById('ghUser').value = localStorage.getItem('ghUser');
+    if (localStorage.getItem('ghRepo')) document.getElementById('ghRepo').value = localStorage.getItem('ghRepo');
+  });
 
   async function guardarProducto() {
     const token = document.getElementById('ghToken').value.trim();
@@ -63,37 +78,40 @@
 
     const status = document.getElementById('status');
 
-    if (!token || !user || !repo || !titulo || !precio || !imagen) {
-      status.style.color = 'red';
-      status.innerText = "Por favor completa todos los campos.";
+    // Validación
+    if (!token || !user || !repo || !titulo || isNaN(precio) || !imagen) {
+      mostrarEstado("Por favor completa los datos de configuración, título, precio e imagen.", "error");
       return;
     }
 
-    // Guardar credenciales para la próxima vez
+    // Guardar credenciales en el almacenamiento local del navegador
     localStorage.setItem('ghToken', token);
     localStorage.setItem('ghUser', user);
     localStorage.setItem('ghRepo', repo);
 
-    status.style.color = 'blue';
-    status.innerText = "Conectando con GitHub...";
+    mostrarEstado("Conectando con GitHub...", "info");
 
     const filePath = 'productos.json';
     const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
 
     try {
-      // 1. Obtener el contenido actual del JSON de GitHub
+      // 1. Obtener el archivo productos.json actual
       const resGet = await fetch(apiUrl, {
-        headers: { 'Authorization': `token ${token}` }
+        headers: { 
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
       });
 
-      if (!resGet.ok) throw new Error("No se pudo obtener el archivo productos.json de GitHub.");
+      if (!resGet.ok) throw new Error("No se encontró productos.json. Revisa el Usuario y Repositorio.");
 
       const dataGet = await resGet.json();
-      // Decodificar Base64 a UTF-8 correctamente
-      const content = decodeURIComponent(escape(atob(dataGet.content)));
+      
+      // Decodificar Base64 respetando acentos y caracteres especiales (UTF-8)
+      const content = decodeURIComponent(escape(atob(dataGet.content.replace(/\s/g, ''))));
       const productos = JSON.parse(content);
 
-      // 2. Agregar el nuevo producto
+      // 2. Crear y agregar el nuevo objeto de producto
       const nuevoProducto = {
         id: Date.now(),
         titulo,
@@ -104,11 +122,12 @@
 
       productos.push(nuevoProducto);
 
-      // 3. Codificar de nuevo a Base64
+      // 3. Volver a codificar a Base64 con soporte UTF-8
       const newContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productos, null, 2))));
 
-      // 4. Enviar el commit a GitHub
-      status.innerText = "Guardando cambios en GitHub...";
+      // 4. Enviar el commit de actualización a GitHub
+      mostrarEstado("Guardando cambios en el catálogo...", "info");
+      
       const resPut = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
@@ -118,9 +137,37 @@
         body: JSON.stringify({
           message: `Agregar producto: ${titulo}`,
           content: newContentBase64,
-          sha: dataGet.sha // Se necesita el SHA del archivo original para sobrescribirlo
+          sha: dataGet.sha
         })
       });
+
+      if (resPut.ok) {
+        mostrarEstado("¡Producto agregado con éxito!", "success");
+        // Limpiar únicamente los campos del producto
+        document.getElementById('titulo').value = '';
+        document.getElementById('precio').value = '';
+        document.getElementById('imagen').value = '';
+        document.getElementById('descripcion').value = '';
+      } else {
+        throw new Error("Error al guardar en GitHub. Revisa si el token tiene permisos de repositorio.");
+      }
+
+    } catch (err) {
+      mostrarEstado(err.message, "error");
+    }
+  }
+
+  function mostrarEstado(mensaje, tipo) {
+    const status = document.getElementById('status');
+    status.innerText = mensaje;
+    status.className = '';
+    status.classList.add(`status-${tipo}`);
+  }
+</script>
+
+</body>
+</html>
+
 
       if (resPut.ok) {
         status.style.color = 'green';
