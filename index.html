@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferretería - Catálogo</title>
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, sans-serif; }
+    body { background: #f4f4f9; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #333; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-content { padding: 15px; flex-grow: 1; }
+    .price { font-size: 1.25rem; color: #2e7d32; font-weight: bold; }
+    .desc { color: #666; font-size: 0.9rem; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <h1>Catálogo de Ferretería</h1>
+  <div class="grid" id="catalogo">Cargando productos...</div>
+
+  <script>
+    async function cargarProductos() {
+      try {
+        const res = await fetch('productos.json');
+        const productos = await res.json();
+        const contenedor = document.getElementById('catalogo');
+        contenedor.innerHTML = '';
+
+        productos.forEach(p => {
+          contenedor.innerHTML += `
+            <div class="card">
+              <img src="${p.imagen}" alt="${p.titulo}">
+              <div class="card-content">
+                <h3>${p.titulo}</h3>
+                <div class="price">$${p.precio.toLocaleString()}</div>
+                <p class="desc">${p.descripcion}</p>
+              </div>
+            </div>
+          `;
+        });
+      } catch (err) {
+        document.getElementById('catalogo').innerText = "Error cargando los productos.";
+      }
+    }
+    cargarProductos();
+  </script>
+</body>
+</html>
