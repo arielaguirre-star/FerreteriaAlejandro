@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Ferretería</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f0f2f5; padding: 20px; }
+    .container { max-width: 500px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; color: #1a73e8; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, textarea, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+    button { background: #1a73e8; color: white; font-weight: bold; border: none; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #1557b0; }
+    #status { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Panel de Administración</h2>
+  
+  <label>Configuración de GitHub</label>
+  <input type="text" id="ghToken" placeholder="GitHub Personal Access Token (PAT)">
+  <input type="text" id="ghUser" placeholder="Tu Usuario de GitHub">
+  <input type="text" id="ghRepo" placeholder="Nombre del Repositorio">
+
+  <hr style="margin: 20px 0;">
+
+  <h3>Agregar Nuevo Producto</h3>
+  <label>Título del Producto</label>
+  <input type="text" id="titulo" placeholder="Ej: Taladro Percutor">
+
+  <label>Precio ($)</label>
+  <input type="number" id="precio" placeholder="Ej: 45000">
+
+  <label>URL de la Foto (o formato WebP)</label>
+  <input type="text" id="imagen" placeholder="https://ejemplo.com/foto.webp">
+
+  <label>Descripción</label>
+  <textarea id="descripcion" rows="3" placeholder="Descripción breve..."></textarea>
+
+  <button onclick="guardarProducto()">Guardar y Actualizar JSON en GitHub</button>
+
+  <div id="status"></div>
+</div>
+
+<script>
+  // Cargar datos previos de GitHub guardados localmente
+  document.getElementById('ghToken').value = localStorage.getItem('ghToken') || '';
+  document.getElementById('ghUser').value = localStorage.getItem('ghUser') || '';
+  document.getElementById('ghRepo').value = localStorage.getItem('ghRepo') || '';
+
+  async function guardarProducto() {
+    const token = document.getElementById('ghToken').value.trim();
+    const user = document.getElementById('ghUser').value.trim();
+    const repo = document.getElementById('ghRepo').value.trim();
+
+    const titulo = document.getElementById('titulo').value.trim();
+    const precio = parseFloat(document.getElementById('precio').value);
+    const imagen = document.getElementById('imagen').value.trim();
+    const descripcion = document.getElementById('descripcion').value.trim();
+
+    const status = document.getElementById('status');
+
+    if (!token || !user || !repo || !titulo || !precio || !imagen) {
+      status.style.color = 'red';
+      status.innerText = "Por favor completa todos los campos.";
+      return;
+    }
+
+    // Guardar credenciales para la próxima vez
+    localStorage.setItem('ghToken', token);
+    localStorage.setItem('ghUser', user);
+    localStorage.setItem('ghRepo', repo);
+
+    status.style.color = 'blue';
+    status.innerText = "Conectando con GitHub...";
+
+    const filePath = 'productos.json';
+    const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
+
+    try {
+      // 1. Obtener el contenido actual del JSON de GitHub
+      const resGet = await fetch(apiUrl, {
+        headers: { 'Authorization': `token ${token}` }
+      });
+
+      if (!resGet.ok) throw new Error("No se pudo obtener el archivo productos.json de GitHub.");
+
+      const dataGet = await resGet.json();
+      // Decodificar Base64 a UTF-8 correctamente
+      const content = decodeURIComponent(escape(atob(dataGet.content)));
+      const productos = JSON.parse(content);
+
+      // 2. Agregar el nuevo producto
+      const nuevoProducto = {
+        id: Date.now(),
+        titulo,
+        descripcion,
+        precio,
+        imagen
+      };
+
+      productos.push(nuevoProducto);
+
+      // 3. Codificar de nuevo a Base64
+      const newContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productos, null, 2))));
+
+      // 4. Enviar el commit a GitHub
+      status.innerText = "Guardando cambios en GitHub...";
+      const resPut = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          message: `Agregar producto: ${titulo}`,
+          content: newContentBase64,
+          sha: dataGet.sha // Se necesita el SHA del archivo original para sobrescribirlo
+        })
+      });
+
+      if (resPut.ok) {
+        status.style.color = 'green';
+        status.innerText = "¡Producto agregado con éxito a productos.json!";
+        // Limpiar formulario
+        document.getElementById('titulo').value = '';
+        document.getElementById('precio').value = '';
+        document.getElementById('imagen').value = '';
+        document.getElementById('descripcion').value = '';
+      } else {
+        throw new Error("Error al guardar en GitHub. Verifica el Token y permisos.");
+      }
+
+    } catch (err) {
+      status.style.color = 'red';
+      status.innerText = err.message;
+    }
+  }
+</script>
+
+</body>
+</html>
