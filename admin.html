@@ -2,191 +2,104 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Panel de Ferretería</title>
+  <title>Admin Ferretería</title>
   <style>
-    * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
-    body { background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-    .container { max-width: 550px; margin: 20px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    h2 { margin-top: 0; color: #1a73e8; border-bottom: 2px solid #e8eaed; padding-bottom: 10px; }
-    h3 { margin-top: 25px; color: #3c4043; font-size: 1.1rem; }
-    label { display: block; margin-top: 12px; font-weight: 600; font-size: 0.9rem; color: #4a5568; }
-    input, textarea, button { width: 100%; padding: 12px; margin-top: 6px; border: 1px solid #cbd5e0; border-radius: 6px; font-size: 0.95rem; }
-    input:focus, textarea:focus { outline: none; border-color: #1a73e8; box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
-    button { background: #1a73e8; color: white; font-weight: bold; border: none; cursor: pointer; margin-top: 20px; transition: background 0.2s; }
-    button:hover { background: #1557b0; }
-    .config-section { background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px solid #e2e8f0; margin-bottom: 20px; }
-    #status { margin-top: 15px; padding: 10px; border-radius: 6px; font-weight: 600; text-align: center; display: none; }
-    .status-info { background: #ebf8ff; color: #2b6cb0; display: block !important; }
-    .status-success { background: #f0fff4; color: #276749; display: block !important; }
-    .status-error { background: #fff5f5; color: #9b2c2c; display: block !important; }
+    body { font-family: system-ui, sans-serif; background: #f0f2f5; padding: 20px; }
+    .box { max-width: 450px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; }
+    input, textarea, button { width: 100%; padding: 10px; margin-top: 10px; box-sizing: border-box; }
+    button { background: #1a73e8; color: white; border: none; font-weight: bold; cursor: pointer; }
+    #panelAdmin { display: none; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Panel de Administración</h2>
-  
-  <div class="config-section">
-    <h3>Configuración de Conexión</h3>
-    <label for="ghToken">GitHub Personal Access Token</label>
-    <input type="password" id="ghToken" value="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">
-
-    <label for="ghUser">Usuario de GitHub</label>
-    <input type="text" id="ghUser" placeholder="Tu-Usuario-GitHub">
-
-    <label for="ghRepo">Nombre del Repositorio</label>
-    <input type="text" id="ghRepo" placeholder="nombre-de-tu-repo">
+  <!-- Formulario de Login -->
+  <div class="box" id="loginBox">
+    <h2>Iniciar Sesión (Admin)</h2>
+    <input type="email" id="email" placeholder="Correo electrónico">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button id="btnLogin">Entrar</button>
   </div>
 
-  <h3>Cargar Nuevo Producto</h3>
-  
-  <label for="titulo">Título del Producto</label>
-  <input type="text" id="titulo" placeholder="Ej: Taladro Percutor 750W">
+  <!-- Formulario de Carga de Producto -->
+  <div class="box" id="panelAdmin">
+    <h2>Nuevo Producto</h2>
+    <input type="text" id="titulo" placeholder="Nombre del producto">
+    <input type="number" id="precio" placeholder="Precio ($)">
+    <textarea id="descripcion" placeholder="Descripción"></textarea>
+    
+    <label style="margin-top:10px; display:block; font-weight:bold;">Foto del Producto:</label>
+    <input type="file" id="fotoFile" accept="image/*">
 
-  <label for="precio">Precio ($)</label>
-  <input type="number" id="precio" placeholder="Ej: 45000">
+    <button id="btnGuardar">Guardar Producto</button>
+    <p id="status"></p>
+  </div>
 
-  <label for="imagen">URL de la Foto (Formato WebP / JPG)</label>
-  <input type="text" id="imagen" placeholder="https://ejemplo.com/fotos/taladro.webp">
+  <script type="module">
+    import { auth, db, storage } from './firebase-config.js';
+    import { signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
-  <label for="descripcion">Descripción</label>
-  <textarea id="descripcion" rows="3" placeholder="Descripción breve del producto..."></textarea>
+    // Manejar Login
+    document.getElementById('btnLogin').addEventListener('click', async () => {
+      const email = document.getElementById('email').value;
+      const pass = document.getElementById('password').value;
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+      } catch (err) {
+        alert("Error de autenticación: " + err.message);
+      }
+    });
 
-  <button onclick="guardarProducto()">Guardar y Actualizar Catálogo</button>
+    // Detectar estado de la sesión
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById('loginBox').style.display = 'none';
+        document.getElementById('panelAdmin').style.display = 'block';
+      }
+    });
 
-  <div id="status"></div>
-</div>
+    // Guardar Producto y Subir Imagen
+    document.getElementById('btnGuardar').addEventListener('click', async () => {
+      const status = document.getElementById('status');
+      const titulo = document.getElementById('titulo').value;
+      const precio = parseFloat(document.getElementById('precio').value);
+      const descripcion = document.getElementById('descripcion').value;
+      const file = document.getElementById('fotoFile').files[0];
 
-<script>
-  // Al cargar la página, recuperar datos guardados previamente en el navegador
-  document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('ghToken')) document.getElementById('ghToken').value = localStorage.getItem('ghToken');
-    if (localStorage.getItem('ghUser')) document.getElementById('ghUser').value = localStorage.getItem('ghUser');
-    if (localStorage.getItem('ghRepo')) document.getElementById('ghRepo').value = localStorage.getItem('ghRepo');
-  });
-
-  async function guardarProducto() {
-    const token = document.getElementById('ghToken').value.trim();
-    const user = document.getElementById('ghUser').value.trim();
-    const repo = document.getElementById('ghRepo').value.trim();
-
-    const titulo = document.getElementById('titulo').value.trim();
-    const precio = parseFloat(document.getElementById('precio').value);
-    const imagen = document.getElementById('imagen').value.trim();
-    const descripcion = document.getElementById('descripcion').value.trim();
-
-    const status = document.getElementById('status');
-
-    // Validación
-    if (!token || !user || !repo || !titulo || isNaN(precio) || !imagen) {
-      mostrarEstado("Por favor completa los datos de configuración, título, precio e imagen.", "error");
-      return;
-    }
-
-    // Guardar credenciales en el almacenamiento local del navegador
-    localStorage.setItem('ghToken', token);
-    localStorage.setItem('ghUser', user);
-    localStorage.setItem('ghRepo', repo);
-
-    mostrarEstado("Conectando con GitHub...", "info");
-
-    const filePath = 'productos.json';
-    const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/${filePath}`;
-
-    try {
-      // 1. Obtener el archivo productos.json actual
-      const resGet = await fetch(apiUrl, {
-        headers: { 
-          'Authorization': `token ${token}`,
-          'Accept': 'application/vnd.github.v3+json'
-        }
-      });
-
-      if (!resGet.ok) throw new Error("No se encontró productos.json. Revisa el Usuario y Repositorio.");
-
-      const dataGet = await resGet.json();
-      
-      // Decodificar Base64 respetando acentos y caracteres especiales (UTF-8)
-      const content = decodeURIComponent(escape(atob(dataGet.content.replace(/\s/g, ''))));
-      const productos = JSON.parse(content);
-
-      // 2. Crear y agregar el nuevo objeto de producto
-      const nuevoProducto = {
-        id: Date.now(),
-        titulo,
-        descripcion,
-        precio,
-        imagen
-      };
-
-      productos.push(nuevoProducto);
-
-      // 3. Volver a codificar a Base64 con soporte UTF-8
-      const newContentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(productos, null, 2))));
-
-      // 4. Enviar el commit de actualización a GitHub
-      mostrarEstado("Guardando cambios en el catálogo...", "info");
-      
-      const resPut = await fetch(apiUrl, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `token ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          message: `Agregar producto: ${titulo}`,
-          content: newContentBase64,
-          sha: dataGet.sha
-        })
-      });
-
-      if (resPut.ok) {
-        mostrarEstado("¡Producto agregado con éxito!", "success");
-        // Limpiar únicamente los campos del producto
-        document.getElementById('titulo').value = '';
-        document.getElementById('precio').value = '';
-        document.getElementById('imagen').value = '';
-        document.getElementById('descripcion').value = '';
-      } else {
-        throw new Error("Error al guardar en GitHub. Revisa si el token tiene permisos de repositorio.");
+      if (!titulo || !precio || !file) {
+        status.innerText = "Completa los campos requeridos.";
+        return;
       }
 
-    } catch (err) {
-      mostrarEstado(err.message, "error");
-    }
-  }
+      try {
+        status.innerText = "Subiendo imagen...";
+        // 1. Subir foto a Firebase Storage
+        const storageRef = ref(storage, `productos/${Date.now()}_${file.name}`);
+        await uploadBytes(storageRef, file);
+        const imagenUrl = await getDownloadURL(storageRef);
 
-  function mostrarEstado(mensaje, tipo) {
-    const status = document.getElementById('status');
-    status.innerText = mensaje;
-    status.className = '';
-    status.classList.add(`status-${tipo}`);
-  }
-</script>
+        // 2. Guardar registro en Firestore
+        status.innerText = "Guardando producto en la base de datos...";
+        await addDoc(collection(db, "productos"), {
+          titulo,
+          precio,
+          descripcion,
+          imagen: imagenUrl,
+          creado: Date.now()
+        });
 
-</body>
-</html>
-
-
-      if (resPut.ok) {
-        status.style.color = 'green';
-        status.innerText = "¡Producto agregado con éxito a productos.json!";
-        // Limpiar formulario
+        status.innerText = "¡Producto guardado exitosamente!";
         document.getElementById('titulo').value = '';
         document.getElementById('precio').value = '';
-        document.getElementById('imagen').value = '';
         document.getElementById('descripcion').value = '';
-      } else {
-        throw new Error("Error al guardar en GitHub. Verifica el Token y permisos.");
+        document.getElementById('fotoFile').value = '';
+
+      } catch (err) {
+        status.innerText = "Error: " + err.message;
       }
-
-    } catch (err) {
-      status.style.color = 'red';
-      status.innerText = err.message;
-    }
-  }
-</script>
-
+    });
+  </script>
 </body>
 </html>
