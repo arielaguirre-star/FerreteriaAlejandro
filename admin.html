@@ -60,46 +60,70 @@
       }
     });
 
-    // Guardar Producto y Subir Imagen
     document.getElementById('btnGuardar').addEventListener('click', async () => {
-      const status = document.getElementById('status');
-      const titulo = document.getElementById('titulo').value;
-      const precio = parseFloat(document.getElementById('precio').value);
-      const descripcion = document.getElementById('descripcion').value;
-      const file = document.getElementById('fotoFile').files[0];
+  const status = document.getElementById('status');
+  const titulo = document.getElementById('titulo').value.trim();
+  const precio = parseFloat(document.getElementById('precio').value);
+  const descripcion = document.getElementById('descripcion').value.trim();
+  const fileInput = document.getElementById('fotoFile');
 
-      if (!titulo || !precio || !file) {
-        status.innerText = "Completa los campos requeridos.";
-        return;
-      }
+  if (!titulo || isNaN(precio) || fileInput.files.length === 0) {
+    status.style.color = 'red';
+    status.innerText = "Completa título, precio y selecciona una imagen.";
+    return;
+  }
 
-      try {
-        status.innerText = "Subiendo imagen...";
-        // 1. Subir foto a Firebase Storage
-        const storageRef = ref(storage, `productos/${Date.now()}_${file.name}`);
-        await uploadBytes(storageRef, file);
-        const imagenUrl = await getDownloadURL(storageRef);
+  try {
+    status.style.color = 'blue';
+    status.innerText = "Comprimiendo imagen...";
 
-        // 2. Guardar registro en Firestore
-        status.innerText = "Guardando producto en la base de datos...";
-        await addDoc(collection(db, "productos"), {
-          titulo,
-          precio,
-          descripcion,
-          imagen: imagenUrl,
-          creado: Date.now()
-        });
+    // 1. COMPRESIÓN: Redimensiona a máx 800px de ancho y convierte a WebP al 75% de calidad
+    const fotoOriginal = fileInput.files[0];
+    const fotoComprimidaBlob = await comprimirImagen(fotoOriginal, 800, 0.75);
 
-        status.innerText = "¡Producto guardado exitosamente!";
-        document.getElementById('titulo').value = '';
-        document.getElementById('precio').value = '';
-        document.getElementById('descripcion').value = '';
-        document.getElementById('fotoFile').value = '';
+    status.innerText = "Subiendo imagen comprimida a ImgBB...";
 
-      } catch (err) {
-        status.innerText = "Error: " + err.message;
-      }
+    // 2. Preparar el Blob comprimido para enviarlo a ImgBB
+    const formData = new FormData();
+    formData.append('image', fotoComprimidaBlob, `${Date.now()}.webp`);
+
+    const resImgBB = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+      method: 'POST',
+      body: formData
     });
+
+    const dataImgBB = await resImgBB.json();
+
+    if (!dataImgBB.success) {
+      throw new Error("Error al subir la imagen a ImgBB.");
+    }
+
+    const imagenUrl = dataImgBB.data.url;
+
+    // 3. Guardar el producto en Firestore con la URL recibida
+    status.innerText = "Guardando en la base de datos...";
+    await addDoc(collection(db, "productos"), {
+      titulo,
+      precio,
+      descripcion,
+      imagen: imagenUrl,
+      creado: Date.now()
+    });
+
+    status.style.color = 'green';
+    status.innerText = "¡Producto guardado exitosamente!";
+
+    // Limpiar campos
+    document.getElementById('titulo').value = '';
+    document.getElementById('precio').value = '';
+    document.getElementById('descripcion').value = '';
+    fileInput.value = '';
+
+  } catch (err) {
+    status.style.color = 'red';
+    status.innerText = err.message;
+  }
+});
   </script>
 </body>
 </html>
