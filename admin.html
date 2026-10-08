@@ -41,6 +41,8 @@
     import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
     import { ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
+    // ⚠️ REEMPLAZA ESTO CON TU API KEY DE IMGBB (https://api.imgbb.com/)
+    const IMGBB_API_KEY = 'ccbc65f4bea21908a11adb119c673316';
     // Manejar Login
     document.getElementById('btnLogin').addEventListener('click', async () => {
       const email = document.getElementById('email').value;
