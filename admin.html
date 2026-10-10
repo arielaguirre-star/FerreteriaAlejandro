@@ -40,7 +40,7 @@
     <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md"></div>
   </div>
 
-  <!-- PANTALLA DE INICIO DE SESIÓN DE SEGURIDAD (3 CAMPOS) -->
+  <!-- PANTALLA DE INICIO DE SESIÓN CON FIREBASE AUTH -->
   <div id="loginOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/95">
     <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl w-full max-w-md space-y-6">
       <div class="text-center space-y-1">
@@ -48,13 +48,13 @@
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
         </div>
         <h2 class="text-xl font-black text-white">Acceso Administrador</h2>
-        <p class="text-xs text-slate-400">Ingrese sus credenciales y API Key de ImgBB</p>
+        <p class="text-xs text-slate-400">Autenticación directa con Firebase</p>
       </div>
 
       <form id="loginForm" class="space-y-4" onsubmit="return false;">
         <div>
-          <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Usuario *</label>
-          <input type="text" id="loginUser" required placeholder="admin" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white outline-none focus:ring-2 focus:ring-brand-500">
+          <label class="block text-xs font-semibold uppercase text-slate-400 mb-1">Correo Electrónico (Firebase) *</label>
+          <input type="email" id="loginEmail" required placeholder="admin@ferreteria.com" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
         <div>
@@ -62,20 +62,14 @@
           <input type="password" id="loginPass" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold uppercase text-brand-500 mb-1">API Key de ImgBB *</label>
-          <input type="password" id="loginImgbbKey" required placeholder="Clave para la carga de fotos..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-brand-500/50 text-xs text-white outline-none focus:ring-2 focus:ring-brand-500 font-mono">
-          <p class="text-[10px] text-slate-500 mt-1">Clave donde se almacenarán las imágenes en la nube.</p>
-        </div>
-
         <button type="button" id="btnLogin" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-3 rounded-xl shadow-lg transition text-xs uppercase tracking-wider">
-          Ingresar al Panel
+          Ingresar con Firebase
         </button>
       </form>
     </div>
   </div>
 
-  <!-- PANEL DE ADMINISTRACIÓN (OCULTO HASTA AUTENTICAR) -->
+  <!-- PANEL DE ADMINISTRACIÓN -->
   <div id="adminPanel" class="hidden flex-col min-h-screen">
     <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,7 +84,7 @@
             </div>
           </div>
 
-          <button onclick="logout()" class="px-3.5 py-1.5 bg-red-600/80 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition">
+          <button id="btnLogout" class="px-3.5 py-1.5 bg-red-600/80 hover:bg-red-600 text-white text-xs font-bold rounded-lg transition">
             Cerrar Sesión
           </button>
         </div>
@@ -100,7 +94,7 @@
     <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        <!-- Formulario -->
+        <!-- Formulario de Producto -->
         <section class="lg:col-span-5 bg-slate-900/90 backdrop-blur-md p-6 rounded-2xl border border-slate-800 shadow-xl sticky top-20">
           <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
             <h3 id="formTitle" class="text-lg font-bold text-white flex items-center">
@@ -173,40 +167,52 @@
   </div>
 
   <script type="module">
-    import { db } from './firebase-config.js';
+    import { db, auth } from './firebase-config.js';
+    import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+    // =========================================================
+    // API KEY DE IMGBB CONFIGURADA DIRECTAMENTE EN CÓDIGO
+    // =========================================================
+    const IMGBB_API_KEY = "COLOCA_AQUI_TU_API_KEY_DE_IMGBB"; 
     const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
 
-    let activeImgbbKey = "";
     let productos = [];
     let selectedImages = [];
     let isEditing = false;
 
-    // LOGIN Y VALIDACIÓN
-    document.getElementById('btnLogin').addEventListener('click', () => {
-      const u = document.getElementById('loginUser').value.trim();
-      const p = document.getElementById('loginPass').value.trim();
-      const key = document.getElementById('loginImgbbKey').value.trim();
-
-      if (!u || !p || !key) return alert("Por favor complete los 3 campos obligatorios.");
-      if (u === "admin" && p === "admin123") {
-        activeImgbbKey = key;
+    // Escuchar el estado de autenticación en Firebase
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
         document.getElementById('loginOverlay').classList.add('hidden');
         document.getElementById('adminPanel').classList.remove('hidden');
         document.getElementById('adminPanel').classList.add('flex');
       } else {
-        alert("Usuario o contraseña incorrectos.");
+        document.getElementById('loginOverlay').classList.remove('hidden');
+        document.getElementById('adminPanel').classList.add('hidden');
       }
     });
 
-    window.logout = () => {
-      activeImgbbKey = "";
-      document.getElementById('loginOverlay').classList.remove('hidden');
-      document.getElementById('adminPanel').classList.add('hidden');
-    };
+    // Login con Firebase Auth
+    document.getElementById('btnLogin').addEventListener('click', async () => {
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass = document.getElementById('loginPass').value.trim();
 
-    // Compresión Canvas
+      if (!email || !pass) return alert("Ingrese correo y contraseña.");
+
+      try {
+        await signInWithEmailAndPassword(auth, email, pass);
+      } catch (error) {
+        alert("Error de autenticación: " + error.message);
+      }
+    });
+
+    // Cerrar sesión en Firebase
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await signOut(auth);
+    });
+
+    // Compresión local Canvas
     function compressImage(file) {
       return new Promise((resolve) => {
         const reader = new FileReader();
@@ -236,7 +242,7 @@
     async function uploadToImgBB(cleanBase64) {
       const formData = new FormData();
       formData.append('image', cleanBase64);
-      const res = await fetch(`https://api.imgbb.com/1/upload?key=${activeImgbbKey}`, { method: 'POST', body: formData });
+      const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
       const data = await res.json();
       return data.success ? data.data.display_url : null;
     }
