@@ -5,31 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración - Ferretería Alejandro</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#fff7ed',
-              100: '#ffedd5',
-              500: '#f97316', // Hardware Orange Accent
-              600: '#ea580c',
-              700: '#c2410c',
-            },
-            industrial: {
-              800: '#1e293b', // Deep Slate/Navy
-              900: '#0f172a',
-            }
+            brand: { 500: '#f97316', 600: '#ea580c' },
+            industrial: { 800: '#1e293b', 900: '#0f172a' }
           }
         }
       }
     }
   </script>
   
-  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,70 +28,38 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
-<body class="h-full text-slate-800 antialiased flex flex-col">
+<body class="h-full text-slate-800 antialiased flex flex-col min-h-screen">
 
-  <!-- Top Navigation Header -->
   <header class="bg-industrial-900 text-white shadow-md sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo & Title -->
         <div class="flex items-center space-x-3">
           <div class="bg-brand-500 text-white p-2 rounded-xl shadow-md">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 012-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 01-2-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
             </svg>
           </div>
           <div>
-            <h1 class="font-extrabold text-lg leading-none text-white tracking-wide">Ferretería Alejandro</h1>
-            <p class="text-xs text-slate-400 mt-0.5">Gestión de Catálogo Cloud (Firebase + ImgBB)</p>
+            <h1 class="font-extrabold text-lg leading-none text-white">Ferretería Alejandro</h1>
+            <p class="text-xs text-slate-400 mt-0.5">Gestión de Catálogo Cloud</p>
           </div>
         </div>
 
-        <!-- Right Header Action Controls -->
-        <div class="flex items-center space-x-3">
-          <button id="btnOpenConfigModal" class="inline-flex items-center px-3 py-1.5 border border-slate-700 hover:border-brand-500 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg text-slate-200 transition-all shadow-sm">
-            <svg class="w-4 h-4 mr-1.5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-            </svg>
-            Ajustes API / Cloud
-          </button>
-        </div>
+        <a href="index.html" class="inline-flex items-center px-3.5 py-1.5 border border-slate-700 hover:border-brand-500 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg text-slate-200 transition">
+          Ver Catálogo Público
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Notification Toast Container -->
   <div id="toastContainer" class="fixed top-20 right-4 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
-  <!-- Main Admin Dashboard View -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-
-    <!-- Service Connection Status Notice -->
-    <div id="apiStatusBanner" class="bg-amber-50 border border-amber-300 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-sm">
-      <div class="flex items-center space-x-3">
-        <div class="p-2 bg-amber-100 text-amber-700 rounded-xl shrink-0">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-          </svg>
-        </div>
-        <div>
-          <h4 class="font-bold text-amber-900 text-sm" id="apiBannerTitle">Servicios Cloud Desconectados</h4>
-          <p class="text-xs text-amber-700" id="apiBannerDesc">Configure su API Key de ImgBB y Firebase Firestore para habilitar la sincronización en la nube.</p>
-        </div>
-      </div>
-      <button onclick="openConfigModal()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-semibold shrink-0 transition shadow-sm">
-        Configurar Claves Ahora
-      </button>
-    </div>
-
-    <!-- Main Workspace Layout Grid -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- LEFT COLUMN: Product Creation & Image Upload Form -->
+      <!-- Columna Formulario -->
       <section class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-20">
         <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
           <h3 id="formTitle" class="text-lg font-bold text-slate-900 flex items-center">
@@ -119,17 +76,15 @@
         <form id="formProducto" class="space-y-4" onsubmit="return false;">
           <input type="hidden" id="productId">
 
-          <!-- Product Name -->
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Nombre del Producto *</label>
-            <input type="text" id="prodNombre" required placeholder="Ej. Taladro Percutor 750W 13mm" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-slate-800 text-sm transition">
+            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nombre del Producto *</label>
+            <input type="text" id="prodNombre" required placeholder="Ej. Amoladora Angular 850W" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-xs">
           </div>
 
-          <!-- Category & Price Row -->
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Categoría *</label>
-              <select id="prodCategoria" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-slate-800 text-sm bg-white transition">
+              <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Categoría *</label>
+              <select id="prodCategoria" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-xs bg-white">
                 <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
                 <option value="Herramientas Manuales">Herramientas Manuales</option>
                 <option value="Plomería / Fontanería">Plomería / Fontanería</option>
@@ -140,432 +95,128 @@
               </select>
             </div>
             <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Precio ($) *</label>
-              <input type="number" id="prodPrecio" step="0.01" min="0" required placeholder="0.00" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-slate-800 text-sm transition">
+              <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Precio ($) *</label>
+              <input type="number" id="prodPrecio" step="0.01" min="0" required placeholder="0.00" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-xs">
             </div>
           </div>
 
-          <!-- Description -->
           <div>
-            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Descripción / Detalles</label>
-            <textarea id="prodDescripcion" rows="2" placeholder="Características técnicas, marca, garantía..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none text-slate-800 text-sm transition"></textarea>
+            <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Descripción</label>
+            <textarea id="prodDescripcion" rows="2" placeholder="Detalles o especificaciones técnicas..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 outline-none text-xs"></textarea>
           </div>
 
-          <!-- Drag & Drop Multiple Images (+10 Images HTML5 Canvas Engine) -->
+          <!-- Subida de +10 imágenes con Compresión Canvas -->
           <div>
             <div class="flex items-center justify-between mb-1">
-              <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600">Galería de Imágenes (Imágenes masivas +10)</label>
+              <label class="block text-xs font-semibold uppercase text-slate-600">Imágenes (+10 simultáneas)</label>
               <span class="text-[11px] text-brand-600 font-bold" id="imageCountLabel">0 seleccionadas</span>
             </div>
             
-            <div id="dropZone" class="relative border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:border-brand-500 bg-slate-50 transition cursor-pointer">
+            <div class="relative border-2 border-dashed border-slate-300 rounded-xl p-4 text-center hover:border-brand-500 bg-slate-50 transition cursor-pointer">
               <input type="file" id="prodFotosInput" multiple accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-              <svg class="mx-auto h-8 w-8 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="mx-auto h-7 w-7 text-slate-400 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
               </svg>
               <p class="text-xs text-slate-700 font-semibold">Seleccionar o soltar múltiples fotos</p>
-              <p class="text-[10px] text-slate-400 mt-0.5">Compresión local Canvas automática antes de subida</p>
+              <p class="text-[10px] text-slate-400">Compresión HTML5 Canvas local automática</p>
             </div>
 
-            <!-- Upload & Compression Progress Bar -->
-            <div id="uploadProgressContainer" class="hidden mt-3 p-3 bg-blue-50 border border-blue-200 rounded-xl space-y-2">
-              <div class="flex justify-between items-center text-xs text-blue-900 font-semibold">
-                <span id="uploadProgressText">Procesando fotos...</span>
-                <span id="uploadProgressPercent">0%</span>
-              </div>
-              <div class="w-full bg-blue-200 h-2 rounded-full overflow-hidden">
-                <div id="uploadProgressBar" class="bg-brand-500 h-full w-0 transition-all duration-300"></div>
-              </div>
-            </div>
-
-            <!-- Previews Grid & Cover Selector -->
-            <div id="imagesPreviewGrid" class="grid grid-cols-4 gap-2 mt-3 max-h-48 overflow-y-auto p-1">
-              <!-- Dynamically Populated Thumbnails -->
-            </div>
+            <div id="imagesPreviewGrid" class="grid grid-cols-4 gap-2 mt-3 max-h-48 overflow-y-auto p-1"></div>
           </div>
 
-          <!-- Submit Action Button -->
-          <button type="submit" id="btnSaveProduct" class="w-full bg-industrial-800 hover:bg-industrial-900 text-white font-bold py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center space-x-2 mt-2">
-            <svg class="w-5 h-5 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-            <span id="btnSaveText">Guardar Producto en Catálogo</span>
+          <button type="button" id="btnSaveProduct" class="w-full bg-industrial-800 hover:bg-industrial-900 text-white font-bold py-3 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
+            <span id="btnSaveText">Guardar Producto en Firebase</span>
           </button>
         </form>
       </section>
 
-      <!-- RIGHT COLUMN: Catalog Search & Live Firestore Product Grid -->
+      <!-- Columna Grilla -->
       <section class="lg:col-span-7 space-y-4">
-        
-        <!-- Filters Bar -->
-        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-3 justify-between items-center">
-          <div class="relative w-full sm:w-64">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre o detalle..." class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
-            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-
-          <div class="flex items-center space-x-2 w-full sm:w-auto">
-            <select id="filterCategory" class="w-full sm:w-auto px-3 py-2 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-500 outline-none bg-white">
-              <option value="">Todas las categorías</option>
-              <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
-              <option value="Herramientas Manuales">Herramientas Manuales</option>
-              <option value="Plomería / Fontanería">Plomería / Fontanería</option>
-              <option value="Pinturas & Selladores">Pinturas & Selladores</option>
-              <option value="Tornillería & Fijación">Tornillería & Fijación</option>
-              <option value="Electricidad">Electricidad</option>
-              <option value="Jardinería">Jardinería</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Catalog Header Statistics -->
-        <div class="flex items-center justify-between px-1">
-          <p class="text-xs font-bold text-slate-500 uppercase tracking-wider">
-            Mostrando <span id="productCount" class="text-slate-900 font-extrabold">0</span> Productos
-          </p>
-          <span id="firestoreSyncBadge" class="inline-flex items-center text-[10px] bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full font-semibold">
-            <span class="w-1.5 h-1.5 rounded-full bg-slate-500 mr-1.5"></span> Memoria Local
-          </span>
-        </div>
-
-        <!-- Dynamic Product Cards Grid -->
-        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <!-- Populated dynamically -->
-        </div>
-
-        <!-- Empty State View -->
-        <div id="emptyState" class="hidden text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300 p-6">
-          <svg class="mx-auto h-12 w-12 text-slate-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
-          </svg>
-          <h4 class="text-sm font-semibold text-slate-700">No hay productos disponibles</h4>
-          <p class="text-xs text-slate-400 mt-1">Usa el formulario de la izquierda para agregar un producto.</p>
-        </div>
-
+        <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
       </section>
 
     </div>
   </main>
 
-  <!-- API & CLOUD SETTINGS MODAL -->
-  <div id="configModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-6">
-      
-      <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-        <div class="flex items-center space-x-2">
-          <div class="p-2 bg-brand-100 text-brand-600 rounded-xl">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold text-slate-900">Configuración Cloud (Firebase & ImgBB)</h3>
-            <p class="text-xs text-slate-500">Credenciales para subida de imágenes y sincronización Firestore</p>
-          </div>
-        </div>
-        <button onclick="closeConfigModal()" class="text-slate-400 hover:text-slate-600">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-        </button>
-      </div>
-
-      <div class="space-y-4 text-xs">
-        <!-- ImgBB API Key Field -->
-        <div>
-          <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1">1. ImgBB API Key</label>
-          <input type="text" id="cfgImgbbKey" placeholder="Ej. 3a7f82b9e1c0d4e5f6a7b8c9d0e1f2a3" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-xs focus:ring-2 focus:ring-brand-500 outline-none">
-          <p class="text-[10px] text-slate-500 mt-1">Obtenla gratis en <a href="https://api.imgbb.com/" target="_blank" class="text-brand-600 underline font-semibold">api.imgbb.com</a></p>
-        </div>
-
-        <!-- Firebase Firestore JSON Config -->
-        <div>
-          <label class="block font-bold text-slate-700 uppercase tracking-wider mb-1">2. Firebase Config (Objeto JSON o Campos)</label>
-          <textarea id="cfgFirebaseConfig" rows="6" placeholder='{
-  "apiKey": "AIzaSy...",
-  "authDomain": "ferreteria.firebaseapp.com",
-  "projectId": "ferreteria-12345",
-  "storageBucket": "ferreteria.appspot.com",
-  "messagingSenderId": "123456789",
-  "appId": "1:123456789:web:abcdef"
-}' class="w-full px-3.5 py-2 rounded-xl border border-slate-300 font-mono text-[11px] focus:ring-2 focus:ring-brand-500 outline-none"></textarea>
-          <p class="text-[10px] text-slate-500 mt-1">Obtén esta configuración en la consola de Firebase &gt; Configuración del Proyecto.</p>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-end space-x-3 border-t border-slate-100 pt-4">
-        <button onclick="closeConfigModal()" class="px-4 py-2 border border-slate-300 rounded-xl text-slate-700 hover:bg-slate-100 font-semibold text-xs transition">
-          Cancelar
-        </button>
-        <button onclick="saveConfigurations()" class="px-5 py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-xl font-bold text-xs shadow-md transition">
-          Guardar y Conectar
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FIREBASE MODULE & APPLICATION LOGIC -->
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { db } from './firebase-config.js';
+    import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    /* ==========================================================================
-       1. APP STATE & CONSTANTS
-       ========================================================================== */
-    const STORAGE_CFG_KEY = 'ferreteria_cloud_config';
-    const LOCAL_PRODS_KEY = 'ferreteria_local_products';
-    
-    // Default fallback placeholder image
-    const DEFAULT_PLACEHOLDER = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+    const IMGBB_API_KEY = "3a7f82b9e1c0d4e5f6a7b8c9d0e1f2a3"; 
+    const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
 
-    let db = null;
-    let productsList = [];
-    let selectedImages = []; // Array of { id, base64, url, isCover, file }
+    let productos = [];
+    let selectedImages = [];
     let isEditing = false;
 
-    /* ==========================================================================
-       2. CANVAS IMAGE COMPRESSION ENGINE
-       ========================================================================== */
-    /**
-     * Client-side HTML5 Canvas Image Compression
-     * Resizes high-res photos preserving aspect ratio and lowering JPEG quality.
-     */
-    function compressImage(file, { maxWidth = 1200, maxHeight = 1200, quality = 0.75 } = {}) {
+    // Motor de compresión Canvas en el Navegador
+    function compressImage(file) {
       return new Promise((resolve, reject) => {
-        if (!file || !file.type.startsWith('image/')) {
-          return reject(new Error('El archivo no es una imagen válida.'));
-        }
-
         const reader = new FileReader();
         reader.readAsDataURL(file);
-
         reader.onload = (e) => {
           const img = new Image();
           img.src = e.target.result;
-
           img.onload = () => {
-            let width = img.width;
-            let height = img.height;
-
-            // Maintain Aspect Ratio Math
-            if (width > height) {
-              if (width > maxWidth) {
-                height = Math.round((height * maxWidth) / width);
-                width = maxWidth;
-              }
-            } else {
-              if (height > maxHeight) {
-                width = Math.round((width * maxHeight) / height);
-                height = maxHeight;
-              }
-            }
+            let width = img.width, height = img.height, max = 1200;
+            if (width > height && width > max) { height = Math.round((height * max) / width); width = max; }
+            else if (height > max) { width = Math.round((width * max) / height); height = max; }
 
             const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-
+            canvas.width = width; canvas.height = height;
             const ctx = canvas.getContext('2d');
-            ctx.fillStyle = '#FFFFFF';
-            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = '#FFFFFF'; ctx.fillRect(0, 0, width, height);
             ctx.drawImage(img, 0, 0, width, height);
 
-            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
-
-            resolve({
-              base64: compressedDataUrl,
-              cleanBase64: compressedDataUrl.replace(/^data:image\/(png|jpeg|jpg|webp);base64,/, ""),
-              originalSize: file.size,
-              compressedSize: Math.round((compressedDataUrl.length * 3) / 4)
-            });
+            const base64 = canvas.toDataURL('image/jpeg', 0.75);
+            resolve({ base64, cleanBase64: base64.replace(/^data:image\/(png|jpeg|jpg);base64,/, "") });
           };
-          img.onerror = () => reject(new Error('Error al decodificar la imagen.'));
         };
-        reader.onerror = () => reject(new Error('Error al leer el archivo.'));
       });
     }
 
-    /* ==========================================================================
-       3. IMGBB API CLOUD UPLOAD ENGINE
-       ========================================================================== */
-    /**
-     * Upload compressed Base64 image to ImgBB REST API
-     */
-    async function uploadToImgBB(cleanBase64, apiKey) {
+    // Subida a ImgBB API
+    async function uploadToImgBB(cleanBase64) {
       const formData = new FormData();
       formData.append('image', cleanBase64);
-
-      const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKey}`, {
-        method: 'POST',
-        body: formData
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        return data.data.display_url || data.data.url;
-      } else {
-        throw new Error(data.error?.message || 'Error al subir a ImgBB.');
-      }
+      const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData });
+      const data = await res.json();
+      return data.success ? data.data.display_url : null;
     }
 
-    /* ==========================================================================
-       4. FIREBASE INITIALIZATION & REALTIME SYNCRONIZATION
-       ========================================================================== */
-    function initServices() {
-      const savedCfg = localStorage.getItem(STORAGE_CFG_KEY);
-      const apiStatusBanner = document.getElementById('apiStatusBanner');
-      const syncBadge = document.getElementById('firestoreSyncBadge');
-
-      if (!savedCfg) {
-        apiStatusBanner.classList.remove('hidden');
-        renderLocalProducts();
-        return;
-      }
-
-      try {
-        const config = JSON.parse(savedCfg);
-        
-        // Load ImgBB key to input modal
-        if (config.imgbbKey) {
-          document.getElementById('cfgImgbbKey').value = config.imgbbKey;
-        }
-
-        // Initialize Firebase Firestore if configured
-        if (config.firebase && config.firebase.projectId) {
-          document.getElementById('cfgFirebaseConfig').value = JSON.stringify(config.firebase, null, 2);
-          
-          const app = initializeApp(config.firebase);
-          db = getFirestore(app);
-
-          // Realtime Listener for 'productos' Collection
-          onSnapshot(collection(db, 'productos'), (snapshot) => {
-            productsList = snapshot.docs.map(docSnap => ({
-              id: docSnap.id,
-              ...docSnap.data()
-            }));
-            renderProductsList();
-            
-            syncBadge.className = 'inline-flex items-center text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-semibold';
-            syncBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"></span> Firestore Cloud Sync`;
-          }, (err) => {
-            console.error("Firestore Error:", err);
-            showToast("Error de conexión a Firestore. Usando modo local.", "error");
-            renderLocalProducts();
-          });
-
-          apiStatusBanner.classList.add('hidden');
-        } else {
-          apiStatusBanner.classList.remove('hidden');
-          renderLocalProducts();
-        }
-      } catch (e) {
-        console.error("Initialization error", e);
-        renderLocalProducts();
-      }
-    }
-
-    function renderLocalProducts() {
-      const stored = localStorage.getItem(LOCAL_PRODS_KEY);
-      if (stored) {
-        productsList = JSON.parse(stored);
-      } else {
-        productsList = [
-          {
-            id: 'demo-1',
-            nombre: 'Taladro Percutor 1/2" 750W',
-            categoria: 'Herramientas Eléctricas',
-            precio: 45990.00,
-            descripcion: 'Potente motor de 750W con mandril de 13mm.',
-            imagenes: [DEFAULT_PLACEHOLDER]
-          }
-        ];
-        localStorage.setItem(LOCAL_PRODS_KEY, JSON.stringify(productsList));
-      }
-      renderProductsList();
-    }
-
-    /* ==========================================================================
-       5. MASS MULTI-IMAGE HANDLER (+10 Photos Drag & Drop)
-       ========================================================================== */
-    document.getElementById('prodFotosInput').addEventListener('change', async (e) => {
-      const files = Array.from(e.target.files);
-      if (files.length === 0) return;
-
-      const progressContainer = document.getElementById('uploadProgressContainer');
-      const progressBar = document.getElementById('uploadProgressBar');
-      const progressText = document.getElementById('uploadProgressText');
-      const progressPercent = document.getElementById('uploadProgressPercent');
-
-      progressContainer.classList.remove('hidden');
-
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const percent = Math.round(((i + 1) / files.length) * 100);
-
-        progressText.textContent = `Comprimiendo e identificando foto ${i + 1} de ${files.length}...`;
-        progressBar.style.width = `${percent}%`;
-        progressPercent.textContent = `${percent}%`;
-
-        try {
-          // Process Client-Side Canvas Compression
-          const compressed = await compressImage(file, { maxWidth: 1200, maxHeight: 1200, quality: 0.75 });
-          
-          selectedImages.push({
-            id: 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
-            base64: compressed.base64,
-            cleanBase64: compressed.cleanBase64,
-            url: null, // Pending upload
-            isCover: selectedImages.length === 0
-          });
-        } catch (err) {
-          showToast(`Error procesando ${file.name}`, 'error');
-        }
-      }
-
-      progressContainer.classList.add('hidden');
-      renderImagePreviews();
-      showToast(`${files.length} foto(s) procesadas e introducidas`);
+    // Listener Firebase Firestore en Tiempo Real
+    onSnapshot(collection(db, "productos"), (snapshot) => {
+      productos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderProducts();
     });
 
-    function renderImagePreviews() {
+    document.getElementById('prodFotosInput').addEventListener('change', async (e) => {
+      const files = Array.from(e.target.files);
+      for (let file of files) {
+        const comp = await compressImage(file);
+        selectedImages.push({ id: 'img_' + Date.now() + Math.random(), base64: comp.base64, cleanBase64: comp.cleanBase64, url: null });
+      }
+      renderPreviews();
+    });
+
+    function renderPreviews() {
       const grid = document.getElementById('imagesPreviewGrid');
-      const label = document.getElementById('imageCountLabel');
-      
-      label.textContent = `${selectedImages.length} seleccionadas`;
-
-      grid.innerHTML = selectedImages.map((img, idx) => `
-        <div class="relative group aspect-square rounded-xl overflow-hidden border-2 ${img.isCover ? 'border-brand-500 ring-2 ring-brand-500/30' : 'border-slate-200'} bg-slate-100">
+      document.getElementById('imageCountLabel').textContent = `${selectedImages.length} seleccionadas`;
+      grid.innerHTML = selectedImages.map(img => `
+        <div class="relative aspect-square rounded-xl overflow-hidden border border-slate-200">
           <img src="${img.url || img.base64}" class="w-full h-full object-cover">
-          
-          <!-- Cover Star Badge -->
-          <button type="button" onclick="setCoverImage('${img.id}')" title="Marcar como Portada" class="absolute top-1 left-1 p-1 rounded-lg ${img.isCover ? 'bg-brand-500 text-white' : 'bg-slate-900/60 text-slate-300 hover:text-white'} transition">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-          </button>
-
-          <!-- Delete Image Button -->
-          <button type="button" onclick="removeImage('${img.id}')" title="Eliminar Foto" class="absolute top-1 right-1 p-1 bg-red-600 hover:bg-red-700 text-white rounded-lg transition">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          <button type="button" onclick="removeImage('${img.id}')" class="absolute top-1 right-1 p-1 bg-red-600 text-white rounded-lg">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
         </div>
       `).join('');
     }
 
-    window.setCoverImage = (id) => {
-      selectedImages.forEach(img => img.isCover = (img.id === id));
-      renderImagePreviews();
-    };
-
     window.removeImage = (id) => {
-      selectedImages = selectedImages.filter(img => img.id !== id);
-      if (selectedImages.length > 0 && !selectedImages.some(i => i.isCover)) {
-        selectedImages[0].isCover = true;
-      }
-      renderImagePreviews();
+      selectedImages = selectedImages.filter(i => i.id !== id);
+      renderPreviews();
     };
 
-    /* ==========================================================================
-       6. SAVE & UPDATE PRODUCT LOGIC (ImgBB Upload + Firestore)
-       ========================================================================== */
     document.getElementById('btnSaveProduct').addEventListener('click', async () => {
       const id = document.getElementById('productId').value;
       const nombre = document.getElementById('prodNombre').value.trim();
@@ -573,139 +224,67 @@
       const precio = parseFloat(document.getElementById('prodPrecio').value);
       const descripcion = document.getElementById('prodDescripcion').value.trim();
 
-      if (!nombre || isNaN(precio)) {
-        showToast('Complete todos los campos obligatorios (*)', 'error');
-        return;
-      }
+      if (!nombre || isNaN(precio)) return alert('Complete los campos obligatorios');
 
-      const saveBtn = document.getElementById('btnSaveProduct');
-      const saveText = document.getElementById('btnSaveText');
-      saveBtn.disabled = true;
-      saveText.textContent = "Procesando e ImgBB Subiendo...";
+      const btnText = document.getElementById('btnSaveText');
+      btnText.textContent = "Guardando...";
 
       try {
-        const savedCfg = JSON.parse(localStorage.getItem(STORAGE_CFG_KEY) || '{}');
-        const imgbbApiKey = savedCfg.imgbbKey;
-
-        // Upload any pending base64 images to ImgBB
-        const finalImageUrls = [];
-        
-        // Order images so cover is first
-        selectedImages.sort((a, b) => (b.isCover ? 1 : 0) - (a.isCover ? 1 : 0));
-
-        for (let i = 0; i < selectedImages.length; i++) {
-          const item = selectedImages[i];
-
-          if (item.url) {
-            finalImageUrls.push(item.url);
-          } else if (imgbbApiKey && item.cleanBase64) {
-            saveText.textContent = `Subiendo imagen ${i + 1} de ${selectedImages.length} a ImgBB...`;
-            const uploadedUrl = await uploadToImgBB(item.cleanBase64, imgbbApiKey);
-            finalImageUrls.push(uploadedUrl);
-          } else {
-            // Fallback base64 or placeholder if no ImgBB key
-            finalImageUrls.push(item.base64 || DEFAULT_PLACEHOLDER);
+        const fotosUrls = [];
+        for (let img of selectedImages) {
+          if (img.url) {
+            fotosUrls.push(img.url);
+          } else if (img.cleanBase64) {
+            const url = await uploadToImgBB(img.cleanBase64);
+            fotosUrls.push(url || img.base64);
           }
         }
 
-        if (finalImageUrls.length === 0) {
-          finalImageUrls.push(DEFAULT_PLACEHOLDER);
-        }
+        const data = { nombre, categoria, precio, descripcion, imagenes: fotosUrls.length ? fotosUrls : [DEFAULT_IMG] };
 
-        const productData = {
-          nombre,
-          categoria,
-          precio,
-          descripcion,
-          imagenes: finalImageUrls,
-          actualizadoEn: new Date().toISOString()
-        };
-
-        // Firestore OR Local Storage Save
-        if (db) {
-          if (isEditing && id) {
-            await updateDoc(doc(db, 'productos', id), productData);
-            showToast('Producto actualizado en Firestore');
-          } else {
-            productData.creadoEn = new Date().toISOString();
-            await addDoc(collection(db, 'productos'), productData);
-            showToast('Producto guardado en Firestore Cloud');
-          }
+        if (isEditing && id) {
+          await updateDoc(doc(db, "productos", id), data);
         } else {
-          // Local fallback
-          if (isEditing && id) {
-            const idx = productsList.findIndex(p => p.id === id);
-            if (idx !== -1) productsList[idx] = { ...productsList[idx], ...productData };
-          } else {
-            productData.id = 'loc_' + Date.now();
-            productsList.unshift(productData);
-          }
-          localStorage.setItem(LOCAL_PRODS_KEY, JSON.stringify(productsList));
-          renderProductsList();
-          showToast('Guardado localmente (Sin conexión Firestore)');
+          await addDoc(collection(db, "productos"), data);
         }
 
         resetForm();
-
       } catch (err) {
-        console.error("Save error:", err);
-        showToast(err.message || "Error al guardar el producto", "error");
+        alert("Error al guardar: " + err.message);
       } finally {
-        saveBtn.disabled = false;
-        saveText.textContent = isEditing ? "Guardar Cambios" : "Guardar Producto en Catálogo";
+        btnText.textContent = "Guardar Producto en Firebase";
       }
     });
 
-    /* ==========================================================================
-       7. EDIT & DELETE ACTIONS
-       ========================================================================== */
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      grid.innerHTML = productos.map(p => `
+        <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-2">
+          <h4 class="font-bold text-slate-900 text-sm">${p.nombre || p.titulo}</h4>
+          <p class="text-xs text-brand-600 font-extrabold">$${p.precio}</p>
+          <div class="flex justify-end space-x-2 pt-2">
+            <button onclick="editProduct('${p.id}')" class="px-3 py-1 bg-slate-100 text-xs font-bold rounded-lg">Editar</button>
+            <button onclick="deleteProduct('${p.id}')" class="px-3 py-1 bg-red-100 text-red-600 text-xs font-bold rounded-lg">Eliminar</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
     window.editProduct = (id) => {
-      const prod = productsList.find(p => p.id === id);
-      if (!prod) return;
-
+      const p = productos.find(x => x.id === id);
+      if (!p) return;
       isEditing = true;
-      document.getElementById('productId').value = prod.id;
-      document.getElementById('prodNombre').value = prod.nombre;
-      document.getElementById('prodCategoria').value = prod.categoria;
-      document.getElementById('prodPrecio').value = prod.precio;
-      document.getElementById('prodDescripcion').value = prod.descripcion || '';
-
-      // Map product images to selectedImages state
-      selectedImages = (prod.imagenes || [DEFAULT_PLACEHOLDER]).map((url, idx) => ({
-        id: 'existing_' + idx,
-        url: url,
-        base64: url,
-        isCover: idx === 0
-      }));
-
-      renderImagePreviews();
-
-      document.getElementById('formTitle').innerHTML = `
-        <svg class="w-5 h-5 text-amber-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-        Editando Producto
-      `;
-      document.getElementById('btnSaveText').textContent = 'Guardar Cambios';
-      document.getElementById('btnCancelEdit').classList.remove('hidden');
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('productId').value = p.id;
+      document.getElementById('prodNombre').value = p.nombre || p.titulo;
+      document.getElementById('prodCategoria').value = p.categoria || 'Herramientas Manuales';
+      document.getElementById('prodPrecio').value = p.precio;
+      document.getElementById('prodDescripcion').value = p.descripcion || '';
+      selectedImages = (p.imagenes || [DEFAULT_IMG]).map((url, i) => ({ id: 'ex_' + i, url, base64: url }));
+      renderPreviews();
     };
 
     window.deleteProduct = async (id) => {
-      if (!confirm('¿Desea eliminar este producto permanentemente?')) return;
-
-      try {
-        if (db) {
-          await deleteDoc(doc(db, 'productos', id));
-          showToast('Producto eliminado de Firestore');
-        } else {
-          productsList = productsList.filter(p => p.id !== id);
-          localStorage.setItem(LOCAL_PRODS_KEY, JSON.stringify(productsList));
-          renderProductsList();
-          showToast('Producto eliminado localmente');
-        }
-      } catch (err) {
-        showToast('Error al eliminar producto', 'error');
-      }
+      if (confirm('¿Eliminar este producto?')) await deleteDoc(doc(db, "productos", id));
     };
 
     function resetForm() {
@@ -713,140 +292,8 @@
       document.getElementById('productId').value = '';
       document.getElementById('formProducto').reset();
       selectedImages = [];
-      renderImagePreviews();
-      document.getElementById('btnCancelEdit').classList.add('hidden');
-      document.getElementById('formTitle').innerHTML = `
-        <svg class="w-5 h-5 text-brand-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        Nuevo Producto
-      `;
-      document.getElementById('btnSaveText').textContent = 'Guardar Producto en Catálogo';
+      renderPreviews();
     }
-
-    document.getElementById('btnCancelEdit').addEventListener('click', resetForm);
-
-    /* ==========================================================================
-       8. RENDER CATALOG GRID WITH SEARCH
-       ========================================================================== */
-    function renderProductsList() {
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      const cat = document.getElementById('filterCategory').value;
-
-      const filtered = productsList.filter(p => {
-        const matchesSearch = p.nombre.toLowerCase().includes(search) || (p.descripcion && p.descripcion.toLowerCase().includes(search));
-        const matchesCat = !cat || p.categoria === cat;
-        return matchesSearch && matchesCat;
-      });
-
-      const grid = document.getElementById('productsGrid');
-      const empty = document.getElementById('emptyState');
-      document.getElementById('productCount').textContent = filtered.length;
-
-      if (filtered.length === 0) {
-        grid.innerHTML = '';
-        empty.classList.remove('hidden');
-        return;
-      }
-
-      empty.classList.add('hidden');
-      grid.innerHTML = filtered.map(p => {
-        const imgs = p.imagenes && p.imagenes.length > 0 ? p.imagenes : [DEFAULT_PLACEHOLDER];
-        const cover = imgs[0];
-
-        return `
-          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
-            <div>
-              <!-- Cover Image & Badge -->
-              <div class="h-44 bg-slate-100 relative overflow-hidden flex items-center justify-center p-2 border-b border-slate-100">
-                <img src="${cover}" alt="${p.nombre}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_PLACEHOLDER}'">
-                <span class="absolute top-2 right-2 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">
-                  ${p.categoria}
-                </span>
-                ${imgs.length > 1 ? `<span class="absolute bottom-2 right-2 bg-brand-500 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md">${imgs.length} fotos</span>` : ''}
-              </div>
-
-              <!-- Product Details -->
-              <div class="p-4 space-y-1.5">
-                <h4 class="font-bold text-slate-900 text-sm line-clamp-1">${p.nombre}</h4>
-                <p class="text-xs text-slate-500 line-clamp-2 h-8">${p.descripcion || 'Sin especificaciones.'}</p>
-                <div class="pt-2 flex items-baseline justify-between border-t border-slate-50 mt-2">
-                  <span class="text-xs text-slate-400">Precio:</span>
-                  <span class="text-lg font-black text-brand-600">$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="p-3 bg-slate-50 border-t border-slate-100 flex items-center justify-end space-x-2">
-              <button onclick="editProduct('${p.id}')" class="px-3 py-1.5 bg-white border border-slate-300 text-slate-700 hover:text-brand-600 hover:border-brand-500 rounded-xl text-xs font-bold shadow-sm transition flex items-center">
-                <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                Editar
-              </button>
-              <button onclick="deleteProduct('${p.id}')" class="px-3 py-1.5 bg-white border border-slate-300 text-slate-700 hover:text-red-600 hover:border-red-500 rounded-xl text-xs font-bold shadow-sm transition flex items-center">
-                <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                Eliminar
-              </button>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    document.getElementById('searchInput').addEventListener('input', renderProductsList);
-    document.getElementById('filterCategory').addEventListener('change', renderProductsList);
-
-    /* ==========================================================================
-       9. SETTINGS MODAL & TOAST NOTIFICATIONS
-       ========================================================================== */
-    window.openConfigModal = () => document.getElementById('configModal').classList.remove('hidden');
-    window.closeConfigModal = () => document.getElementById('configModal').classList.add('hidden');
-    document.getElementById('btnOpenConfigModal').addEventListener('click', openConfigModal);
-
-    window.saveConfigurations = () => {
-      const imgbbKey = document.getElementById('cfgImgbbKey').value.trim();
-      const fbStr = document.getElementById('cfgFirebaseConfig').value.trim();
-
-      let firebaseCfg = null;
-      if (fbStr) {
-        try {
-          firebaseCfg = JSON.parse(fbStr);
-        } catch (e) {
-          showToast('Formato JSON de Firebase inválido', 'error');
-          return;
-        }
-      }
-
-      const configToSave = {
-        imgbbKey,
-        firebase: firebaseCfg
-      };
-
-      localStorage.setItem(STORAGE_CFG_KEY, JSON.stringify(configToSave));
-      showToast('Configuraciones guardadas. Recargando...');
-      closeConfigModal();
-      setTimeout(() => window.location.reload(), 1000);
-    };
-
-    function showToast(msg, type = 'success') {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      const isSuccess = type === 'success';
-
-      toast.className = `${isSuccess ? 'bg-industrial-900' : 'bg-red-600'} text-white text-xs px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-2 pointer-events-auto transform transition-all duration-300 translate-y-2 opacity-0`;
-      toast.innerHTML = `
-        ${isSuccess ? '<svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>' : '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'}
-        <span class="font-medium">${msg}</span>
-      `;
-
-      container.appendChild(toast);
-      setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 3500);
-    }
-
-    // Startup Execution
-    window.addEventListener('DOMContentLoaded', initServices);
   </script>
 </body>
 </html>
