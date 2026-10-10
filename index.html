@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="h-full bg-slate-100">
+<html lang="es" class="h-full bg-slate-900">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,14 +26,26 @@
   <style>
     body { font-family: 'Inter', sans-serif; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f5f9; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
   </style>
 </head>
-<body class="h-full text-slate-800 antialiased flex flex-col min-h-screen">
+<body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
-  <!-- Header / Barra de Navegación -->
-  <header class="bg-industrial-900 text-white shadow-md sticky top-0 z-30">
+  <!-- ========================================== -->
+  <!-- VIDEO DE FONDO Y OVERLAY -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 w-full h-full overflow-hidden -z-10">
+    <video autoplay loop muted playsinline class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
+      <!-- RUTA DE TU VIDEO DE FONDO AQUÍ -->
+      <source src="video-fondo.mp4" type="video/mp4">
+    </video>
+    <!-- Capa Oscura (Superposición) para contraste -->
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+  </div>
+
+  <!-- Header (SIN botón de Admin por seguridad) -->
+  <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center space-x-3">
@@ -47,26 +59,22 @@
             <p class="text-xs text-slate-400 mt-0.5">Catálogo Oficial de Productos</p>
           </div>
         </div>
-
-        <a href="admin.html" class="inline-flex items-center px-3.5 py-1.5 border border-slate-700 hover:border-brand-500 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg text-slate-200 transition">
-          Acceso Admin
-        </a>
       </div>
     </div>
   </header>
 
   <!-- Filtros y Búsqueda -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-    <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-3 justify-between items-center">
+    <div class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center">
       <div class="relative w-full sm:w-80">
-        <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-500 outline-none">
+        <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none">
         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
 
       <div class="w-full sm:w-auto">
-        <select id="filterCategory" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-brand-500 outline-none bg-white">
+        <select id="filterCategory" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none">
           <option value="">Todas las categorías</option>
           <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
           <option value="Herramientas Manuales">Herramientas Manuales</option>
@@ -81,7 +89,7 @@
 
     <!-- Malla de Productos -->
     <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div class="col-span-full text-center py-12 text-slate-500 text-sm">Cargando productos en tiempo real...</div>
+      <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando productos...</div>
     </div>
   </main>
 
@@ -113,7 +121,7 @@
       });
 
       if (filtrados.length === 0) {
-        contenedor.innerHTML = `<div class="col-span-full text-center py-12 bg-white rounded-2xl border border-dashed border-slate-300 text-slate-500 text-sm">No se encontraron productos disponibles.</div>`;
+        contenedor.innerHTML = `<div class="col-span-full text-center py-12 bg-slate-900/80 rounded-2xl border border-dashed border-slate-800 text-slate-400 text-sm">No se encontraron productos disponibles.</div>`;
         return;
       }
 
@@ -124,22 +132,22 @@
         const portada = fotos[0];
 
         return `
-          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+          <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between">
             <div>
-              <div class="h-48 bg-slate-50 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-100">
+              <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
                 <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
-                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-900/80 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full">${p.categoria}</span>` : ''}
+                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
               </div>
               <div class="p-4 space-y-2">
-                <h3 class="font-bold text-slate-900 text-sm line-clamp-1">${titulo}</h3>
-                <p class="text-xs text-slate-500 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
-                <div class="pt-2 flex items-baseline justify-between border-t border-slate-100">
-                  <span class="text-xs text-slate-400">Precio:</span>
-                  <span class="text-lg font-black text-brand-600">${precio}</span>
+                <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
+                <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
+                <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
+                  <span class="text-xs text-slate-500">Precio:</span>
+                  <span class="text-lg font-black text-brand-500">${precio}</span>
                 </div>
               </div>
             </div>
-            <div class="p-3 bg-slate-50 border-t border-slate-100">
+            <div class="p-3 bg-slate-950/50 border-t border-slate-800">
               <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                 <span>Consultar por WhatsApp</span>
