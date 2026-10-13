@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ferretería Alejandro - Catálogo de Productos</title>
   
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,6 +20,9 @@
     }
   </script>
   
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,6 +32,15 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    
+    /* Estilos personalizados para las flechas y puntos de Swiper */
+    .swiper-button-next, .swiper-button-prev {
+      color: #f97316 !important;
+      transform: scale(0.7);
+    }
+    .swiper-pagination-bullet-active {
+      background: #f97316 !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
@@ -37,21 +50,19 @@
   <!-- ========================================== -->
   <div class="fixed inset-0 w-full h-full overflow-hidden -z-10">
     <video autoplay loop muted playsinline class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
-      <!-- RUTA DE TU VIDEO DE FONDO AQUÍ -->
       <source src="video-fondo.mp4" type="video/mp4">
     </video>
-    <!-- Capa Oscura (Superposición) para contraste -->
     <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
   </div>
 
-  <!-- Header (SIN botón de Admin por seguridad) -->
+  <!-- Header -->
   <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center space-x-3">
           <div class="bg-brand-500 text-white p-2 rounded-xl shadow-md">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 01-2-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 012-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
             </svg>
           </div>
           <div>
@@ -63,8 +74,27 @@
     </div>
   </header>
 
-  <!-- Filtros y Búsqueda -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
+    <!-- ========================================== -->
+    <!-- CARRUSEL DE PRODUCTOS DESTACADOS -->
+    <!-- ========================================== -->
+    <section id="carouselSection" class="hidden">
+      <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+        Productos Destacados
+      </h2>
+      <div class="swiper mySwiper rounded-2xl p-2 bg-slate-900/60 backdrop-blur-md border border-slate-800">
+        <div class="swiper-wrapper" id="carouselWrapper">
+          <!-- Los items del carrusel se inyectan dinámicamente -->
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <!-- Filtros y Búsqueda -->
     <div class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center">
       <div class="relative w-full sm:w-80">
         <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none">
@@ -93,17 +123,89 @@
     </div>
   </main>
 
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <script type="module">
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
     let todosLosProductos = [];
+    let swiperInstance = null;
 
+    // Inicialización del carrusel Swiper
+    function initSwiper() {
+      if (swiperInstance) swiperInstance.destroy(true, true);
+      swiperInstance = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 16,
+        loop: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 }
+        }
+      });
+    }
+
+    // Escucha en tiempo real de Firestore (Carga dinámica de carrusel y catálogo)
     onSnapshot(collection(db, "productos"), (snapshot) => {
       todosLosProductos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderCarousel();
       renderProductos();
     });
+
+    function renderCarousel() {
+      const carouselSection = document.getElementById('carouselSection');
+      const wrapper = document.getElementById('carouselWrapper');
+
+      if (todosLosProductos.length === 0) {
+        carouselSection.classList.add('hidden');
+        return;
+      }
+
+      carouselSection.classList.remove('hidden');
+
+      wrapper.innerHTML = todosLosProductos.map(p => {
+        const titulo = p.nombre || p.titulo || 'Producto sin nombre';
+        const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
+        const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
+        const portada = fotos[0];
+
+        return `
+          <div class="swiper-slide h-auto">
+            <div class="bg-slate-900/90 rounded-xl border border-slate-800 overflow-hidden h-full flex flex-col justify-between p-3">
+              <div class="h-40 bg-slate-950/60 rounded-lg overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
+                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-bold text-white text-xs line-clamp-1">${titulo}</h4>
+                <p class="text-sm font-black text-brand-500">${precio}</p>
+              </div>
+              <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="mt-3 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-1.5 rounded-lg text-[11px] font-bold text-center block transition">
+                Consultar
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      initSwiper();
+    }
 
     function renderProductos() {
       const search = document.getElementById('searchInput').value.toLowerCase();
@@ -149,7 +251,7 @@
             </div>
             <div class="p-3 bg-slate-950/50 border-t border-slate-800">
               <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                 <span>Consultar por WhatsApp</span>
               </a>
             </div>
