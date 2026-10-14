@@ -80,7 +80,7 @@
         <div class="flex items-center space-x-3">
           <div class="bg-brand-500 text-white p-2 rounded-xl shadow-md">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 01-2-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 01-2-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 01-2-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
             </svg>
           </div>
           <div>
@@ -109,7 +109,7 @@
       </div>
     </div>
 
-    <!-- CARRUSEL: ÚLTIMOS 3 PRODUCTOS (ANCHO COMPLETO / 1 PRODUCTO A LA VEZ) -->
+    <!-- CARRUSEL: ÚLTIMOS 3 PRODUCTOS (1 PRODUCTO A LA VEZ) -->
     <section id="carouselSection" class="hidden">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -158,6 +158,153 @@
     </div>
   </main>
 
+  <!-- ========================================================= -->
+  <!-- SECCIONES INFERIORES ADAPTADAS DE LA CAPTURA -->
+  <!-- ========================================================= -->
+
+  <!-- 1. SECCIÓN SOBRE EL LOCAL (VIDEO / EXPERIENCIA) -->
+  <section class="bg-white text-slate-800 py-12 px-4 sm:px-6 border-t border-slate-800 mt-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900 aspect-video flex items-center justify-center group cursor-pointer border border-slate-200">
+        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=60" alt="Ferretería Express Local" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
+        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
+        <div class="absolute w-16 h-16 bg-teal-400/80 rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition">
+          <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="space-y-4 max-w-md">
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Express! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BANNER DE INSTAGRAM -->
+  <section class="bg-[#9ec1c2] py-8 text-center text-white shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-1">
+      <a href="https://instagram.com/fexpressok" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-xl text-white hover:opacity-90 transition">
+        <svg class="w-10 h-10 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <h3 class="text-lg font-bold tracking-wide uppercase">fexpressok</h3>
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-100 opacity-90">Seguinos en Instagram</p>
+    </div>
+  </section>
+
+  <!-- 3. BARRA DE BENEFICIOS (3 COLUMNAS) -->
+  <section class="bg-white text-slate-700 py-10 border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <!-- Item 1 -->
+      <div class="flex items-center justify-center md:justify-start space-x-4">
+        <div class="p-3 bg-teal-50 text-teal-600 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-slate-800">Enviamos tu compra</h4>
+          <p class="text-xs text-slate-500">Entregas a todo el país</p>
+        </div>
+      </div>
+      <!-- Item 2 -->
+      <div class="flex items-center justify-center md:justify-start space-x-4">
+        <div class="p-3 bg-teal-50 text-teal-600 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-slate-800">Pagá como quieras</h4>
+          <p class="text-xs text-slate-500">Tarjetas de crédito o efectivo</p>
+        </div>
+      </div>
+      <!-- Item 3 -->
+      <div class="flex items-center justify-center md:justify-start space-x-4">
+        <div class="p-3 bg-teal-50 text-teal-600 rounded-full">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-slate-800">Comprá con seguridad</h4>
+          <p class="text-xs text-slate-500">Tus datos siempre protegidos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER -->
+  <section class="bg-white py-8 border-b border-slate-200">
+    <div class="max-w-3xl mx-auto px-4 space-y-4">
+      <h4 class="text-teal-600 font-bold text-center text-sm sm:text-base">¡Suscribite y recibí antes que nadie nuestras ofertas!</h4>
+      <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');" class="flex items-center gap-3">
+        <input type="email" required placeholder="Tu E-mail" class="w-full border-b-2 border-slate-300 px-2 py-2 text-xs text-slate-700 outline-none focus:border-teal-500 transition">
+        <button type="submit" class="bg-teal-300 hover:bg-teal-400 text-teal-800 p-2.5 rounded-full transition shadow">
+          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. FOOTER OSCURO COMPLETO -->
+  <footer class="bg-[#003844] text-white py-10 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      
+      <!-- Navegación -->
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Navegación</h5>
+        <ul class="space-y-1.5 text-slate-300">
+          <li><a href="#" class="hover:underline">Inicio</a></li>
+          <li><a href="#catalogo" class="hover:underline">Productos</a></li>
+          <li><a href="#" class="hover:underline">Ofertas</a></li>
+          <li><a href="#" class="hover:underline">Dónde estamos</a></li>
+        </ul>
+      </div>
+
+      <!-- Redes Sociales -->
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Redes Sociales</h5>
+        <div class="flex space-x-3">
+          <a href="https://instagram.com/fexpressok" target="_blank" class="w-8 h-8 rounded-full bg-white text-[#003844] flex items-center justify-center hover:opacity-80 transition">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 rounded-full bg-white text-[#003844] flex items-center justify-center hover:opacity-80 transition">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.583 9 4.615V8z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Medios de Pago -->
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Medios de Pago</h5>
+        <div class="grid grid-cols-4 gap-1.5">
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">VISA</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">MASTER</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">AMEX</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">CABAL</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">NARANJA</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">MP</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">PAGOFACIL</span>
+          <span class="bg-white text-slate-800 font-extrabold text-[9px] p-1 rounded text-center border">RAPIPAGO</span>
+        </div>
+      </div>
+
+      <!-- Contactanos -->
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Contactanos</h5>
+        <ul class="space-y-2 text-slate-300 text-[11px]">
+          <li class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h32a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 8a2 2 0 012-2h32a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2z"></path></svg>
+            <span>+5491160378540</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span>ventas@ferreteriaexpress.com.ar</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+            <span>Av. Jujuy 170 - CABA</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
   <!-- BOTÓN FLOTANTE DE CONSULTA RÁPIDA VIA WHATSAPP -->
   <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general." target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center border border-emerald-400/30">
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
@@ -192,12 +339,11 @@
 
       carouselSection.classList.remove('hidden');
 
-      // 1. Filtrar los ÚLTIMOS 3 PRODUCTOS agregados por fecha
+      // Filtrar los ÚLTIMOS 3 PRODUCTOS
       const copiaProductos = [...todosLosProductos];
       copiaProductos.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
       const ultimos3 = copiaProductos.slice(0, 3);
 
-      // 2. Renderizar diseño horizontal que ocupa todo el ancho
       wrapper.innerHTML = ultimos3.map(p => {
         const titulo = p.nombre || p.titulo || 'Producto sin nombre';
         const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
@@ -223,7 +369,7 @@
                     <span class="text-2xl font-black text-brand-500">${precio}</span>
                   </div>
                   <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-5 rounded-xl text-xs font-bold transition text-center shadow-lg flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
                     <span>Consultar por WhatsApp</span>
                   </a>
                 </div>
@@ -233,7 +379,6 @@
         `;
       }).join('');
 
-      // 3. Configurar Swiper para mostrar 1 solo producto a la vez ocupando todo el ancho
       swiperInstance = new Swiper(".mySwiper", {
         slidesPerView: 1,
         spaceBetween: 20,
