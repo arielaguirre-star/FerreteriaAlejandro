@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ferretería Alejandro - Tienda Oficial Express</title>
+  <title>Ferretería Alejandro - Tienda Oficial</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,7 +69,7 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial Express
+      Garantía Oficial
     </span>
   </div>
 
@@ -85,7 +85,7 @@
           </div>
           <div>
             <h1 class="font-extrabold text-lg leading-none text-white tracking-wide">Ferretería Alejandro</h1>
-            <p class="text-xs text-slate-400 mt-0.5">Tienda Oficial Express</p>
+            <p class="text-xs text-slate-400 mt-0.5">Tienda Oficial</p>
           </div>
         </div>
 
@@ -104,5 +104,211 @@
     <div class="bg-gradient-to-r from-industrial-900 via-slate-900 to-brand-600/30 border border-slate-800 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
       <div class="max-w-xl space-y-3 relative z-10">
         <span class="bg-brand-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md tracking-wider">Ferretería Industrial & Hogar</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">Las mejores herramientas con envío Express directo a tu taller o domicilio.</h2>
-        <p class="text-xs text-slate-300">Explora nuestro catálogo en tiempo real. Consultas e inquietudes de stock inmediatas vía
+        <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">Las mejores herramientas con envío directo a tu taller o domicilio.</h2>
+        <p class="text-xs text-slate-300">Explora nuestro catálogo en tiempo real. Consultas e inquietudes de stock inmediatas vía WhatsApp.</p>
+      </div>
+    </div>
+
+    <!-- CARRUSEL: ÚLTIMOS 5 PRODUCTOS AGREGADOS -->
+    <section id="carouselSection" class="hidden">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+          Últimos Ingresos
+        </h2>
+        <span class="text-xs text-slate-400 font-medium">Novedades recién llegadas</span>
+      </div>
+      
+      <div class="relative px-6">
+        <div class="swiper mySwiper rounded-2xl p-2 bg-slate-900/60 backdrop-blur-md border border-slate-800">
+          <div class="swiper-wrapper" id="carouselWrapper"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </section>
+
+    <!-- FILTROS Y BÚSQUEDA -->
+    <div class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center">
+      <div class="relative w-full sm:w-80">
+        <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none">
+        <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+
+      <div class="w-full sm:w-auto">
+        <select id="filterCategory" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none">
+          <option value="">Todas las categorías</option>
+          <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
+          <option value="Herramientas Manuales">Herramientas Manuales</option>
+          <option value="Plomería / Fontanería">Plomería / Fontanería</option>
+          <option value="Pinturas & Selladores">Pinturas & Selladores</option>
+          <option value="Tornillería & Fijación">Tornillería & Fijación</option>
+          <option value="Electricidad">Electricidad</option>
+          <option value="Jardinería">Jardinería</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- MALLA PRINCIPAL: CATÁLOGO DE PRODUCTOS -->
+    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
+    </div>
+  </main>
+
+  <!-- BOTÓN FLOTANTE DE CONSULTA RÁPIDA VIA WHATSAPP (SOPORTE EXPRESS) -->
+  <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general." target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center border border-emerald-400/30">
+    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+
+    const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+    
+    let todosLosProductos = [];
+    let swiperInstance = null;
+
+    function renderCarousel() {
+      const carouselSection = document.getElementById('carouselSection');
+      const wrapper = document.getElementById('carouselWrapper');
+
+      if (swiperInstance) {
+        swiperInstance.destroy(true, true);
+        swiperInstance = null;
+      }
+
+      wrapper.innerHTML = '';
+
+      if (!todosLosProductos || todosLosProductos.length === 0) {
+        carouselSection.classList.add('hidden');
+        return;
+      }
+
+      carouselSection.classList.remove('hidden');
+
+      // Filtrar los últimos 5 agregados por fecha
+      const copiaProductos = [...todosLosProductos];
+      copiaProductos.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+      const ultimos5 = copiaProductos.slice(0, 5);
+
+      wrapper.innerHTML = ultimos5.map(p => {
+        const titulo = p.nombre || p.titulo || 'Producto sin nombre';
+        const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
+        const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
+        const portada = fotos[0];
+
+        return `
+          <div class="swiper-slide">
+            <div class="bg-slate-900/90 rounded-xl border border-slate-800 overflow-hidden h-full flex flex-col justify-between p-3 shadow-lg hover:border-brand-500/40 transition">
+              <div class="h-40 bg-slate-950/60 rounded-lg overflow-hidden flex items-center justify-center p-2 mb-3 relative">
+                <span class="absolute top-2 left-2 bg-brand-500 text-white text-[8px] font-black uppercase px-2 py-0.5 rounded">Nuevo</span>
+                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
+                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[9px] font-semibold px-2 py-0.5 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-bold text-white text-xs line-clamp-1">${titulo}</h4>
+                <p class="text-sm font-black text-brand-500">${precio}</p>
+              </div>
+              <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="mt-3 w-full bg-emerald-600 hover:bg-emerald-700 text-white py-1.5 rounded-lg text-[11px] font-bold text-center block transition">
+                Consultar Disponibilidad
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      swiperInstance = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 16,
+        loop: false,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
+          1024: { slidesPerView: 4 }
+        }
+      });
+    }
+
+    onSnapshot(collection(db, "productos"), (snapshot) => {
+      todosLosProductos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      renderCarousel();
+      renderProductos();
+    });
+
+    function renderProductos() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const cat = document.getElementById('filterCategory').value;
+      const contenedor = document.getElementById('catalogo');
+
+      const filtrados = todosLosProductos.filter(p => {
+        const nombre = (p.nombre || p.titulo || '').toLowerCase();
+        const desc = (p.descripcion || '').toLowerCase();
+        const categoria = p.categoria || '';
+        
+        const coincideBusqueda = nombre.includes(search) || desc.includes(search);
+        const coincideCat = !cat || categoria === cat;
+        return coincideBusqueda && coincideCat;
+      });
+
+      if (filtrados.length === 0) {
+        contenedor.innerHTML = `<div class="col-span-full text-center py-12 bg-slate-900/80 rounded-2xl border border-dashed border-slate-800 text-slate-400 text-sm">No se encontraron productos disponibles.</div>`;
+        return;
+      }
+
+      contenedor.innerHTML = filtrados.map(p => {
+        const titulo = p.nombre || p.titulo || 'Producto sin nombre';
+        const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
+        const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
+        const portada = fotos[0];
+
+        return `
+          <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between">
+            <div>
+              <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
+                <span class="absolute top-2 left-2 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
+                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
+                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+              </div>
+              <div class="p-4 space-y-2">
+                <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
+                <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
+                <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
+                  <span class="text-xs text-slate-500">Precio Lista:</span>
+                  <span class="text-lg font-black text-brand-500">${precio}</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-3 bg-slate-950/50 border-t border-slate-800">
+              <a href="https://wa.me/?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>Consultar por WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('searchInput').addEventListener('input', renderProductos);
+    document.getElementById('filterCategory').addEventListener('change', renderProductos);
+  </script>
+</body>
+</html>
