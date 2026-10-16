@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Completo - Ferretería Alejandro</title>
+  <title>Productos - Ferretería Alejandro</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -33,16 +33,16 @@
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
-  <!-- BARRA SUPERIOR INFORMATIVA -->
+  <!-- BARRA DE BENEFICIOS -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
     <span class="flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-      Catálogo General de Ferretería
+      Envíos a todo el país
     </span>
     <span class="hidden sm:inline">•</span>
     <span class="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-      Envíos a todo el país
+      Pagá con transferencia o Mercado Pago
     </span>
   </div>
 
@@ -58,100 +58,169 @@
           </div>
           <div>
             <h1 class="font-extrabold text-lg leading-none text-white tracking-wide">Ferretería Alejandro</h1>
-            <p class="text-xs text-slate-400 mt-0.5">Catálogo de Productos</p>
+            <p class="text-xs text-slate-400 mt-0.5">Catálogo Oficial de Productos</p>
           </div>
         </a>
 
-        <a href="index.html" class="text-xs font-semibold text-slate-300 hover:text-brand-500 transition flex items-center gap-1.5">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-          Volver al Inicio
-        </a>
+        <nav class="flex items-center space-x-6 text-xs font-semibold">
+          <a href="index.html" class="text-slate-300 hover:text-brand-500 transition">Inicio</a>
+          <a href="productos.html" class="text-brand-500 font-bold border-b-2 border-brand-500 pb-1">Productos</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
-    
-    <!-- ENCABEZADO Y FILTROS LATERALES / SUPERIORES -->
-    <div class="flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-900/90 p-5 rounded-2xl border border-slate-800 shadow-xl">
-      <div>
-        <h2 class="text-xl font-bold text-white">Todos los Productos</h2>
-        <p class="text-xs text-slate-400">Filtrá por categoría o buscá herramientas específicas</p>
-      </div>
+  <!-- BREADCRUMB / MIGA DE PAN -->
+  <div class="bg-slate-950 border-b border-slate-800/80 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-400 flex items-center space-x-2">
+      <a href="index.html" class="hover:text-white transition">Inicio</a>
+      <span>/</span>
+      <span class="text-white font-medium">Productos</span>
+    </div>
+  </div>
 
-      <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-        <div class="relative w-full sm:w-72">
-          <input type="text" id="searchInput" placeholder="Buscar por nombre..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none">
-          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
+  <!-- CONTENIDO PRINCIPAL: SIDEBAR + GRILLA ( FORMATO FERRETERÍA EXPRESS ) -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- COLUMNA IZQUIERDA: SIDEBAR DE FILTROS -->
+      <aside class="lg:col-span-1 space-y-6">
+        <div class="bg-slate-900/90 backdrop-blur-md p-5 rounded-2xl border border-slate-800 shadow-xl space-y-5 sticky top-24">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="font-bold text-white text-sm uppercase tracking-wider flex items-center gap-2">
+              <svg class="w-4 h-4 text-brand-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z"></path></svg>
+              Filtros
+            </h3>
+            <button id="btnLimpiar" class="text-[11px] text-brand-500 hover:underline hidden">Limpiar</button>
+          </div>
+
+          <!-- Buscador -->
+          <div class="space-y-1.5">
+            <label class="text-xs text-slate-400 font-medium">Buscar producto</label>
+            <div class="relative">
+              <input type="text" id="searchInput" placeholder="Ej: Taladro, Lijadora..." class="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-500 focus:ring-2 focus:ring-brand-500 outline-none">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+          </div>
+
+          <!-- Categorías -->
+          <div class="space-y-2">
+            <label class="text-xs text-slate-400 font-medium block">Categorías</label>
+            <div class="space-y-1 text-xs" id="listaCategorias">
+              <button data-cat="" class="cat-btn w-full text-left px-3 py-2 rounded-lg bg-brand-500/10 text-brand-500 font-bold transition flex items-center justify-between">
+                <span>Todas</span>
+                <span id="cantTodas" class="text-[10px] bg-brand-500 text-white px-1.5 py-0.5 rounded-full">0</span>
+              </button>
+              <button data-cat="Herramientas Eléctricas" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Herramientas Eléctricas</span>
+              </button>
+              <button data-cat="Herramientas Manuales" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Herramientas Manuales</span>
+              </button>
+              <button data-cat="Plomería / Fontanería" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Plomería / Fontanería</span>
+              </button>
+              <button data-cat="Pinturas & Selladores" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Pinturas & Selladores</span>
+              </button>
+              <button data-cat="Tornillería & Fijación" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Tornillería & Fijación</span>
+              </button>
+              <button data-cat="Electricidad" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Electricidad</span>
+              </button>
+              <button data-cat="Jardinería" class="cat-btn w-full text-left px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-300 transition flex items-center justify-between">
+                <span>Jardinería</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- COLUMNA DERECHA: GRILLA PRINCIPAL DE PRODUCTOS -->
+      <section class="lg:col-span-3 space-y-6">
+        
+        <!-- BARRA DE ORDENAMIENTO Y CONTEO -->
+        <div class="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row gap-4 items-center justify-between">
+          <div class="text-xs text-slate-300">
+            Mostrando <span id="cantMostrada" class="font-bold text-brand-500">0</span> productos
+          </div>
+
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <span class="text-xs text-slate-400 whitespace-nowrap">Ordenar por:</span>
+            <select id="selectOrden" class="w-full sm:w-auto px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none">
+              <option value="recientes">Más recientes primero</option>
+              <option value="precio-asc">Precio: Menor a Mayor</option>
+              <option value="precio-desc">Precio: Mayor a Menor</option>
+              <option value="nombre-asc">Nombre: A - Z</option>
+            </select>
+          </div>
         </div>
 
-        <select id="filterCategory" class="px-3.5 py-2 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none">
-          <option value="">Todas las Categorías</option>
-          <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
-          <option value="Herramientas Manuales">Herramientas Manuales</option>
-          <option value="Plomería / Fontanería">Plomería / Fontanería</option>
-          <option value="Pinturas & Selladores">Pinturas & Selladores</option>
-          <option value="Tornillería & Fijación">Tornillería & Fijación</option>
-          <option value="Electricidad">Electricidad</option>
-          <option value="Jardinería">Jardinería</option>
-        </select>
-      </div>
-    </div>
+        <!-- CONTENEDOR DE PRODUCTOS -->
+        <div id="gridProductos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div class="col-span-full text-center py-16 text-slate-400 text-sm">Cargando productos...</div>
+        </div>
+      </section>
 
-    <!-- RECUENTO DE RESULTADOS -->
-    <div class="flex justify-between items-center text-xs text-slate-400 px-1">
-      <span id="contadorProductos">Cargando productos...</span>
-    </div>
-
-    <!-- MALLA DE PRODUCTOS -->
-    <div id="catalogoCompleto" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div class="col-span-full text-center py-16 text-slate-400 text-sm">Cargando catálogo completo...</div>
     </div>
   </main>
 
-  <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
   <a id="btnWhatsappFlotante" href="#" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center border border-emerald-400/30">
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
   </a>
 
-  <!-- SCRIPTS -->
+  <!-- SCRIPTS FIRESTORE + LÓGICA -->
   <script type="module">
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const PHONE_NUMBER = "5491156946499";
     const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
-    
-    let todosLosProductos = [];
 
-    document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20consultar%20por%20un%20producto%20del%20cat%C3%A1logo.`;
+    let todosLosProductos = [];
+    let categoriaSeleccionada = "";
+
+    document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20de%20productos.`;
 
     onSnapshot(collection(db, "productos"), (snapshot) => {
       todosLosProductos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      renderProductos();
+      renderizarTodo();
     });
 
-    function renderProductos() {
+    function renderizarTodo() {
       const search = document.getElementById('searchInput').value.toLowerCase();
-      const cat = document.getElementById('filterCategory').value;
-      const contenedor = document.getElementById('catalogoCompleto');
-      const contador = document.getElementById('contadorProductos');
+      const orden = document.getElementById('selectOrden').value;
 
-      const filtrados = todosLosProductos.filter(p => {
+      // Filtrar
+      let filtrados = todosLosProductos.filter(p => {
         const nombre = (p.nombre || p.titulo || '').toLowerCase();
         const desc = (p.descripcion || '').toLowerCase();
-        const categoria = p.categoria || '';
-        
-        return (nombre.includes(search) || desc.includes(search)) && (!cat || categoria === cat);
+        const cat = p.categoria || '';
+
+        const coincideBusqueda = nombre.includes(search) || desc.includes(search);
+        const coincideCategoria = !categoriaSeleccionada || cat === categoriaSeleccionada;
+
+        return coincideBusqueda && coincideCategoria;
       });
 
-      contador.textContent = `Mostrando ${filtrados.length} de ${todosLosProductos.length} productos`;
+      // Ordenar
+      filtrados.sort((a, b) => {
+        if (orden === 'precio-asc') return (a.precio || 0) - (b.precio || 0);
+        if (orden === 'precio-desc') return (b.precio || 0) - (a.precio || 0);
+        if (orden === 'nombre-asc') return (a.nombre || a.titulo || '').localeCompare(b.nombre || b.titulo || '');
+        return new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0); // recientes
+      });
+
+      // Actualizar contador
+      document.getElementById('cantMostrada').textContent = filtrados.length;
+      document.getElementById('cantTodas').textContent = todosLosProductos.length;
+
+      const contenedor = document.getElementById('gridProductos');
 
       if (filtrados.length === 0) {
-        contenedor.innerHTML = `<div class="col-span-full text-center py-16 bg-slate-900/80 rounded-2xl border border-dashed border-slate-800 text-slate-400 text-sm">No se encontraron productos coincidentes.</div>`;
+        contenedor.innerHTML = `<div class="col-span-full text-center py-16 bg-slate-900/80 rounded-2xl border border-dashed border-slate-800 text-slate-400 text-sm">No hay productos que coincidan con los filtros aplicados.</div>`;
         return;
       }
 
@@ -163,10 +232,10 @@
         const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
 
         return `
-          <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between">
+          <div class="bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
             <div>
               <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
-                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
+                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
                 ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
               </div>
               <div class="p-4 space-y-2">
@@ -189,8 +258,25 @@
       }).join('');
     }
 
-    document.getElementById('searchInput').addEventListener('input', renderProductos);
-    document.getElementById('filterCategory').addEventListener('change', renderProductos);
+    // Eventos de Categoría
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.cat-btn').forEach(b => {
+          b.classList.remove('bg-brand-500/10', 'text-brand-500', 'font-bold');
+          b.classList.add('text-slate-300', 'hover:bg-slate-800');
+        });
+
+        const target = e.currentTarget;
+        target.classList.add('bg-brand-500/10', 'text-brand-500', 'font-bold');
+        target.classList.remove('text-slate-300', 'hover:bg-slate-800');
+
+        categoriaSeleccionada = target.getAttribute('data-cat');
+        renderizarTodo();
+      });
+    });
+
+    document.getElementById('searchInput').addEventListener('input', renderizarTodo);
+    document.getElementById('selectOrden').addEventListener('change', renderizarTodo);
   </script>
 </body>
 </html>
