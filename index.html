@@ -50,7 +50,7 @@
   <!-- VIDEO DE FONDO Y OVERLAY -->
   <div class="fixed inset-0 w-full h-full overflow-hidden -z-10">
     <video autoplay loop muted playsinline class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
-      <source src="/assets/Video de Ariel.mp4" type="video/mp4">
+      <source src="./assets/Video de Ariel.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
   </div>
@@ -267,32 +267,42 @@
       </div>
 
       <!-- Medios de Pago con Íconos -->
+      <!-- Medios de Pago Completo (Abarcando todo el rectángulo) -->
       <div class="space-y-3">
         <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Medios de Pago</h5>
-        <div class="grid grid-cols-4 gap-2 items-center">
-          <div class="bg-white p-1.5 rounded-md flex items-center justify-center h-8 shadow-sm">
-            <img src="https://img.icons8.com/color/48/visa.png" alt="Visa" class="max-h-full object-contain">
+        <div class="grid grid-cols-4 gap-2">
+          <!-- VISA -->
+          <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
+            <img src="https://img.icons8.com/color/96/visa.png" alt="Visa" class="w-full h-full object-contain">
           </div>
-          <div class="bg-white p-1.5 rounded-md flex items-center justify-center h-8 shadow-sm">
-            <img src="https://img.icons8.com/color/48/mastercard.png" alt="Mastercard" class="max-h-full object-contain">
+          <!-- MASTERCARD -->
+          <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
+            <img src="https://img.icons8.com/color/96/mastercard.png" alt="Mastercard" class="w-full h-full object-contain">
           </div>
-          <div class="bg-white p-1.5 rounded-md flex items-center justify-center h-8 shadow-sm">
-            <img src="https://img.icons8.com/color/48/amex.png" alt="American Express" class="max-h-full object-contain">
+          <!-- AMEX -->
+          <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
+            <img src="https://img.icons8.com/color/96/amex.png" alt="American Express" class="w-full h-full object-contain">
           </div>
-          <div class="bg-white p-1.5 rounded-md flex items-center justify-center h-8 shadow-sm">
-            <img src="https://img.icons8.com/color/48/mercado-pago.png" alt="Mercado Pago" class="max-h-full object-contain">
+          <!-- MERCADO PAGO -->
+          <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
+            <img src="https://img.icons8.com/color/96/mercado-pago.png" alt="Mercado Pago" class="w-full h-full object-contain">
           </div>
-          <div class="bg-white p-1 rounded-md flex items-center justify-center h-8 shadow-sm text-slate-800 font-extrabold text-[9px] uppercase tracking-tighter">
-            Cabal
+
+          <!-- CABAL -->
+          <div class="bg-[#004a98] text-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[10px] uppercase tracking-wider leading-none select-none w-full">
+            CABAL
           </div>
-          <div class="bg-white p-1 rounded-md flex items-center justify-center h-8 shadow-sm text-slate-800 font-extrabold text-[9px] uppercase tracking-tighter">
-            Naranja
+          <!-- NARANJA -->
+          <div class="bg-[#ff6600] text-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[10px] uppercase tracking-wider leading-none select-none w-full">
+            NARANJA
           </div>
-          <div class="bg-white p-1 rounded-md flex items-center justify-center h-8 shadow-sm text-slate-800 font-extrabold text-[9px] uppercase tracking-tighter">
-            PagoFácil
+          <!-- PAGO FÁCIL -->
+          <div class="bg-[#ffee00] text-[#002870] rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[9px] uppercase tracking-tighter leading-none select-none w-full border border-yellow-400">
+            PAGO FÁCIL
           </div>
-          <div class="bg-white p-1 rounded-md flex items-center justify-center h-8 shadow-sm text-slate-800 font-extrabold text-[9px] uppercase tracking-tighter">
-            RapiPago
+          <!-- RAPIPAGO -->
+          <div class="bg-[#6f0088] text-yellow-300 rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[9px] uppercase tracking-tighter leading-none select-none w-full">
+            RAPIPAGO
           </div>
         </div>
       </div>
