@@ -173,21 +173,42 @@
 
   <!-- SECCIONES INFERIORES -->
 
-  <!-- 1. SECCIÓN SOBRE EL LOCAL -->
+<!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO INCRUSTADO) -->
   <section class="bg-white text-slate-800 py-12 px-4 sm:px-6 border-t border-slate-800 mt-12">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-900 aspect-video flex items-center justify-center group cursor-pointer border border-slate-200">
-        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=60" alt="Ferretería Express Local" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">
-        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition"></div>
-        <div class="absolute w-16 h-16 bg-teal-400/80 rounded-full flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition">
-          <svg class="w-8 h-8 fill-current ml-1" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        </div>
+      
+      <!-- CONTENEDOR DEL VIDEO -->
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-200">
+        <video 
+          autoplay 
+          loop 
+          muted 
+          playsinline 
+          webkit-playsinline
+          preload="auto"
+          class="w-full h-full object-cover">
+          <source src="./assets/video.mp4" type="video/mp4">
+          Tu navegador no soporta videos HTML5.
+        </video>
       </div>
+
+      <!-- TEXTO INFORMATIVO -->
       <div class="space-y-4 max-w-md">
+        <h3 class="text-xl font-bold text-slate-900">Conocé Ferretería Alejandro</h3>
         <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
           ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Alejandro! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
         </p>
+        <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 text-xs font-bold text-brand-600 hover:text-brand-500 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          </svg>
+          <span>Cómo llegar en Google Maps</span>
+        </a>
       </div>
+
     </div>
   </section>
 
