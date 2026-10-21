@@ -47,13 +47,14 @@
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
- <!-- VIDEO DE FONDO Y OVERLAY -->
-<div class="fixed inset-0 w-full h-full overflow-hidden -z-10 bg-slate-950">
-  <video autoplay loop muted playsinline preload="auto" class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
-    <source src="assets/video.mp4" type="video/mp4">
-  </video>
-  <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
-</div>
+  <!-- VIDEO DE FONDO Y OVERLAY -->
+  <div class="fixed inset-0 w-full h-full overflow-hidden -z-10 bg-slate-950">
+    <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
+      <source src="./assets/video.mp4" type="video/mp4">
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
+  </div>
 
   <!-- BARRA DE BENEFICIOS INFORMATIVA -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
@@ -92,7 +93,7 @@
         <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold">
           <a href="#" class="text-brand-500 pb-1 border-b-2 border-brand-500">Inicio</a>
           <a href="productos.html" class="text-slate-300 hover:text-brand-500 transition">Productos</a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Av.+Jujuy+170,+CABA" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
+          <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
         </nav>
 
         <div class="text-right">
@@ -106,7 +107,7 @@
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-    <!-- BANNER HERO EXPRESS -->
+    <!-- BANNER HERO -->
     <div class="bg-gradient-to-r from-industrial-900 via-slate-900 to-brand-600/30 border border-slate-800 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
       <div class="max-w-xl space-y-3 relative z-10">
         <span class="bg-brand-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md tracking-wider">Ferretería Industrial & Hogar</span>
@@ -115,7 +116,7 @@
       </div>
     </div>
 
-    <!-- CARRUSEL: ÚLTIMOS 3 PRODUCTOS (1 PRODUCTO A LA VEZ) -->
+    <!-- CARRUSEL: ÚLTIMOS 3 PRODUCTOS -->
     <section id="carouselSection" class="hidden">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -164,44 +165,42 @@
     </div>
   </main>
 
-  <!-- SECCIONES INFERIORES -->
+  <!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO INCRUSTADO) -->
+  <section class="bg-white text-slate-800 py-12 px-4 sm:px-6 border-t border-slate-800 mt-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <!-- CONTENEDOR DEL VIDEO DEL LOCAL -->
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-200">
+        <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="w-full h-full object-cover">
+          <source src="./assets/video.mp4" type="video/mp4">
+          <source src="assets/video.mp4" type="video/mp4">
+        </video>
+      </div>
 
-<!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO INCRUSTADO) -->
- <!-- SECCIONES INFERIORES: SOBRE EL LOCAL -->
-<section class="bg-white text-slate-800 py-12 px-4 sm:px-6 border-t border-slate-800 mt-12">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    
-    <!-- CONTENEDOR DEL VIDEO DEL LOCAL -->
-    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-200">
-      <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
-        <source src="assets/video.mp4" type="video/mp4">
-      </video>
+      <!-- TEXTO INFORMATIVO -->
+      <div class="space-y-4 max-w-md">
+        <h3 class="text-xl font-bold text-slate-900">Conocé Ferretería Alejandro</h3>
+        <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Alejandro! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
+        </p>
+        <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 text-xs font-bold text-brand-600 hover:text-brand-500 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          </svg>
+          <span>Cómo llegar en Google Maps</span>
+        </a>
+      </div>
+
     </div>
-
-    <!-- TEXTO INFORMATIVO -->
-    <div class="space-y-4 max-w-md">
-      <h3 class="text-xl font-bold text-slate-900">Conocé Ferretería Alejandro</h3>
-      <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-        ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Alejandro! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
-      </p>
-      <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="inline-flex items-center space-x-2 text-xs font-bold text-brand-600 hover:text-brand-500 transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-        </svg>
-        <span>Cómo llegar en Google Maps</span>
-      </a>
-    </div>
-
-  </div>
-</section>
+  </section>
 
   <!-- 2. BANNER DE INSTAGRAM -->
   <section class="bg-[#9ec1c2] py-8 text-center text-white shadow-inner">
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-1">
-      <a href="https://instagram.com/fexpressok" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-xl text-white hover:opacity-90 transition">
+      <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-xl text-white hover:opacity-90 transition">
         <svg class="w-10 h-10 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
       </a>
       <h3 class="text-lg font-bold tracking-wide uppercase">ferreteriaAlejandrook</h3>
@@ -245,9 +244,9 @@
   <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER -->
   <section class="bg-white py-8 border-b border-slate-200">
     <div class="max-w-3xl mx-auto px-4 space-y-4">
-      <h4 class="text-teal-600 font-bold text-center text-sm sm:text-base">¡Suscribite y recibí antes que nadie nuestras ofertas!</h4>
-      <form onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte!');" class="flex items-center gap-3">
-        <input type="email" required placeholder="Tu E-mail" class="w-full border-b-2 border-slate-300 px-2 py-2 text-xs text-slate-700 outline-none focus:border-teal-500 transition">
+      <h4 class="text-teal-600 font-bold text-center text-sm sm:text-base">¡Suscribite y recibí las ofertas en tu WhatsApp!</h4>
+      <form id="formSuscribirse" class="flex items-center gap-3">
+        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full border-b-2 border-slate-300 px-2 py-2 text-xs text-slate-700 outline-none focus:border-teal-500 transition">
         <button type="submit" class="bg-teal-300 hover:bg-teal-400 text-teal-800 p-2.5 rounded-full transition shadow">
           <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
@@ -266,7 +265,7 @@
           <li><a href="#" class="hover:underline">Inicio</a></li>
           <li><a href="productos.html" class="hover:underline">Productos</a></li>
           <li><a href="#" class="hover:underline">Ofertas</a></li>
-          <li><a href="https://www.google.com/maps/search/?api=1&query=25 de mayo 3394,+Lanus Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
         </ul>
       </div>
 
@@ -283,40 +282,31 @@
         </div>
       </div>
 
-      <!-- Medios de Pago Completo (Ancho completo de contenedor) -->
+      <!-- Medios de Pago Completo -->
       <div class="space-y-3">
         <h5 class="font-bold uppercase tracking-wider text-teal-300 text-[11px]">Medios de Pago</h5>
         <div class="grid grid-cols-4 gap-2">
-          <!-- VISA -->
           <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
             <img src="https://img.icons8.com/color/96/visa.png" alt="Visa" class="w-full h-full object-contain">
           </div>
-          <!-- MASTERCARD -->
           <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
             <img src="https://img.icons8.com/color/96/mastercard.png" alt="Mastercard" class="w-full h-full object-contain">
           </div>
-          <!-- AMEX -->
           <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
             <img src="https://img.icons8.com/color/96/amex.png" alt="American Express" class="w-full h-full object-contain">
           </div>
-          <!-- MERCADO PAGO -->
           <div class="bg-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm p-1">
             <img src="https://img.icons8.com/color/96/mercado-pago.png" alt="Mercado Pago" class="w-full h-full object-contain">
           </div>
-
-          <!-- CABAL -->
           <div class="bg-[#004a98] text-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[10px] uppercase tracking-wider leading-none select-none w-full">
             CABAL
           </div>
-          <!-- NARANJA -->
           <div class="bg-[#ff6600] text-white rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[10px] uppercase tracking-wider leading-none select-none w-full">
             NARANJA
           </div>
-          <!-- PAGO FÁCIL -->
           <div class="bg-[#ffee00] text-[#002870] rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[9px] uppercase tracking-tighter leading-none select-none w-full border border-yellow-400">
             PAGO FÁCIL
           </div>
-          <!-- RAPIPAGO -->
           <div class="bg-[#6f0088] text-yellow-300 rounded-md flex items-center justify-center h-9 overflow-hidden shadow-sm px-1 text-center font-black text-[9px] uppercase tracking-tighter leading-none select-none w-full">
             RAPIPAGO
           </div>
@@ -337,7 +327,7 @@
           </li>
           <li class="flex items-center space-x-2">
             <svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-            <a href="https://www.google.com/maps/search/?api=1&query=Av.+Jujuy+170,+CABA" target="_blank" rel="noopener noreferrer" class="hover:underline">25 de mayo - Lanus Oeste</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">25 de mayo 3394 - Lanus Oeste</a>
           </li>
         </ul>
       </div>
@@ -349,6 +339,44 @@
   <a id="btnWhatsappFlotante" href="#" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center border border-emerald-400/30">
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
   </a>
+
+  <!-- MODAL DE PRODUCTO AMPLIADO -->
+  <div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
+      
+      <!-- BOTÓN CERRAR -->
+      <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+
+      <!-- IMAGEN AGRANDADA -->
+      <div class="w-full sm:w-1/2 h-64 sm:h-auto bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800">
+        <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain">
+      </div>
+
+      <!-- DETALLES Y ACCIÓN -->
+      <div class="w-full sm:w-1/2 flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <span id="modalCategoria" class="bg-brand-500/20 text-brand-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-brand-500/30 uppercase tracking-wider inline-block">Categoría</span>
+          <h2 id="modalTitulo" class="text-xl font-extrabold text-white leading-tight">Nombre del producto</h2>
+          <p id="modalDescripcion" class="text-xs text-slate-300 leading-relaxed">Descripción detallada del producto.</p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 space-y-4">
+          <div>
+            <span class="text-xs text-slate-400 block font-medium">Precio de Lista:</span>
+            <span id="modalPrecio" class="text-2xl font-black text-brand-500">$0,00</span>
+          </div>
+
+          <a id="modalWaLink" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-lg">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <span>Consultar por WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- SCRIPTS -->
   <script type="module">
@@ -363,6 +391,27 @@
     let swiperInstance = null;
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
+
+    // SUSCRIPCIÓN CON ÚLTIMOS 10 PRODUCTOS
+    const formSusc = document.getElementById('formSuscribirse');
+    if (formSusc) {
+      formSusc.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('emailSuscribirse').value;
+        const copia = [...todosLosProductos];
+        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+        const ultimos10 = copia.slice(0, 10);
+
+        let mensaje = `Hola Ferretería Alejandro! Me gustaría suscribirme a las ofertas.\n\n*Mi E-mail:* ${email}\n\n*Quisiera consultar disponibilidad de los últimos productos:*\n`;
+        ultimos10.forEach((p, idx) => {
+          const nom = p.nombre || p.titulo || 'Producto';
+          const prec = p.precio ? `$${p.precio}` : 'Consultar';
+          mensaje += `${idx + 1}. ${nom} (${prec})\n`;
+        });
+
+        window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
+      });
+    }
 
     function renderCarousel() {
       const carouselSection = document.getElementById('carouselSection');
@@ -426,18 +475,9 @@
         slidesPerView: 1,
         spaceBetween: 20,
         loop: false,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        pagination: { el: ".swiper-pagination", clickable: true },
+        navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }
       });
     }
 
@@ -457,9 +497,7 @@
         const desc = (p.descripcion || '').toLowerCase();
         const categoria = p.categoria || '';
         
-        const coincideBusqueda = nombre.includes(search) || desc.includes(search);
-        const coincideCat = !cat || categoria === cat;
-        return coincideBusqueda && coincideCat;
+        return (nombre.includes(search) || desc.includes(search)) && (!cat || categoria === cat);
       });
 
       if (filtrados.length === 0) {
@@ -474,105 +512,66 @@
         const portada = fotos[0];
         const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
 
-       // En tu función renderProductos() / renderizarTodo():
-return `
-  <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
-    <div>
-      <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
-        <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
-        ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
-      </div>
-      <div class="p-4 space-y-2">
-        <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
-        <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
-        <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
-          <span class="text-xs text-slate-500">Precio Lista:</span>
-          <span class="text-lg font-black text-brand-500">${precio}</span>
-        </div>
-      </div>
-    </div>
-    <div class="p-3 bg-slate-950/50 border-t border-slate-800">
-      <a href="${waLink}" target="_blank" onclick="event.stopPropagation();" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
-        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-        <span>Consultar por WhatsApp</span>
-      </a>
-    </div>
-  </div>
-`;
+        return `
+          <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
+            <div>
+              <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
+                <span class="absolute top-2 left-2 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
+                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+              </div>
+              <div class="p-4 space-y-2">
+                <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
+                <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
+                <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
+                  <span class="text-xs text-slate-500">Precio Lista:</span>
+                  <span class="text-lg font-black text-brand-500">${precio}</span>
+                </div>
+              </div>
+            </div>
+            <div class="p-3 bg-slate-950/50 border-t border-slate-800">
+              <a href="${waLink}" target="_blank" onclick="event.stopPropagation();" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>Consultar por WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        `;
       }).join('');
     }
 
     document.getElementById('searchInput').addEventListener('input', renderProductos);
     document.getElementById('filterCategory').addEventListener('change', renderProductos);
 
-    // Abrir Modal con datos del producto
-window.abrirModal = function(id) {
-  const producto = todosLosProductos.find(p => p.id === id);
-  if (!producto) return;
+    // FUNCIONALIDAD MODAL
+    window.abrirModal = function(id) {
+      const producto = todosLosProductos.find(p => p.id === id);
+      if (!producto) return;
 
-  const titulo = producto.nombre || producto.titulo || 'Producto';
-  const precio = producto.precio ? `$${Number(producto.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-  const fotos = producto.imagenes || (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
-  const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+      const titulo = producto.nombre || producto.titulo || 'Producto';
+      const precio = producto.precio ? `$${Number(producto.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
+      const fotos = producto.imagenes || (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
+      const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
 
-  document.getElementById('modalImagen').src = fotos[0];
-  document.getElementById('modalTitulo').textContent = titulo;
-  document.getElementById('modalCategoria').textContent = producto.categoria || 'General';
-  document.getElementById('modalDescripcion').textContent = producto.descripcion || 'Sin descripción adicional.';
-  document.getElementById('modalPrecio').textContent = precio;
-  document.getElementById('modalWaLink').href = waLink;
+      document.getElementById('modalImagen').src = fotos[0];
+      document.getElementById('modalTitulo').textContent = titulo;
+      document.getElementById('modalCategoria').textContent = producto.categoria || 'General';
+      document.getElementById('modalDescripcion').textContent = producto.descripcion || 'Sin descripción adicional.';
+      document.getElementById('modalPrecio').textContent = precio;
+      document.getElementById('modalWaLink').href = waLink;
 
-  document.getElementById('modalProducto').classList.remove('hidden');
-};
+      document.getElementById('modalProducto').classList.remove('hidden');
+    };
 
-// Cerrar Modal
-document.getElementById('cerrarModal').addEventListener('click', () => {
-  document.getElementById('modalProducto').classList.add('hidden');
-});
+    document.getElementById('cerrarModal').addEventListener('click', () => {
+      document.getElementById('modalProducto').classList.add('hidden');
+    });
 
-// Cerrar al hacer clic fuera del recuadro
-document.getElementById('modalProducto').addEventListener('click', (e) => {
-  if (e.target.id === 'modalProducto') {
-    document.getElementById('modalProducto').classList.add('hidden');
-  }
-});
+    document.getElementById('modalProducto').addEventListener('click', (e) => {
+      if (e.target.id === 'modalProducto') {
+        document.getElementById('modalProducto').classList.add('hidden');
+      }
+    });
   </script>
-  <!-- MODAL DE PRODUCTO AMPLIADO -->
-<div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-  <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
-    
-    <!-- BOTÓN CERRAR -->
-    <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-    </button>
-
-    <!-- IMAGEN AGRANDADA -->
-    <div class="w-full sm:w-1/2 h-64 sm:h-auto bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800">
-      <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain">
-    </div>
-
-    <!-- DETALLES Y ACCIÓN -->
-    <div class="w-full sm:w-1/2 flex flex-col justify-between space-y-4">
-      <div class="space-y-3">
-        <span id="modalCategoria" class="bg-brand-500/20 text-brand-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-brand-500/30 uppercase tracking-wider inline-block">Categoría</span>
-        <h2 id="modalTitulo" class="text-xl font-extrabold text-white leading-tight">Nombre del producto</h2>
-        <p id="modalDescripcion" class="text-xs text-slate-300 leading-relaxed">Descripción detallada del producto.</p>
-      </div>
-
-      <div class="pt-4 border-t border-slate-800 space-y-4">
-        <div>
-          <span class="text-xs text-slate-400 block font-medium">Precio de Lista:</span>
-          <span id="modalPrecio" class="text-2xl font-black text-brand-500">$0,00</span>
-        </div>
-
-        <a id="modalWaLink" href="#" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-lg">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-          <span>Consultar por WhatsApp</span>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</div>
 </body>
 </html>
