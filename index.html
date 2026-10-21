@@ -379,6 +379,7 @@
   </div>
 
   <!-- SCRIPTS -->
+ <!-- SCRIPTS REVISADOS Y CORREGIDOS -->
   <script type="module">
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -390,9 +391,19 @@
     let todosLosProductos = [];
     let swiperInstance = null;
 
+    // FORZAR REPRODUCCIÓN AUTOMÁTICA DE TODOS LOS VIDEOS EN LA PÁGINA
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('video').forEach(video => {
+        video.muted = true;
+        video.play().catch(error => {
+          console.log("Autoplay bloqueado por el navegador:", error);
+        });
+      });
+    });
+
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-    // SUSCRIPCIÓN CON ÚLTIMOS 10 PRODUCTOS
+    // FORMULARIO DE SUSCRIPCIÓN
     const formSusc = document.getElementById('formSuscribirse');
     if (formSusc) {
       formSusc.addEventListener('submit', (e) => {
@@ -487,6 +498,7 @@
       renderProductos();
     });
 
+    // RENDERIZADO CORREGIDO SIN COMILLAS EXTRAS DE NINGÚN TIPO
     function renderProductos() {
       const search = document.getElementById('searchInput').value.toLowerCase();
       const cat = document.getElementById('filterCategory').value;
@@ -543,7 +555,7 @@
     document.getElementById('searchInput').addEventListener('input', renderProductos);
     document.getElementById('filterCategory').addEventListener('change', renderProductos);
 
-    // FUNCIONALIDAD MODAL
+    // FUNCIONALIDAD DEL MODAL
     window.abrirModal = function(id) {
       const producto = todosLosProductos.find(p => p.id === id);
       if (!producto) return;
