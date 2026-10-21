@@ -43,18 +43,30 @@
     .swiper-slide {
       height: auto !important;
     }
+    .video-bg-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            overflow: hidden; z-index: -2;
+        }
+        .video-bg-container video {
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(2, 6, 23, 0.80); backdrop-filter: blur(4px); z-index: -1;
+        }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
   <!-- VIDEO DE FONDO Y OVERLAY -->
-  <div class="fixed inset-0 w-full h-full overflow-hidden -z-10 bg-slate-950">
-    <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute min-w-full min-h-full w-auto h-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover">
-      <source src="./assets/video.mp4" type="video/mp4">
-      <source src="assets/video.mp4" type="video/mp4">
-    </video>
-    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
-  </div>
+   <div class="video-bg-container">
+        <video autoplay loop muted playsinline preload="auto">
+            <source src="assets/video.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="video-overlay"></div>
 
   <!-- BARRA DE BENEFICIOS INFORMATIVA -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
