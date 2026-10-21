@@ -56,6 +56,60 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-color: rgba(2, 6, 23, 0.80); backdrop-filter: blur(4px); z-index: -1;
         }
+
+        /* REGLAS PARA EL MODO CLARO */
+html.light-mode {
+  background-color: #f8fafc !important; /* bg-slate-50 */
+  color: #0f172a !important;            /* text-slate-900 */
+}
+
+/* Ocultar o atenuar video de fondo en modo claro para legibilidad */
+html.light-mode .fixed.inset-0 video {
+  opacity: 0.15;
+}
+
+html.light-mode .fixed.inset-0 .backdrop-blur-\[2px\],
+html.light-mode .fixed.inset-0 .backdrop-blur-sm {
+  background-color: rgba(248, 250, 252, 0.85) !important;
+}
+
+/* Adaptación de tarjetas y contenedores oscuros a claros */
+html.light-mode main,
+html.light-mode header,
+html.light-mode section,
+html.light-mode footer,
+html.light-mode div[id="catalogo"] > div {
+  border-color: #e2e8f0 !important;
+}
+
+html.light-mode header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #0f172a !important;
+}
+
+html.light-mode header h1,
+html.light-mode header nav a {
+  color: #0f172a !important;
+}
+
+html.light-mode div[id="catalogo"] > div,
+html.light-mode .swiper,
+html.light-mode section {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  color: #0f172a !important;
+}
+
+html.light-mode h2, 
+html.light-mode h3, 
+html.light-mode h4, 
+html.light-mode .text-white {
+  color: #0f172a !important;
+}
+
+html.light-mode .text-slate-300,
+html.light-mode .text-slate-400 {
+  color: #475569 !important;
+}
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
@@ -404,22 +458,37 @@
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
     // CONTROL MODO CLARO / OSCURO
+// LÓGICA COMPLETA DE MODO CLARO / OSCURO WITH LOCALSTORAGE
 const btnTheme = document.getElementById('themeToggleBtn');
-let lightMode = false;
+const themeIcon = document.getElementById('themeIcon');
+
+// 1. Cargar preferencia guardada o verificar estado actual
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+  document.documentElement.classList.add('light-mode');
+  actualizarIconoTema(true);
+}
 
 if (btnTheme) {
   btnTheme.addEventListener('click', () => {
-    lightMode = !lightMode;
-    if (lightMode) {
-      document.documentElement.classList.remove('bg-slate-900');
-      document.documentElement.classList.add('bg-slate-100', 'text-slate-900');
-      document.body.classList.add('light-theme');
-    } else {
-      document.documentElement.classList.remove('bg-slate-100', 'text-slate-900');
-      document.documentElement.classList.add('bg-slate-900');
-      document.body.classList.remove('light-theme');
-    }
+    const esClaro = document.documentElement.classList.toggle('light-mode');
+    
+    // Guardar preferencia
+    localStorage.setItem('theme', esClaro ? 'light' : 'dark');
+    actualizarIconoTema(esClaro);
   });
+}
+
+function actualizarIconoTema(esClaro) {
+  if (!themeIcon) return;
+  
+  if (esClaro) {
+    // Ícono de Luna (para volver a modo oscuro)
+    themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+  } else {
+    // Ícono de Sol (para cambiar a modo claro)
+    themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+  }
 }
     
     // FORMULARIO DE SUSCRIPCIÓN
