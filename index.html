@@ -45,27 +45,27 @@
     }
 
     /* =========================================================
-       AJUSTES DE MODO CLARO TRANSLÚCIDO (MANTIENE VIDEO DE FONDO)
+       REGLAS COMPATIBLES DE MODO CLARO Y TRANSLÚCIDO
        ========================================================= */
     html.light-mode {
       background-color: transparent !important;
       color: #0f172a !important;
     }
 
-    /* Aclarar la capa del video en modo claro pero dejando ver la animación */
+    /* Ajuste de la capa del video en modo claro */
     html.light-mode .fixed.inset-0 .backdrop-blur-\[2px\],
     html.light-mode .fixed.inset-0 .backdrop-blur-sm,
     html.light-mode .fixed.inset-0 .bg-slate-950\/85 {
-      background-color: rgba(241, 245, 249, 0.65) !important; /* Capa blanca suave sobre el video */
+      background-color: rgba(241, 245, 249, 0.65) !important;
     }
 
     html.light-mode .fixed.inset-0 video {
-      opacity: 0.55 !important; /* Asegura visibilidad del video */
+      opacity: 0.55 !important;
     }
 
-    /* Header e Inicio */
+    /* Header */
     html.light-mode header {
-      background-color: rgba(255, 255, 255, 0.8) !important;
+      background-color: rgba(255, 255, 255, 0.85) !important;
       border-color: rgba(226, 232, 240, 0.8) !important;
     }
 
@@ -75,28 +75,19 @@
       color: #0f172a !important;
     }
 
-    /* SECCIONES INFERIORES: BLANCO TRANSPARENTE EN MODO CLARO */
-    html.light-mode section {
-      background-color: rgba(255, 255, 255, 0.55) !important; /* Blanco semi-transparente */
-      backdrop-filter: blur(8px) !important;
-      border-color: rgba(226, 232, 240, 0.6) !important;
-      color: #0f172a !important;
-    }
-
-    html.light-mode section h3,
-    html.light-mode section h4,
-    html.light-mode section p {
-      color: #0f172a !important;
-    }
-
-    /* Tarjetas del Catálogo y Modal en Modo Claro */
-    html.light-mode div[id="catalogo"] > div,
-    html.light-mode .swiper {
-      background-color: rgba(255, 255, 255, 0.8) !important;
+    /* Banner Hero, Filtros, Carrusel y Malla de Productos en Modo Claro */
+    html.light-mode #bannerHero,
+    html.light-mode #searchFilterSection,
+    html.light-mode .swiper,
+    html.light-mode div[id="catalogo"] > div {
+      background-color: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(12px) !important;
       border-color: rgba(203, 213, 225, 0.8) !important;
+      color: #0f172a !important;
     }
 
+    html.light-mode #bannerHero h2,
+    html.light-mode #bannerHero p,
     html.light-mode div[id="catalogo"] h3,
     html.light-mode .swiper h3 {
       color: #0f172a !important;
@@ -107,33 +98,46 @@
       color: #334155 !important;
     }
 
-    /* Footer en Modo Claro con Transparencia */
+    html.light-mode #searchInput,
+    html.light-mode #filterCategory {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      color: #0f172a !important;
+      border-color: #cbd5e1 !important;
+    }
+
+    /* Secciones Inferiores Translúcidas */
+    html.light-mode section {
+      background-color: rgba(255, 255, 255, 0.6) !important;
+      backdrop-filter: blur(8px) !important;
+      border-color: rgba(226, 232, 240, 0.7) !important;
+      color: #0f172a !important;
+    }
+
+    html.light-mode section h3,
+    html.light-mode section h4,
+    html.light-mode section p {
+      color: #0f172a !important;
+    }
+
+    /* Footer en Modo Claro */
     html.light-mode footer {
-      background-color: rgba(15, 23, 42, 0.85) !important;
+      background-color: rgba(15, 23, 42, 0.88) !important;
       backdrop-filter: blur(10px) !important;
     }
-    html.light-mode #themeToggleBtn span {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  border-color: #cbd5e1 !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
   <!-- VIDEO DE FONDO Y OVERLAY -->
- <!-- VIDEO DE FONDO COMPLETO (DESDE ARRIBA HASTA ABAJO) -->
-<div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
-  <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
-    
-    <source src="video.mp4" type="video/mp4">
-  </video>
-  <!-- Capa oscura de sobreposición para mantener legible el texto -->
-  <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
-</div>
+  <div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
+    <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
+      <source src="./assets/video.mp4" type="video/mp4">
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
+  </div>
 
-  <!-- BARRA DE BENEFICIOS INFORMATIVA -->
+  <!-- BARRA DE BENEFICIOS INFORMATIVA SUPERIOR -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
     <span class="flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
@@ -152,13 +156,14 @@
   </div>
 
   <!-- HEADER -->
-  <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30">
+  <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
+        
         <div class="flex items-center space-x-3">
           <div class="bg-brand-500 text-white p-2 rounded-xl shadow-md">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 012 2v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h4zm0 0R0 012 2v14a2 2 0 01-2 2h-4a2 2 0 01-2-2V6a2 2 0 01-2-2h4zM15 8h4a1 1 0 011 1v2a1 1 0 01-1 1h-4V8zM15 14h4a1 1 0 011 1v2a1 1 0 01-1 1h-4v-4z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
             </svg>
           </div>
           <div>
@@ -173,45 +178,33 @@
           <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
         </nav>
 
-       <!-- ESQUINA DERECHA DEL HEADER (BOTÓN TEMA + ATENCIÓN ONLINE) -->
-<div class="flex items-center space-x-3">
-  <!-- BOTÓN DE CAMBIO DE TEMA CON TOOLTIP -->
-  <button id="themeToggleBtn" 
-          title="Cambiar tema (Claro / Oscuro)" 
-          aria-label="Cambiar tema de color"
-          class="relative group bg-slate-800/80 hover:bg-brand-500 text-amber-400 hover:text-white p-2 rounded-xl border border-slate-700/80 hover:border-brand-400 transition-all duration-300 shadow-sm flex items-center justify-center cursor-pointer">
-    
-    <!-- Ícono del Sol/Luna -->
-    <svg id="themeIcon" class="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-    </svg>
+        <!-- ESQUINA DERECHA HEADER (BOTÓN TEMA + ATENCIÓN ONLINE) -->
+        <div class="flex items-center space-x-3">
+          <button id="themeToggleBtn" 
+                  title="Cambiar tema (Claro / Oscuro)" 
+                  aria-label="Cambiar tema de color"
+                  class="relative group bg-slate-800/80 hover:bg-brand-500 text-amber-400 hover:text-white p-2 rounded-xl border border-slate-700/80 hover:border-brand-400 transition-all duration-300 shadow-sm flex items-center justify-center cursor-pointer">
+            <svg id="themeIcon" class="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+            <span class="absolute top-full mt-2 hidden group-hover:flex whitespace-nowrap bg-slate-950 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md border border-slate-800 shadow-xl z-50 pointer-events-none">
+              Cambiar tema
+            </span>
+          </button>
 
-    <!-- Cartel flotante (Tooltip visual personalizado al pasar el mouse) -->
-    <span class="absolute top-full mt-2 hidden group-hover:flex whitespace-nowrap bg-slate-950 text-white text-[10px] font-semibold px-2.5 py-1 rounded-md border border-slate-800 shadow-xl z-50 pointer-events-none">
-      Cambiar modo de color
-    </span>
-  </button>
+          <span class="inline-block bg-emerald-500/10 text-emerald-400 text-[10px] font-extrabold px-2.5 py-1.5 rounded-full border border-emerald-500/20 uppercase tracking-wider">
+            ● Atención Online
+          </span>
+        </div>
 
-  <!-- BADGE DE ATENCIÓN ONLINE -->
-  <span class="inline-block bg-emerald-500/10 text-emerald-400 text-[10px] font-extrabold px-2.5 py-1.5 rounded-full border border-emerald-500/20 uppercase tracking-wider">
-    ● Atención Online
-  </span>
-</div>
       </div>
     </div>
-    <button id="themeToggleBtn" class="bg-slate-800 hover:bg-slate-700 text-amber-400 p-2 rounded-xl border border-slate-700 transition flex items-center justify-center">
-  <!-- Ícono Sol / Luna -->
-  <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-  </svg>
-    </button>
-    
   </header>
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-    <!-- BANNER HERO -->
-    <div class="bg-gradient-to-r from-industrial-900 via-slate-900 to-brand-600/30 border border-slate-800 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl">
+    <!-- BANNER HERO EXPRESS (BLANCO TRANSLÚCIDO) -->
+    <div id="bannerHero" class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-colors">
       <div class="max-w-xl space-y-3 relative z-10">
         <span class="bg-brand-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md tracking-wider">Ferretería Industrial & Hogar</span>
         <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">Las mejores herramientas con envío directo a tu taller o domicilio.</h2>
@@ -219,7 +212,7 @@
       </div>
     </div>
 
-    <!-- CARRUSEL: ÚLTIMOS 3 PRODUCTOS -->
+    <!-- CARRUSEL: ÚLTIMOS INGRESOS (MISMO ESTILO DE CARTAS DE PRODUCTOS) -->
     <section id="carouselSection" class="hidden">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -229,8 +222,8 @@
         <span class="text-xs text-slate-400 font-medium">Top Novedades</span>
       </div>
       
-      <div class="relative px-2 sm:px-6">
-        <div class="swiper mySwiper rounded-2xl p-4 bg-slate-900/80 backdrop-blur-md border border-slate-800 shadow-2xl">
+      <div class="relative px-1 sm:px-4">
+        <div class="swiper mySwiper rounded-2xl p-4 bg-slate-900/90 backdrop-blur-md border border-slate-800 shadow-2xl">
           <div class="swiper-wrapper" id="carouselWrapper"></div>
           <div class="swiper-pagination"></div>
         </div>
@@ -239,17 +232,17 @@
       </div>
     </section>
 
-    <!-- FILTROS Y BÚSQUEDA -->
-    <div class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center">
+    <!-- FILTROS Y BÚSQUEDA (BLANCO TRANSLÚCIDO) -->
+    <div id="searchFilterSection" class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800/80 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center transition-colors">
       <div class="relative w-full sm:w-80">
-        <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none">
+        <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none transition">
         <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
       </div>
 
       <div class="w-full sm:w-auto">
-        <select id="filterCategory" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none">
+        <select id="filterCategory" class="w-full sm:w-auto px-3.5 py-2.5 rounded-xl border border-slate-700 bg-slate-800 text-xs text-white focus:ring-2 focus:ring-brand-500 outline-none transition">
           <option value="">Todas las categorías</option>
           <option value="Herramientas Eléctricas">Herramientas Eléctricas</option>
           <option value="Herramientas Manuales">Herramientas Manuales</option>
@@ -268,154 +261,153 @@
     </div>
   </main>
 
-  <!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO INCRUSTADO) -->
-  <!-- SECCIÓN SOBRE EL LOCAL (TRANSPARENTE) -->
-<section class="bg-slate-900/60 backdrop-blur-md text-white py-12 px-4 sm:px-6 border-t border-slate-800 mt-12">
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-    
-    <!-- CONTENEDOR DEL VIDEO DEL LOCAL -->
-    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-800">
-      <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="w-full h-full object-cover">
-       
-        <source src="video.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <!-- TEXTO INFORMATIVO -->
-    <div class="space-y-4 max-w-md">
-      <h3 class="text-xl font-bold text-white">Conocé Ferretería Alejandro</h3>
-      <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-        ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Alejandro! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
-      </p>
-      <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" 
-         target="_blank" 
-         rel="noopener noreferrer" 
-         class="inline-flex items-center space-x-2 text-xs font-bold text-brand-500 hover:text-brand-400 transition">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-        </svg>
-        <span>Cómo llegar en Google Maps</span>
-      </a>
-    </div>
-
+  <!-- SEPARACIÓN 1: DIVISOR ENTRE CATÁLOGO Y LOCAL -->
+  <div class="max-w-7xl mx-auto px-4 w-full my-6">
+    <div class="border-t border-slate-800/40"></div>
   </div>
-</section>
 
-  <!-- 2. BANNER DE INSTAGRAM -->
-<!-- 2. BANNER DE INSTAGRAM (TRANSLÚCIDO) -->
-<section class="bg-slate-900/50 backdrop-blur-md py-8 text-center text-white border-t border-b border-slate-800 shadow-inner">
-  <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-2">
-    <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white hover:opacity-90 transition shadow-lg">
-      <svg class="w-8 h-8 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-    </a>
-    <h3 class="text-lg font-extrabold tracking-wide text-white uppercase">@ferreteriaAlejandrook</h3>
-    <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Seguinos en Instagram para ver las novedades</p>
-  </div>
-</section>
-
-<!-- 3. CAJA DE SUSCRIPCIÓN / NEWSLETTER (TRANSLÚCIDA) -->
-<section class="bg-slate-950/60 backdrop-blur-md py-8 border-b border-slate-800">
-  <div class="max-w-3xl mx-auto px-4 space-y-4 text-center">
-    <h4 class="text-brand-500 font-extrabold text-sm sm:text-base tracking-wide uppercase">¡Suscribite y recibí las ofertas en tu WhatsApp!</h4>
-    <form id="formSuscribirse" class="flex items-center gap-3 max-w-md mx-auto">
-      <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 transition">
-      <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg whitespace-nowrap flex items-center gap-2">
-        <span>Suscribirme</span>
-        <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-      </button>
-    </form>
-  </div>
-</section>
-
-  <!-- 3. BARRA DE BENEFICIOS (3 COLUMNAS) -->
-  <!-- BARRA DE BENEFICIOS (3 COLUMNAS - TRANSLÚCIDA) -->
-<!-- BARRA DE BENEFICIOS ALINEADA EN MÓVIL Y DESKTOP -->
-<section class="bg-slate-900/60 backdrop-blur-md text-slate-200 py-8 border-t border-b border-slate-800 my-8">
-  <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6">
-    
-    <div class="flex items-center space-x-4 text-left p-2">
-      <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+  <!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO DEL LOCAL) -->
+  <section class="bg-slate-900/60 backdrop-blur-md text-white py-12 px-4 sm:px-6 border-t border-b border-slate-800/80 my-8">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-800">
+        <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="w-full h-full object-cover">
+          <source src="./assets/video.mp4" type="video/mp4">
+          <source src="assets/video.mp4" type="video/mp4">
+        </video>
       </div>
-      <div>
-        <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4>
-        <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p>
-      </div>
-    </div>
 
-    <div class="flex items-center space-x-4 text-left p-2">
-      <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-      </div>
-      <div>
-        <h4 class="font-bold text-sm text-white leading-tight">Pagá como quieras</h4>
-        <p class="text-xs text-slate-400 mt-0.5">Tarjetas, transferencia o Mercado Pago</p>
-      </div>
-    </div>
-
-    <div class="flex items-center space-x-4 text-left p-2">
-      <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-      </div>
-      <div>
-        <h4 class="font-bold text-sm text-white leading-tight">Comprá con seguridad</h4>
-        <p class="text-xs text-slate-400 mt-0.5">Garantía oficial protegida</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-  <!-- 5. FOOTER OSCURO COMPLETO -->
- <!-- FOOTER TRANSLÚCIDO -->
-<footer class="bg-industrial-900/80 backdrop-blur-md text-white py-10 text-xs border-t border-slate-800">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-    
-    <!-- Navegación -->
-    <div class="space-y-3">
-      <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Navegación</h5>
-      <ul class="space-y-1.5 text-slate-300">
-        <li><a href="#" class="hover:underline">Inicio</a></li>
-        <li><a href="productos.html" class="hover:underline">Productos</a></li>
-        <li><a href="#" class="hover:underline">Ofertas</a></li>
-        <li><a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
-      </ul>
-    </div>
-
-    <!-- Redes Sociales -->
-    <div class="space-y-3">
-      <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Redes Sociales</h5>
-      <div class="flex space-x-3">
-        <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-brand-500 transition">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <div class="space-y-4 max-w-md">
+        <h3 class="text-xl font-bold text-white">Conocé Ferretería Alejandro</h3>
+        <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+          ¡Venite a nuestro local y disfrutá de la experiencia Ferretería Alejandro! Contamos con 30 años de experiencia, personal capacitado y el surtido de productos que necesitás.
+        </p>
+        <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center space-x-2 text-xs font-bold text-brand-500 hover:text-brand-400 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+          </svg>
+          <span>Cómo llegar en Google Maps</span>
         </a>
       </div>
-    </div>
 
-    <!-- Medios de Pago -->
-    <div class="space-y-3">
-      <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Medios de Pago</h5>
-      <div class="grid grid-cols-4 gap-2">
-        <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/visa.png" alt="Visa" class="w-full h-full object-contain"></div>
-        <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/mastercard.png" alt="Mastercard" class="w-full h-full object-contain"></div>
-        <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/amex.png" alt="Amex" class="w-full h-full object-contain"></div>
-        <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/mercado-pago.png" alt="MP" class="w-full h-full object-contain"></div>
+    </div>
+  </section>
+
+  <!-- 2. BANNER DE INSTAGRAM -->
+  <section class="bg-slate-900/50 backdrop-blur-md py-8 text-center text-white border-t border-b border-slate-800 shadow-inner my-8">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-2">
+      <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white hover:opacity-90 transition shadow-lg">
+        <svg class="w-8 h-8 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+      </a>
+      <h3 class="text-lg font-extrabold tracking-wide text-white uppercase">@ferreteriaAlejandrook</h3>
+      <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Seguinos en Instagram para ver las novedades</p>
+    </div>
+  </section>
+
+  <!-- 3. BARRA DE BENEFICIOS (3 COLUMNAS RESPONSIVE ALINEADA) -->
+  <section class="bg-slate-900/60 backdrop-blur-md text-slate-200 py-8 border-t border-b border-slate-800 my-8">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6">
+      
+      <div class="flex items-center space-x-4 text-left p-2">
+        <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p>
+        </div>
       </div>
-    </div>
 
-    <!-- Contactanos -->
-    <div class="space-y-3">
-      <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Contactanos</h5>
-      <ul class="space-y-2 text-slate-300 text-[11px]">
-        <li>+54 9 11 5694-6499</li>
-        <li>ferreteriaalejandro90@gmail.com</li>
-        <li>25 de mayo 3394 - Lanus Oeste</li>
-      </ul>
-    </div>
+      <div class="flex items-center space-x-4 text-left p-2">
+        <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-white leading-tight">Pagá como quieras</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Tarjetas, transferencia o Mercado Pago</p>
+        </div>
+      </div>
 
+      <div class="flex items-center space-x-4 text-left p-2">
+        <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm text-white leading-tight">Comprá con seguridad</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Garantía oficial protegida</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEPARACIÓN 2: DIVISOR ENTRE BENEFICIOS Y SUSCRIPCIÓN -->
+  <div class="max-w-7xl mx-auto px-4 w-full my-6">
+    <div class="border-t border-slate-800/40"></div>
   </div>
-</footer>
+
+  <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER -->
+  <section class="bg-slate-950/60 backdrop-blur-md py-8 border-t border-b border-slate-800 my-8">
+    <div class="max-w-3xl mx-auto px-4 space-y-4 text-center">
+      <h4 class="text-brand-500 font-extrabold text-sm sm:text-base tracking-wide uppercase">¡Suscribite y recibí las ofertas en tu WhatsApp!</h4>
+      <form id="formSuscribirse" class="flex items-center gap-3 max-w-md mx-auto">
+        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 transition">
+        <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg whitespace-nowrap flex items-center gap-2">
+          <span>Suscribirme</span>
+          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. FOOTER OSCURO COMPLETO -->
+  <footer class="bg-industrial-900/85 backdrop-blur-md text-white py-10 text-xs border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Navegación</h5>
+        <ul class="space-y-1.5 text-slate-300">
+          <li><a href="#" class="hover:underline">Inicio</a></li>
+          <li><a href="productos.html" class="hover:underline">Productos</a></li>
+          <li><a href="#" class="hover:underline">Ofertas</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Redes Sociales</h5>
+        <div class="flex space-x-3">
+          <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center hover:bg-brand-500 transition">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Medios de Pago</h5>
+        <div class="grid grid-cols-4 gap-2">
+          <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/visa.png" alt="Visa" class="w-full h-full object-contain"></div>
+          <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/mastercard.png" alt="Mastercard" class="w-full h-full object-contain"></div>
+          <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/amex.png" alt="Amex" class="w-full h-full object-contain"></div>
+          <div class="bg-white rounded-md flex items-center justify-center h-9 p-1"><img src="https://img.icons8.com/color/96/mercado-pago.png" alt="MP" class="w-full h-full object-contain"></div>
+        </div>
+      </div>
+
+      <div class="space-y-3">
+        <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Contactanos</h5>
+        <ul class="space-y-2 text-slate-300 text-[11px]">
+          <li>+54 9 11 5694-6499</li>
+          <li>ferreteriaalejandro90@gmail.com</li>
+          <li>25 de mayo 3394 - Lanus Oeste</li>
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
   <!-- BOTÓN FLOTANTE WHATSAPP -->
   <a id="btnWhatsappFlotante" href="#" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white p-3.5 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center border border-emerald-400/30">
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
@@ -425,17 +417,14 @@
   <div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
       
-      <!-- BOTÓN CERRAR -->
       <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
 
-      <!-- IMAGEN AGRANDADA -->
       <div class="w-full sm:w-1/2 h-64 sm:h-auto bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800">
         <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain">
       </div>
 
-      <!-- DETALLES Y ACCIÓN -->
       <div class="w-full sm:w-1/2 flex flex-col justify-between space-y-4">
         <div class="space-y-3">
           <span id="modalCategoria" class="bg-brand-500/20 text-brand-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-brand-500/30 uppercase tracking-wider inline-block">Categoría</span>
@@ -460,76 +449,66 @@
   </div>
 
   <!-- SCRIPTS -->
- <!-- SCRIPTS REVISADOS Y CORREGIDOS -->
   <script type="module">
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
     const PHONE_NUMBER = "5491156946499";
-  // FORMA CORRECTA Y COMPLETA DE DEFAULT_IMG:
     const DEFAULT_IMG = "https://via.placeholder.com/300x300?text=Sin+Imagen";
+    
     let todosLosProductos = [];
     let swiperInstance = null;
 
-    // FORZAR REPRODUCCIÓN AUTOMÁTICA DE TODOS LOS VIDEOS EN LA PÁGINA
+    // CONTROL Y SINCRONIZACIÓN DE MODO CLARO / OSCURO
+    const btnTheme = document.getElementById('themeToggleBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function aplicarTema(esClaro) {
+      if (esClaro) {
+        document.documentElement.classList.add('light-mode');
+      } else {
+        document.documentElement.classList.remove('light-mode');
+      }
+      actualizarIconoTema(esClaro);
+    }
+
+    function actualizarIconoTema(esClaro) {
+      if (!themeIcon) return;
+      if (esClaro) {
+        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
+      } else {
+        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+      }
+    }
+
+    const temaGuardado = localStorage.getItem('theme') === 'light';
+    aplicarTema(temaGuardado);
+
+    if (btnTheme) {
+      btnTheme.addEventListener('click', () => {
+        const nuevoEstadoClaro = !document.documentElement.classList.contains('light-mode');
+        localStorage.setItem('theme', nuevoEstadoClaro ? 'light' : 'dark');
+        aplicarTema(nuevoEstadoClaro);
+      });
+    }
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'theme') {
+        aplicarTema(e.newValue === 'light');
+      }
+    });
+
+    // REPRODUCCIÓN AUTOMÁTICA DE VIDEO
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('video').forEach(video => {
         video.muted = true;
-        video.play().catch(error => {
-          console.log("Autoplay bloqueado por el navegador:", error);
-        });
+        video.play().catch(e => console.log("Autoplay bloqueado:", e));
       });
     });
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-    // CONTROL MODO CLARO / OSCURO
-// CONTROL Y SINCRONIZACIÓN AUTOMÁTICA DE TEMA (INDEX <-> PRODUCTOS)
-const btnTheme = document.getElementById('themeToggleBtn');
-const themeIcon = document.getElementById('themeIcon');
-
-function aplicarTema(esClaro) {
-  if (esClaro) {
-    document.documentElement.classList.add('light-mode');
-  } else {
-    document.documentElement.classList.remove('light-mode');
-  }
-  actualizarIconoTema(esClaro);
-}
-
-function actualizarIconoTema(esClaro) {
-  if (!themeIcon) return;
-  if (esClaro) {
-    // Ícono de Luna (para volver a oscuro)
-    themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
-  } else {
-    // Ícono de Sol (para pasar a claro)
-    themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
-  }
-}
-
-// 1. Cargar el estado al iniciar la página
-const temaGuardado = localStorage.getItem('theme') === 'light';
-aplicarTema(temaGuardado);
-
-// 2. Evento al hacer clic en el botón
-if (btnTheme) {
-  btnTheme.addEventListener('click', () => {
-    const nuevoEstadoClaro = !document.documentElement.classList.contains('light-mode');
-    localStorage.setItem('theme', nuevoEstadoClaro ? 'light' : 'dark');
-    aplicarTema(nuevoEstadoClaro);
-  });
-}
-
-// 3. Sincronización en tiempo real entre pestañas o navegación activa
-window.addEventListener('storage', (e) => {
-  if (e.key === 'theme') {
-    aplicarTema(e.newValue === 'light');
-  }
-});
-    
-    // FORMULARIO DE SUSCRIPCIÓN
     const formSusc = document.getElementById('formSuscribirse');
     if (formSusc) {
       formSusc.addEventListener('submit', (e) => {
@@ -550,6 +529,7 @@ window.addEventListener('storage', (e) => {
       });
     }
 
+    // CARRUSEL ÚLTIMOS INGRESOS (CON EL MISMO ESTILO DE TARJETA DE PRODUCTOS)
     function renderCarousel() {
       const carouselSection = document.getElementById('carouselSection');
       const wrapper = document.getElementById('carouselWrapper');
@@ -581,27 +561,27 @@ window.addEventListener('storage', (e) => {
 
         return `
           <div class="swiper-slide">
-            <div class="bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xl p-4 sm:p-6 flex flex-col md:flex-row items-center gap-6">
-              <div class="w-full md:w-1/2 h-56 sm:h-64 bg-slate-950/70 rounded-xl overflow-hidden flex items-center justify-center p-4 relative border border-slate-800">
-                <span class="absolute top-3 left-3 bg-brand-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded shadow">Ingreso Destacado</span>
-                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain" onerror="this.src='${DEFAULT_IMG}'">
-                ${p.categoria ? `<span class="absolute top-3 right-3 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
-              </div>
-              <div class="w-full md:w-1/2 flex flex-col justify-between space-y-4 text-left">
-                <div class="space-y-2">
-                  <h3 class="font-extrabold text-white text-lg sm:text-xl leading-snug">${titulo}</h3>
-                  <p class="text-xs sm:text-sm text-slate-300 line-clamp-3">${p.descripcion || 'Sin descripción disponible.'}</p>
+            <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
+              <div>
+                <div class="h-56 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
+                  <span class="absolute top-2 left-2 bg-brand-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded shadow z-10">Ingreso Destacado</span>
+                  <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+                  ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
                 </div>
-                <div class="pt-3 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div>
-                    <span class="text-[11px] text-slate-400 block uppercase font-medium">Precio Especial:</span>
-                    <span class="text-2xl font-black text-brand-500">${precio}</span>
+                <div class="p-4 space-y-2">
+                  <h3 class="font-bold text-white text-base line-clamp-1">${titulo}</h3>
+                  <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
+                  <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
+                    <span class="text-xs text-slate-500">Precio Especial:</span>
+                    <span class="text-xl font-black text-brand-500">${precio}</span>
                   </div>
-                  <a href="${waLink}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-5 rounded-xl text-xs font-bold transition text-center shadow-lg flex items-center justify-center gap-2">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-                    <span>Consultar por WhatsApp</span>
-                  </a>
                 </div>
+              </div>
+              <div class="p-3 bg-slate-950/50 border-t border-slate-800">
+                <a href="${waLink}" target="_blank" onclick="event.stopPropagation();" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 shadow-md">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  <span>Consultar por WhatsApp</span>
+                </a>
               </div>
             </div>
           </div>
@@ -624,7 +604,6 @@ window.addEventListener('storage', (e) => {
       renderProductos();
     });
 
-    // RENDERIZADO CORREGIDO SIN COMILLAS EXTRAS DE NINGÚN TIPO
     function renderProductos() {
       const search = document.getElementById('searchInput').value.toLowerCase();
       const cat = document.getElementById('filterCategory').value;
@@ -681,7 +660,7 @@ window.addEventListener('storage', (e) => {
     document.getElementById('searchInput').addEventListener('input', renderProductos);
     document.getElementById('filterCategory').addEventListener('change', renderProductos);
 
-    // FUNCIONALIDAD DEL MODAL
+    // MODAL
     window.abrirModal = function(id) {
       const producto = todosLosProductos.find(p => p.id === id);
       if (!producto) return;
