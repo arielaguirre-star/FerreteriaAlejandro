@@ -32,12 +32,17 @@
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
-   <!-- VIDEO DE FONDO COMPLETO (DESDE ARRIBA HASTA ABAJO) -->
+
+  <!-- VIDEO DE FONDO COMPLETO EN PRODUCTOS.HTML -->
 <div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
   <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
     
     <source src="video.mp4" type="video/mp4">
   </video>
+ 
+  <!-- Overlay oscuro translúcido para asegurar buena legibilidad -->
+  <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
+</div>
   <!-- Capa oscura de sobreposición para mantener legible el texto -->
   <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
 </div>
