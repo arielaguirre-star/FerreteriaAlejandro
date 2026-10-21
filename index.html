@@ -214,15 +214,30 @@
 </section>
 
   <!-- 2. BANNER DE INSTAGRAM -->
-  <section class="bg-[#9ec1c2] py-8 text-center text-white shadow-inner">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-1">
-      <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-2 rounded-xl text-white hover:opacity-90 transition">
-        <svg class="w-10 h-10 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-      </a>
-      <h3 class="text-lg font-bold tracking-wide uppercase">ferreteriaAlejandrook</h3>
-      <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-100 opacity-90">Seguinos en Instagram</p>
-    </div>
-  </section>
+<!-- 2. BANNER DE INSTAGRAM (TRANSLÚCIDO) -->
+<section class="bg-slate-900/50 backdrop-blur-md py-8 text-center text-white border-t border-b border-slate-800 shadow-inner">
+  <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-2">
+    <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white hover:opacity-90 transition shadow-lg">
+      <svg class="w-8 h-8 stroke-current fill-none" viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+    </a>
+    <h3 class="text-lg font-extrabold tracking-wide text-white uppercase">@ferreteriaAlejandrook</h3>
+    <p class="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Seguinos en Instagram para ver las novedades</p>
+  </div>
+</section>
+
+<!-- 3. CAJA DE SUSCRIPCIÓN / NEWSLETTER (TRANSLÚCIDA) -->
+<section class="bg-slate-950/60 backdrop-blur-md py-8 border-b border-slate-800">
+  <div class="max-w-3xl mx-auto px-4 space-y-4 text-center">
+    <h4 class="text-brand-500 font-extrabold text-sm sm:text-base tracking-wide uppercase">¡Suscribite y recibí las ofertas en tu WhatsApp!</h4>
+    <form id="formSuscribirse" class="flex items-center gap-3 max-w-md mx-auto">
+      <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 transition">
+      <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-lg whitespace-nowrap flex items-center gap-2">
+        <span>Suscribirme</span>
+        <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+      </button>
+    </form>
+  </div>
+</section>
 
   <!-- 3. BARRA DE BENEFICIOS (3 COLUMNAS) -->
   <section class="bg-white text-slate-700 py-10 border-b border-slate-100">
@@ -257,18 +272,7 @@
     </div>
   </section>
 
-  <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER -->
-  <section class="bg-white py-8 border-b border-slate-200">
-    <div class="max-w-3xl mx-auto px-4 space-y-4">
-      <h4 class="text-teal-600 font-bold text-center text-sm sm:text-base">¡Suscribite y recibí las ofertas en tu WhatsApp!</h4>
-      <form id="formSuscribirse" class="flex items-center gap-3">
-        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full border-b-2 border-slate-300 px-2 py-2 text-xs text-slate-700 outline-none focus:border-teal-500 transition">
-        <button type="submit" class="bg-teal-300 hover:bg-teal-400 text-teal-800 p-2.5 rounded-full transition shadow">
-          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
-        </button>
-      </form>
-    </div>
-  </section>
+
 
   <!-- 5. FOOTER OSCURO COMPLETO -->
  <!-- FOOTER TRANSLÚCIDO -->
