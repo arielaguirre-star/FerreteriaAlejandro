@@ -24,19 +24,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
- <style>
+  <style>
     body { font-family: 'Inter', sans-serif; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
-    /* REGLAS DE MODO CLARO CON CONTRASTE ALTO Y LEGIBILIDAD MEJORADA */
+    /* REGLAS DE MODO CLARO CON ALTO CONTRASTE */
     html.light-mode {
       background-color: transparent !important;
       color: #0f172a !important;
     }
 
-    html.light-mode .fixed.inset-0 .backdrop-blur-\[2px\],
+    html.light-mode .fixed.inset-0 .backdrop-blur-[2px],
     html.light-mode .fixed.inset-0 .backdrop-blur-sm,
     html.light-mode .fixed.inset-0 .bg-slate-950\/85 {
       background-color: rgba(241, 245, 249, 0.65) !important;
@@ -68,15 +68,14 @@
       color: #0f172a !important;
     }
 
-    /* Corrección de Textos en Sidebar */
     html.light-mode .ml-sidebar h3,
     html.light-mode .ml-sidebar h4 {
       color: #0f172a !important;
     }
 
-    /* Categorías no seleccionadas en el Sidebar (Oscurecidas para alta legibilidad) */
+    /* Categorías no seleccionadas en Modo Claro */
     html.light-mode #categoryList button:not(.text-brand-500) {
-      color: #334155 !important; /* Slate 700 */
+      color: #334155 !important;
       font-weight: 600 !important;
     }
 
@@ -84,9 +83,8 @@
       color: #0f172a !important;
     }
 
-    /* Texto de Resultados y Labels */
     html.light-mode #resultCount {
-      color: #1e293b !important; /* Slate 800 */
+      color: #1e293b !important;
       font-weight: 800 !important;
     }
 
@@ -95,7 +93,6 @@
       font-weight: 600 !important;
     }
 
-    /* Corrección en Tarjetas de Productos */
     html.light-mode div[id="catalogo"] h3 {
       color: #0f172a !important;
       font-weight: 800 !important;
@@ -118,7 +115,6 @@
       font-weight: 600 !important;
     }
 
-    /* Secciones Inferiores y Footer */
     html.light-mode section {
       background-color: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(8px) !important;
@@ -153,7 +149,7 @@
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
     <span class="flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-     
+      
     </span>
     <span class="hidden sm:inline">•</span>
     <span class="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
@@ -163,27 +159,27 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial 
+      Garantía Oficial
     </span>
   </div>
 
-  <!-- HEADER -->
+  <!-- HEADER CON IMAGEN DE LOGO Y BOTÓN DE TEMA -->
   <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         
-        <div class="flex items-center space-x-3">
-          <div class="bg-brand-500 text-white p-2 rounded-xl shadow-md">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
+        <!-- LOGO CON IMAGEN Y NOMBRE -->
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <div class="w-10 h-10 rounded-xl overflow-hidden bg-brand-500/20 border border-brand-500/40 p-1 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition">
+            <img src="logo.png" alt="Logo Ferretería Alejandro" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/logo.png';">
           </div>
           <div>
-            <h1 class="font-extrabold text-lg leading-none text-white tracking-wide">Ferretería Alejandro</h1>
+            <h1 class="font-extrabold text-lg leading-none text-white tracking-wide group-hover:text-brand-500 transition">Ferretería Alejandro</h1>
             <p class="text-xs text-slate-400 mt-0.5">Catálogo Oficial</p>
           </div>
-        </div>
+        </a>
 
+        <!-- NAVEGACIÓN Y BOTÓN TEMA AL LADO DE INICIO -->
         <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold">
           <button id="themeToggleBtn" 
                   title="Cambiar tema (Claro / Oscuro)" 
@@ -202,6 +198,7 @@
           <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
         </nav>
 
+        <!-- ATENCIÓN ONLINE -->
         <div class="text-right">
           <span class="inline-block bg-emerald-500/10 text-emerald-400 text-[10px] font-extrabold px-2.5 py-1.5 rounded-full border border-emerald-500/20 uppercase tracking-wider">
             ● Atención Online
@@ -212,16 +209,15 @@
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL: ESTRUCTURA MERCADO LIBRE -->
+  <!-- CONTENIDO PRINCIPAL LAYOUT TIPO MERCADO LIBRE -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
     
     <div class="flex flex-col md:flex-row gap-6">
       
-      <!-- COLUMNA IZQUIERDA: SIDEBAR DE FILTROS ESTILO ML -->
+      <!-- SIDEBAR DE FILTROS -->
       <aside class="w-full md:w-64 shrink-0 space-y-6">
         <div class="ml-sidebar bg-slate-900/80 backdrop-blur-md p-5 rounded-2xl border border-slate-800 shadow-xl">
           
-          <!-- BÚSQUEDA -->
           <div class="mb-6">
             <h3 class="font-extrabold text-sm text-white mb-3">Buscar producto</h3>
             <div class="relative">
@@ -232,35 +228,26 @@
             </div>
           </div>
 
-          <!-- LISTA DE CATEGORÍAS ESTILO MERCADO LIBRE -->
           <div>
             <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-400 mb-3 border-b border-slate-800 pb-2">Categorías</h4>
             <ul class="space-y-2 text-xs" id="categoryList">
-              <li>
-                <button onclick="seleccionarCategoria('')" class="w-full text-left font-semibold text-brand-500 hover:underline flex justify-between items-center">
-                  <span>Todas las categorías</span>
-                  <span id="totalBadge" class="bg-slate-800 text-slate-300 text-[10px] px-2 py-0.5 rounded-full border border-slate-700">0</span>
-                </button>
-              </li>
-              <!-- Las categorías dinámicas se renderizan con JS -->
+              <!-- Renderizado dinámico de categorías por JS -->
             </ul>
           </div>
 
         </div>
       </aside>
 
-      <!-- COLUMNA DERECHA: GRILLA O LISTA DE PRODUCTOS -->
+      <!-- ÁREA DE PRODUCTOS -->
       <section class="flex-1 space-y-4">
         
-        <!-- BARRA SUPERIOR DE ORDENAMIENTO Y VISTA ESTILO ML -->
         <div class="ml-topbar bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           
           <div>
-            <span id="resultCount" class="text-xs font-bold text-slate-300">Mostrando productos...</span>
+            <span id="resultCount" class="text-xs font-bold text-slate-300">Cargando resultados...</span>
           </div>
 
           <div class="flex items-center space-x-4 w-full sm:w-auto justify-between sm:justify-end">
-            <!-- ORDENAR POR -->
             <div class="flex items-center space-x-2">
               <label for="sortSelect" class="text-xs text-slate-400 whitespace-nowrap">Ordenar por:</label>
               <select id="sortSelect" class="bg-slate-800 border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white outline-none focus:ring-2 focus:ring-brand-500">
@@ -271,12 +258,11 @@
               </select>
             </div>
 
-            <!-- TOGGLE DE VISTA (GRILLA VS LISTA) -->
             <div class="flex items-center bg-slate-800 p-1 rounded-xl border border-slate-700 space-x-1">
-              <button id="viewGridBtn" onclick="cambiarVista('grid')" title="Vista Grilla" class="p-1.5 rounded-lg bg-brand-500 text-white transition">
+              <button id="viewGridBtn" onclick="cambiarVista('grid')" title="Vista Grilla" class="p-1.5 rounded-lg text-slate-400 hover:text-white transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
               </button>
-              <button id="viewListBtn" onclick="cambiarVista('list')" title="Vista Lista MercadoLibre" class="p-1.5 rounded-lg text-slate-400 hover:text-white transition">
+              <button id="viewListBtn" onclick="cambiarVista('list')" title="Vista Lista MercadoLibre" class="p-1.5 rounded-lg bg-brand-500 text-white transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
               </button>
             </div>
@@ -284,8 +270,7 @@
 
         </div>
 
-        <!-- CONTENEDOR DINÁMICO DE PRODUCTOS -->
-        <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="catalogo" class="flex flex-col gap-4">
           <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
         </div>
 
@@ -429,7 +414,7 @@
     </div>
   </div>
 
-  <!-- SCRIPTS Y LÓGICA MERCADO LIBRE -->
+  <!-- SCRIPTS -->
   <script type="module">
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -439,7 +424,7 @@
     
     let todosLosProductos = [];
     let categoriaSeleccionada = '';
-    let modoVista = 'grid'; // 'grid' o 'list'
+    let modoVista = 'list'; // 'list' por defecto estilo MercadoLibre
 
     // CONTROL MODO CLARO / OSCURO
     const btnTheme = document.getElementById('themeToggleBtn');
@@ -459,7 +444,7 @@
       if (esClaro) {
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
       } else {
-        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707M12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
       }
     }
 
@@ -500,10 +485,7 @@
     // SIDEBAR CATEGORÍAS
     function renderCategoriasSidebar() {
       const categoryList = document.getElementById('categoryList');
-      const totalBadge = document.getElementById('totalBadge');
-      totalBadge.textContent = todosLosProductos.length;
 
-      // Agrupar contadores
       const conteoCat = {};
       todosLosProductos.forEach(p => {
         if (p.categoria) {
@@ -514,9 +496,11 @@
       const categorias = Object.keys(conteoCat);
       const itemsHtml = categorias.map(cat => {
         const estaActiva = categoriaSeleccionada === cat;
+        // Escape de comillas simples para evitar rotura sintáctica
+        const catEscapada = cat.replace(/'/g, "\\'");
         return `
           <li>
-            <button onclick="seleccionarCategoria('${cat}')" class="w-full text-left flex justify-between items-center ${estaActiva ? 'text-brand-500 font-bold' : 'text-slate-300 hover:text-white'} transition">
+            <button onclick="window.seleccionarCategoria('${catEscapada}')" class="w-full text-left flex justify-between items-center ${estaActiva ? 'text-brand-500 font-bold' : 'text-slate-300 hover:text-white'} transition">
               <span class="line-clamp-1">${cat}</span>
               <span class="bg-slate-800 text-slate-400 text-[10px] px-2 py-0.5 rounded-full border border-slate-700/60">${conteoCat[cat]}</span>
             </button>
@@ -526,7 +510,7 @@
 
       categoryList.innerHTML = `
         <li>
-          <button onclick="seleccionarCategoria('')" class="w-full text-left flex justify-between items-center ${!categoriaSeleccionada ? 'text-brand-500 font-bold' : 'text-slate-300 hover:text-white'} transition">
+          <button onclick="window.seleccionarCategoria('')" class="w-full text-left flex justify-between items-center ${!categoriaSeleccionada ? 'text-brand-500 font-bold' : 'text-slate-300 hover:text-white'} transition">
             <span>Todas las categorías</span>
             <span class="bg-slate-800 text-slate-400 text-[10px] px-2 py-0.5 rounded-full border border-slate-700/60">${todosLosProductos.length}</span>
           </button>
@@ -535,6 +519,7 @@
       `;
     }
 
+    // EXPOSICIÓN GLOBAL A WINDOW PARA LOS HANDLERS ONCLICK
     window.seleccionarCategoria = function(cat) {
       categoriaSeleccionada = cat;
       renderCategoriasSidebar();
@@ -562,7 +547,7 @@
       const sortValue = document.getElementById('sortSelect').value;
       const contenedor = document.getElementById('catalogo');
 
-      // 1. Filtrar
+      // Filtrar
       let filtrados = todosLosProductos.filter(p => {
         const nombre = (p.nombre || p.titulo || '').toLowerCase();
         const desc = (p.descripcion || '').toLowerCase();
@@ -573,7 +558,7 @@
         return coincideBusqueda && coincideCategoria;
       });
 
-      // 2. Ordenar
+      // Ordenar
       if (sortValue === 'menorPrecio') {
         filtrados.sort((a, b) => (Number(a.precio) || 0) - (Number(b.precio) || 0));
       } else if (sortValue === 'mayorPrecio') {
@@ -590,7 +575,7 @@
         return;
       }
 
-      // 3. Renderizar según vista (Grid o Lista ML)
+      // Renderizar segun vista
       if (modoVista === 'grid') {
         contenedor.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
         contenedor.innerHTML = filtrados.map(p => {
@@ -627,7 +612,6 @@
           `;
         }).join('');
       } else {
-        // VISTA LISTA HORIZONTAL ESTILO MERCADOLIBRE
         contenedor.className = "flex flex-col gap-4";
         contenedor.innerHTML = filtrados.map(p => {
           const titulo = p.nombre || p.titulo || 'Producto sin nombre';
