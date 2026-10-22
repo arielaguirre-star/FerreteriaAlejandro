@@ -351,33 +351,33 @@
 
 
   <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER CON IMAGEN DE FONDO -->
- <!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN CORREGIDA -->
-  <section class="relative w-full rounded-3xl border border-slate-800 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center">
+<!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN CORREGIDA -->
+  <section class="relative w-full rounded-3xl border border-slate-800/80 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center bg-transparent">
     
-    <!-- Imagen de fondo con capa oscura -->
-    <div class="absolute inset-0 w-full h-full -z-10 bg-slate-950">
+    <!-- Imagen de fondo completa + Capa de oscurecimiento suave -->
+    <div class="absolute inset-0 w-full h-full -z-10 overflow-hidden">
       <img src="fondo.png" 
            alt="Fondo Ferretería" 
-           class="w-full h-full object-cover opacity-30"
+           class="w-full h-full object-cover object-center opacity-40"
            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
-      <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
+      <div class="absolute inset-0 bg-slate-950/65 backdrop-blur-[1px]"></div>
     </div>
 
-    <!-- Contenido del formulario (fuerza la altura real) -->
-    <div class="w-full max-w-3xl mx-auto px-6 py-10 space-y-4 text-center relative z-10">
+    <!-- Contenido del Formulario (Garantiza lectura sin bloques azules) -->
+    <div class="w-full max-w-3xl mx-auto px-6 py-10 space-y-4 text-center relative z-10 bg-transparent">
       <h4 class="text-brand-500 font-black text-base sm:text-lg tracking-wide uppercase drop-shadow-md">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
       </h4>
-      <p class="text-xs text-slate-300 max-w-lg mx-auto">
+      <p class="text-xs text-slate-200 font-medium max-w-lg mx-auto drop-shadow-sm">
         Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
       </p>
       
-      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
+      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2 bg-transparent">
         <input type="email" 
                id="emailSuscribirse" 
                required 
                placeholder="Tu E-mail para novedades" 
-               class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+               class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
         <button type="submit" 
                 class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
           <span>Suscribirme</span>
