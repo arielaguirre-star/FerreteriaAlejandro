@@ -351,24 +351,23 @@
 
 
   <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER CON IMAGEN DE FONDO -->
-<!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN CORREGIDA -->
-  <section class="relative w-full rounded-3xl border border-slate-800/80 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center bg-transparent">
+<!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN SIN CAPA OSCURA -->
+  <section class="relative w-full rounded-3xl border border-slate-700/60 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center bg-transparent">
     
-    <!-- Imagen de fondo completa + Capa de oscurecimiento suave -->
+    <!-- Imagen de fondo al 100% de brillo y nitidez -->
     <div class="absolute inset-0 w-full h-full -z-10 overflow-hidden">
       <img src="fondo.png" 
            alt="Fondo Ferretería" 
-           class="w-full h-full object-cover object-center opacity-40"
+           class="w-full h-full object-cover object-center"
            onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
-      <div class="absolute inset-0 bg-slate-950/65 backdrop-blur-[1px]"></div>
     </div>
 
-    <!-- Contenido del Formulario (Garantiza lectura sin bloques azules) -->
+    <!-- Contenido del Formulario con sombras de texto para legibilidad -->
     <div class="w-full max-w-3xl mx-auto px-6 py-10 space-y-4 text-center relative z-10 bg-transparent">
-      <h4 class="text-brand-500 font-black text-base sm:text-lg tracking-wide uppercase drop-shadow-md">
+      <h4 class="text-brand-500 font-black text-base sm:text-lg tracking-wide uppercase [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
       </h4>
-      <p class="text-xs text-slate-200 font-medium max-w-lg mx-auto drop-shadow-sm">
+      <p class="text-xs text-white font-bold max-w-lg mx-auto [text-shadow:_0_1px_3px_rgba(0,0,0,0.9)]">
         Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
       </p>
       
@@ -377,9 +376,9 @@
                id="emailSuscribirse" 
                required 
                placeholder="Tu E-mail para novedades" 
-               class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+               class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-lg">
         <button type="submit" 
-                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
+                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-xl whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
           <span>Suscribirme</span>
           <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
