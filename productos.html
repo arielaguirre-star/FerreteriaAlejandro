@@ -132,6 +132,34 @@
       background-color: rgba(15, 23, 42, 0.92) !important;
       backdrop-filter: blur(10px) !important;
     }
+    /* FIX: BADGES Y ETIQUETAS SOBRE LAS IMÁGENES DE PRODUCTO EN MODO CLARO Y OSCURO */
+    
+    /* Badge Stock Disponible (Esquina Superior Izquierda) */
+    html.light-mode div[id="catalogo"] .bg-emerald-500\/20,
+    html.light-mode .swiper .bg-emerald-500\/20,
+    html.light-mode .swiper .bg-brand-500 {
+      background-color: #059669 !important; /* Verde esmeralda sólido */
+      color: #ffffff !important;           /* Texto blanco legibilidad 100% */
+      border-color: #047857 !important;
+      font-weight: 800 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Badge Categoría (Esquina Superior Derecha) */
+    html.light-mode div[id="catalogo"] span.absolute.top-2.right-2,
+    html.light-mode .swiper span.absolute.top-2.right-2 {
+      background-color: #0f172a !important; /* Azul/Gris muy oscuro sólido */
+      color: #ffffff !important;           /* Texto blanco legibilidad 100% */
+      border-color: #334155 !important;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    /* Forzar que todos los spans dentro de las tarjetas tengan contraste adecuado */
+    html.light-mode div[id="catalogo"] .bg-slate-950\/90 {
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
