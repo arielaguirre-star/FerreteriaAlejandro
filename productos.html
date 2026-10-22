@@ -24,19 +24,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <style>
+ <style>
     body { font-family: 'Inter', sans-serif; }
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
-    /* REGLAS DE MODO CLARO TRANSLÚCIDO */
+    /* REGLAS DE MODO CLARO CON CONTRASTE ALTO Y LEGIBILIDAD MEJORADA */
     html.light-mode {
       background-color: transparent !important;
       color: #0f172a !important;
     }
 
-    html.light-mode .fixed.inset-0 .backdrop-blur-[2px],
+    html.light-mode .fixed.inset-0 .backdrop-blur-\[2px\],
     html.light-mode .fixed.inset-0 .backdrop-blur-sm,
     html.light-mode .fixed.inset-0 .bg-slate-950\/85 {
       background-color: rgba(241, 245, 249, 0.65) !important;
@@ -46,9 +46,10 @@
       opacity: 0.55 !important;
     }
 
+    /* Header */
     html.light-mode header {
-      background-color: rgba(255, 255, 255, 0.85) !important;
-      border-color: rgba(226, 232, 240, 0.8) !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
     }
 
     html.light-mode header h1,
@@ -57,37 +58,71 @@
       color: #0f172a !important;
     }
 
+    /* Sidebar y Topbar */
     html.light-mode .ml-sidebar,
     html.light-mode .ml-topbar,
     html.light-mode div[id="catalogo"] > div {
-      background-color: rgba(255, 255, 255, 0.75) !important;
+      background-color: rgba(255, 255, 255, 0.88) !important;
       backdrop-filter: blur(12px) !important;
-      border-color: rgba(203, 213, 225, 0.8) !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
       color: #0f172a !important;
     }
 
-    html.light-mode div[id="catalogo"] h3,
+    /* Corrección de Textos en Sidebar */
     html.light-mode .ml-sidebar h3,
     html.light-mode .ml-sidebar h4 {
       color: #0f172a !important;
     }
 
-    html.light-mode div[id="catalogo"] p,
-    html.light-mode .ml-sidebar p {
+    /* Categorías no seleccionadas en el Sidebar (Oscurecidas para alta legibilidad) */
+    html.light-mode #categoryList button:not(.text-brand-500) {
+      color: #334155 !important; /* Slate 700 */
+      font-weight: 600 !important;
+    }
+
+    html.light-mode #categoryList button:not(.text-brand-500):hover {
+      color: #0f172a !important;
+    }
+
+    /* Texto de Resultados y Labels */
+    html.light-mode #resultCount {
+      color: #1e293b !important; /* Slate 800 */
+      font-weight: 800 !important;
+    }
+
+    html.light-mode label[for="sortSelect"] {
       color: #334155 !important;
+      font-weight: 600 !important;
+    }
+
+    /* Corrección en Tarjetas de Productos */
+    html.light-mode div[id="catalogo"] h3 {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+
+    html.light-mode div[id="catalogo"] p {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+
+    html.light-mode div[id="catalogo"] span {
+      color: #1e293b !important;
     }
 
     html.light-mode #searchInput,
     html.light-mode #sortSelect {
-      background-color: rgba(255, 255, 255, 0.9) !important;
+      background-color: rgba(255, 255, 255, 0.95) !important;
       color: #0f172a !important;
       border-color: #cbd5e1 !important;
+      font-weight: 600 !important;
     }
 
+    /* Secciones Inferiores y Footer */
     html.light-mode section {
-      background-color: rgba(255, 255, 255, 0.6) !important;
+      background-color: rgba(255, 255, 255, 0.75) !important;
       backdrop-filter: blur(8px) !important;
-      border-color: rgba(226, 232, 240, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
       color: #0f172a !important;
     }
 
@@ -98,7 +133,7 @@
     }
 
     html.light-mode footer {
-      background-color: rgba(15, 23, 42, 0.88) !important;
+      background-color: rgba(15, 23, 42, 0.92) !important;
       backdrop-filter: blur(10px) !important;
     }
   </style>
@@ -108,7 +143,7 @@
   <!-- VIDEO DE FONDO Y OVERLAY COMPLETO -->
   <div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
     <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
-      <source src="./assets/video.mp4" type="video/mp4">
+     
       <source src="video.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
@@ -128,7 +163,7 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial Express
+      Garantía Oficial 
     </span>
   </div>
 
