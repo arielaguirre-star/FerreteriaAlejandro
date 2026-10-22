@@ -124,6 +124,44 @@
       background-color: rgba(15, 23, 42, 0.88) !important;
       backdrop-filter: blur(10px) !important;
     }
+    /* CORRECCIÓN DE TARJETAS DE ÚLTIMOS INGRESOS (CARRUSEL SWIPER) EN MODO CLARO */
+    html.light-mode #carouselSection h2,
+    html.light-mode #carouselSection span {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+
+    html.light-mode .swiper-slide > div {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(12px) !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
+    }
+
+    html.light-mode .swiper-slide h3 {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+
+    html.light-mode .swiper-slide p {
+      color: #334155 !important;
+      font-weight: 500 !important;
+    }
+
+    html.light-mode .swiper-slide span {
+      color: #1e293b !important;
+    }
+
+    /* Fondo contenedor de imagen en el carrusel para modo claro */
+    html.light-mode .swiper-slide .bg-slate-950\/60 {
+      background-color: rgba(241, 245, 249, 0.7) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
+
+    /* Pie de la tarjeta del carrusel */
+    html.light-mode .swiper-slide .bg-slate-950\/50 {
+      background-color: rgba(248, 250, 252, 0.8) !important;
+      border-color: rgba(203, 213, 225, 0.8) !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
@@ -530,7 +568,7 @@
     }
 
     // CARRUSEL ÚLTIMOS INGRESOS (CON EL MISMO ESTILO DE TARJETA DE PRODUCTOS)
-    function renderCarousel() {
+   function renderCarousel() {
       const carouselSection = document.getElementById('carouselSection');
       const wrapper = document.getElementById('carouselWrapper');
 
@@ -561,7 +599,7 @@
 
         return `
           <div class="swiper-slide">
-            <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
+            <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
               <div>
                 <div class="h-56 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
                   <span class="absolute top-2 left-2 bg-brand-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded shadow z-10">Ingreso Destacado</span>
@@ -569,10 +607,10 @@
                   ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
                 </div>
                 <div class="p-4 space-y-2">
-                  <h3 class="font-bold text-white text-base line-clamp-1">${titulo}</h3>
-                  <p class="text-xs text-slate-400 line-clamp-2 min-h-[32px]">${p.descripcion || 'Sin descripción disponible.'}</p>
+                  <h3 class="font-extrabold text-white text-base line-clamp-1">${titulo}</h3>
+                  <p class="text-xs text-slate-300 line-clamp-2 min-h-[32px] font-normal">${p.descripcion || 'Sin descripción disponible.'}</p>
                   <div class="pt-2 flex items-baseline justify-between border-t border-slate-800">
-                    <span class="text-xs text-slate-500">Precio Especial:</span>
+                    <span class="text-xs text-slate-400 font-medium">Precio Especial:</span>
                     <span class="text-xl font-black text-brand-500">${precio}</span>
                   </div>
                 </div>
