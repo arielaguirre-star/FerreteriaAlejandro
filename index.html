@@ -166,6 +166,18 @@
     html.light-mode section relative img {
       opacity: 0.25 !important;
     }
+    /* Adaptación de tarjetas sobre la imagen en Modo Claro */
+    html.light-mode section .bg-slate-900\/80,
+    html.light-mode section .bg-slate-900\/85 {
+      background-color: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(12px) !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
+    }
+
+    html.light-mode section h2,
+    html.light-mode section p {
+      color: #0f172a !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
@@ -254,14 +266,41 @@
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-    <!-- BANNER HERO EXPRESS (BLANCO TRANSLÚCIDO) -->
-    <div id="bannerHero" class="bg-slate-900/80 backdrop-blur-md border border-slate-800/80 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-2xl transition-colors">
-      <div class="max-w-xl space-y-3 relative z-10">
-        <span class="bg-brand-500 text-white text-[10px] font-black uppercase px-2.5 py-1 rounded-md tracking-wider">Ferretería Industrial & Hogar</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-white leading-tight">Las mejores herramientas.</h2>
-        <p class="text-xs text-slate-300">Explora nuestro catálogo en tiempo real. Consultas e inquietudes de stock inmediatas vía WhatsApp.</p>
+  <!-- BANNER HERO EXPRESS CON FOTO DEL LOCAL -->
+  <section class="relative w-full rounded-3xl overflow-hidden border border-slate-800 shadow-2xl my-6 min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
+    
+    <!-- Imagen de fondo completa del local -->
+    <div class="absolute inset-0 w-full h-full -z-10">
+      <img src="fondo.png" 
+           alt="Fachada Ferretería Alejandro" 
+           class="w-full h-full object-cover object-center"
+           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+      <!-- Filtro oscuro muy suave para integrar la imagen -->
+      <div class="absolute inset-0 bg-slate-950/40"></div>
+    </div>
+
+    <!-- Tarjeta Glassmorphism para legibilidad del texto Hero -->
+    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-3 shadow-2xl">
+      <span class="inline-block bg-brand-500/20 text-brand-500 text-[10px] sm:text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full border border-brand-500/30">
+        Ferretería Alejandro
+      </span>
+      <h2 class="text-xl sm:text-3xl font-black text-white leading-tight">
+        Todo en Herramientas y Materiales para tus Proyectos
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 font-medium">
+        Atención personalizada en Lanús Oeste.
+      </p>
+      <div class="pt-2 flex flex-wrap justify-center gap-3">
+        <a href="productos.html" class="bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg">
+          Ver Catálogo Completo
+        </a>
+        <a href="https://wa.me/5491156946499" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg flex items-center gap-2">
+          <span>Consultar WhatsApp</span>
+        </a>
       </div>
     </div>
+
+  </section>
 
     <!-- CARRUSEL: ÚLTIMOS INGRESOS (MISMO ESTILO DE CARTAS DE PRODUCTOS) -->
     <section id="carouselSection" class="hidden">
@@ -413,22 +452,35 @@
     </div>
 
     <!-- Contenido del Formulario con sombras de texto para legibilidad -->
-    <div class="w-full max-w-3xl mx-auto px-6 py-10 space-y-4 text-center relative z-10 bg-transparent">
-      <h4 class="text-brand-500 font-black text-base sm:text-lg tracking-wide uppercase [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
+    <!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN CORREGIDA Y LEGIBLE -->
+  <section class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
+    
+    <!-- Imagen de fondo de la fachada con encuadre completo -->
+    <div class="absolute inset-0 w-full h-full -z-10">
+      <img src="fondo.png" 
+           alt="Fachada Ferretería Alejandro" 
+           class="w-full h-full object-cover object-center"
+           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+      <div class="absolute inset-0 bg-slate-950/50"></div>
+    </div>
+
+    <!-- Tarjeta translúcida flotante para lectura clara del formulario -->
+    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
+      <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
       </h4>
-      <p class="text-xs text-white font-bold max-w-lg mx-auto [text-shadow:_0_1px_3px_rgba(0,0,0,0.9)]">
+      <p class="text-xs text-slate-200 font-medium max-w-lg mx-auto">
         Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
       </p>
       
-      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2 bg-transparent">
+      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
         <input type="email" 
                id="emailSuscribirse" 
                required 
                placeholder="Tu E-mail para novedades" 
-               class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-lg">
+               class="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
         <button type="submit" 
-                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-xl whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
+                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
           <span>Suscribirme</span>
           <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
@@ -437,6 +489,7 @@
       </form>
     </div>
 
+  </section>
   </section>
 
   <!-- 5. FOOTER OSCURO COMPLETO -->
