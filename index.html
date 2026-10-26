@@ -139,6 +139,20 @@
       opacity: 1 !important;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
     }
+
+    /* FORZAR LEGIBILIDAD DEL NEWSLETTER EN MODO CLARO Y OSCURO */
+    html.light-mode #secSuscribirse h4,
+    #secSuscribirse h4 {
+      color: #f97316 !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    html.light-mode #secSuscribirse p,
+    #secSuscribirse p {
+      color: #ffffff !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      font-weight: 700 !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
@@ -165,7 +179,7 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial Express
+      Garantía Oficial
     </span>
   </div>
 
@@ -358,8 +372,8 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
         </div>
         <div>
-          <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4>
-          <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p>
+        <!--  <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4> -->
+       <!--   <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p> -->
         </div>
       </div>
 
@@ -386,7 +400,7 @@
   </section>
 
   <!-- CAJA DE SUSCRIPCIÓN -->
-  <section class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
+  <section id="secSuscribirse" class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
     <div class="absolute inset-0 w-full h-full -z-10">
       <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
       <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
@@ -402,7 +416,7 @@
       
       <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
         <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
-        <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
+        <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
           <span>Suscribirme</span>
           <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
@@ -518,7 +532,7 @@
     
     let todosLosProductos = [];
     let swiperInstance = null;
-    let productosVisibles = 8; // Límite inicial en portada
+    let productosVisibles = 8;
     window.indicesImagenes = {};
 
     // TEMA
@@ -722,7 +736,6 @@
         return;
       }
 
-      // Control de paginación
       const mostrados = filtrados.slice(0, productosVisibles);
       if (contadorElem) {
         contadorElem.textContent = `Mostrando ${mostrados.length} de ${filtrados.length} productos`;
