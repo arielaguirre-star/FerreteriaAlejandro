@@ -44,15 +44,12 @@
       height: auto !important;
     }
 
-    /* =========================================================
-       REGLAS COMPATIBLES DE MODO CLARO Y TRANSLÚCIDO
-       ========================================================= */
+    /* REGLAS DE MODO CLARO Y TRANSLÚCIDO */
     html.light-mode {
       background-color: transparent !important;
       color: #0f172a !important;
     }
 
-    /* Ajuste de la capa del video en modo claro */
     html.light-mode .fixed.inset-0 .backdrop-blur-\[2px\],
     html.light-mode .fixed.inset-0 .backdrop-blur-sm,
     html.light-mode .fixed.inset-0 .bg-slate-950\/85 {
@@ -75,14 +72,15 @@
       color: #0f172a !important;
     }
 
-    /* Banner Hero, Filtros, Carrusel y Malla de Productos en Modo Claro */
+    /* Tarjetas y Secciones */
     html.light-mode #bannerHero,
     html.light-mode #searchFilterSection,
     html.light-mode .swiper,
-    html.light-mode div[id="catalogo"] > div {
-      background-color: rgba(255, 255, 255, 0.75) !important;
+    html.light-mode div[id="catalogo"] > div,
+    html.light-mode .swiper-slide > div {
+      background-color: rgba(255, 255, 255, 0.85) !important;
       backdrop-filter: blur(12px) !important;
-      border-color: rgba(203, 213, 225, 0.8) !important;
+      border-color: rgba(203, 213, 225, 0.9) !important;
       color: #0f172a !important;
     }
 
@@ -91,11 +89,13 @@
     html.light-mode div[id="catalogo"] h3,
     html.light-mode .swiper h3 {
       color: #0f172a !important;
+      font-weight: 800 !important;
     }
 
     html.light-mode div[id="catalogo"] p,
     html.light-mode .swiper p {
       color: #334155 !important;
+      font-weight: 500 !important;
     }
 
     html.light-mode #searchInput,
@@ -105,7 +105,6 @@
       border-color: #cbd5e1 !important;
     }
 
-    /* Secciones Inferiores Translúcidas */
     html.light-mode section {
       background-color: rgba(255, 255, 255, 0.6) !important;
       backdrop-filter: blur(8px) !important;
@@ -119,72 +118,26 @@
       color: #0f172a !important;
     }
 
-    /* Footer en Modo Claro */
     html.light-mode footer {
       background-color: rgba(15, 23, 42, 0.88) !important;
       backdrop-filter: blur(10px) !important;
     }
-    /* CORRECCIÓN DE TARJETAS DE ÚLTIMOS INGRESOS (CARRUSEL SWIPER) EN MODO CLARO */
-    html.light-mode #carouselSection h2,
-    html.light-mode #carouselSection span {
-      color: #0f172a !important;
+
+    /* CORRECCIÓN DE LEGIBILIDAD EN ETIQUETAS DE MODO CLARO Y OSCURO */
+    .badge-stock {
+      background-color: #059669 !important;
+      color: #ffffff !important;
+      border: 1px solid #047857 !important;
       font-weight: 800 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
     }
 
-    html.light-mode .swiper-slide > div {
-      background-color: rgba(255, 255, 255, 0.85) !important;
-      backdrop-filter: blur(12px) !important;
-      border-color: rgba(203, 213, 225, 0.9) !important;
-    }
-
-    html.light-mode .swiper-slide h3 {
-      color: #0f172a !important;
-      font-weight: 800 !important;
-    }
-
-    html.light-mode .swiper-slide p {
-      color: #334155 !important;
-      font-weight: 500 !important;
-    }
-
-    html.light-mode .swiper-slide span {
-      color: #1e293b !important;
-    }
-
-    /* Fondo contenedor de imagen en el carrusel para modo claro */
-    html.light-mode .swiper-slide .bg-slate-950\/60 {
-      background-color: rgba(241, 245, 249, 0.7) !important;
-      border-color: rgba(203, 213, 225, 0.8) !important;
-    }
-
-    /* Pie de la tarjeta del carrusel */
-    html.light-mode .swiper-slide .bg-slate-950\/50 {
-      background-color: rgba(248, 250, 252, 0.8) !important;
-      border-color: rgba(203, 213, 225, 0.8) !important;
-    }
-    /* Fondo del Newsletter en Modo Claro */
-    html.light-mode section relative img {
-      opacity: 0.25 !important;
-    }
-    /* Adaptación de tarjetas sobre la imagen en Modo Claro */
-    html.light-mode section .bg-slate-900\/80,
-    html.light-mode section .bg-slate-900\/85 {
-      background-color: rgba(255, 255, 255, 0.88) !important;
-      backdrop-filter: blur(12px) !important;
-      border-color: rgba(203, 213, 225, 0.9) !important;
-    }
-
-    html.light-mode section h2,
-    html.light-mode section p {
-      color: #0f172a !important;
-    }
-    /* FORZAR LEGIBILIDAD EN BADGES DE CATEGORÍA SOBRE IMÁGENES EN MODO CLARO Y OSCURO */
-    html.light-mode .swiper-slide .badge-categoria,
-    html.light-mode div[id="catalogo"] .badge-categoria,
+    .badge-categoria,
+    html.light-mode .badge-categoria,
     html.light-mode span.absolute.top-2.right-2 {
-      background-color: #0f172a !important; /* Azul oscuro Slate-900 */
-      color: #ffffff !important;           /* Texto blanco puro */
-      border: 1px solid #334155 !important; /* Borde gris definido */
+      background-color: #0f172a !important;
+      color: #ffffff !important;
+      border: 1px solid #334155 !important;
       font-weight: 800 !important;
       opacity: 1 !important;
       box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
@@ -193,20 +146,19 @@
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
-  <!-- VIDEO DE FONDO Y OVERLAY -->
+  <!-- VIDEO DE FONDO -->
   <div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
     <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
-     
       <source src="video.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
   </div>
 
-  <!-- BARRA DE BENEFICIOS INFORMATIVA SUPERIOR -->
+  <!-- BARRA DE BENEFICIOS SUPERIOR -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
     <span class="flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-    
+      Envíos a todo el país
     </span>
     <span class="hidden sm:inline">•</span>
     <span class="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
@@ -216,7 +168,7 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial
+      Garantía Oficial Express
     </span>
   </div>
 
@@ -224,7 +176,6 @@
   <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-         <!-- LOGO CON IMAGEN Y NOMBRE -->
         <a href="index.html" class="flex items-center space-x-3 group">
           <div class="w-10 h-10 rounded-xl overflow-hidden bg-brand-500/20 border border-brand-500/40 p-1 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition">
             <img src="logo.png" alt="Logo Ferretería Alejandro" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/logo.png';">
@@ -234,7 +185,6 @@
             <p class="text-xs text-slate-400 mt-0.5">Catálogo Oficial</p>
           </div>
         </a>
-        
 
         <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold">
           <a href="#" class="text-brand-500 pb-1 border-b-2 border-brand-500">Inicio</a>
@@ -242,7 +192,6 @@
           <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
         </nav>
 
-        <!-- ESQUINA DERECHA HEADER (BOTÓN TEMA + ATENCIÓN ONLINE) -->
         <div class="flex items-center space-x-3">
           <button id="themeToggleBtn" 
                   title="Cambiar tema (Claro / Oscuro)" 
@@ -260,50 +209,40 @@
             ● Atención Online
           </span>
         </div>
-
       </div>
     </div>
   </header>
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-  <!-- BANNER HERO EXPRESS CON FOTO DEL LOCAL -->
-  <section class="relative w-full rounded-3xl overflow-hidden border border-slate-800 shadow-2xl my-6 min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
-    
-    <!-- Imagen de fondo completa del local -->
-    <div class="absolute inset-0 w-full h-full -z-10">
-      <img src="fondo.png" 
-           alt="Fachada Ferretería Alejandro" 
-           class="w-full h-full object-cover object-center"
-           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
-      <!-- Filtro oscuro muy suave para integrar la imagen -->
-      <div class="absolute inset-0 bg-slate-950/40"></div>
-    </div>
-
-    <!-- Tarjeta Glassmorphism para legibilidad del texto Hero -->
-    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-3 shadow-2xl">
-      <span class="inline-block bg-brand-500/20 text-brand-500 text-[10px] sm:text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full border border-brand-500/30">
-        Ferretería Alejandro
-      </span>
-      <h2 class="text-xl sm:text-3xl font-black text-white leading-tight">
-        Todo en Herramientas y Materiales para tus Proyectos
-      </h2>
-      <p class="text-xs sm:text-sm text-slate-300 font-medium">
-        Atención personalizada en Lanús Oeste.
-      </p>
-      <div class="pt-2 flex flex-wrap justify-center gap-3">
-        <a href="productos.html" class="bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg">
-          Ver Catálogo Completo
-        </a>
-        <a href="https://wa.me/5491156946499" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg flex items-center gap-2">
-          <span>Consultar WhatsApp</span>
-        </a>
+    <!-- BANNER HERO EXPRESS CON FOTO DEL LOCAL -->
+    <section class="relative w-full rounded-3xl overflow-hidden border border-slate-800 shadow-2xl my-6 min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
+      <div class="absolute inset-0 w-full h-full -z-10">
+        <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+        <div class="absolute inset-0 bg-slate-950/40"></div>
       </div>
-    </div>
+      <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-3 shadow-2xl">
+        <span class="inline-block bg-brand-500/20 text-brand-500 text-[10px] sm:text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full border border-brand-500/30">
+          Ferretería Alejandro
+        </span>
+        <h2 class="text-xl sm:text-3xl font-black text-white leading-tight">
+          Todo en Herramientas y Materiales para tus Proyectos
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-300 font-medium">
+          Atención personalizada en Lanús Oeste.
+        </p>
+        <div class="pt-2 flex flex-wrap justify-center gap-3">
+          <a href="productos.html" class="bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg">
+            Ver Catálogo Completo
+          </a>
+          <a href="https://wa.me/5491156946499" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs px-5 py-2.5 rounded-xl transition shadow-lg flex items-center gap-2">
+            <span>Consultar WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-  </section>
-
-    <!-- CARRUSEL: ÚLTIMOS INGRESOS (MISMO ESTILO DE CARTAS DE PRODUCTOS) -->
+    <!-- CARRUSEL: ÚLTIMOS INGRESOS -->
     <section id="carouselSection" class="hidden">
       <div class="flex items-center justify-between mb-4">
         <h2 class="text-lg font-bold text-white flex items-center gap-2">
@@ -323,7 +262,7 @@
       </div>
     </section>
 
-    <!-- FILTROS Y BÚSQUEDA (BLANCO TRANSLÚCIDO) -->
+    <!-- FILTROS Y BÚSQUEDA -->
     <div id="searchFilterSection" class="bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800/80 shadow-xl flex flex-col sm:flex-row gap-3 justify-between items-center transition-colors">
       <div class="relative w-full sm:w-80">
         <input type="text" id="searchInput" placeholder="Buscar herramientas o artículos..." class="w-full pl-9 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-400 focus:ring-2 focus:ring-brand-500 outline-none transition">
@@ -346,25 +285,22 @@
       </div>
     </div>
 
-    <!-- MALLA PRINCIPAL: CATÁLOGO DE PRODUCTOS -->
+    <!-- MALLA PRINCIPAL DE PRODUCTOS -->
     <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
     </div>
   </main>
 
-  <!-- SEPARACIÓN 1: DIVISOR ENTRE CATÁLOGO Y LOCAL -->
   <div class="max-w-7xl mx-auto px-4 w-full my-6">
     <div class="border-t border-slate-800/40"></div>
   </div>
 
-  <!-- 1. SECCIÓN SOBRE EL LOCAL (CON VIDEO DEL LOCAL) -->
+  <!-- SECCIÓN SOBRE EL LOCAL -->
   <section class="bg-slate-900/60 backdrop-blur-md text-white py-12 px-4 sm:px-6 border-t border-b border-slate-800/80 my-8">
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      
       <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-slate-950 aspect-video flex items-center justify-center border border-slate-800">
         <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="w-full h-full object-cover">
           <source src="video.mp4" type="video/mp4">
-          
         </video>
       </div>
 
@@ -383,11 +319,10 @@
           <span>Cómo llegar en Google Maps</span>
         </a>
       </div>
-
     </div>
   </section>
 
-  <!-- 2. BANNER DE INSTAGRAM -->
+  <!-- BANNER DE INSTAGRAM -->
   <section class="bg-slate-900/50 backdrop-blur-md py-8 text-center text-white border-t border-b border-slate-800 shadow-inner my-8">
     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center space-y-2">
       <a href="https://instagram.com/ferreteriaAlejandrook" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center p-3 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white hover:opacity-90 transition shadow-lg">
@@ -398,17 +333,16 @@
     </div>
   </section>
 
-  <!-- 3. BARRA DE BENEFICIOS (3 COLUMNAS RESPONSIVE ALINEADA) -->
+  <!-- BARRA DE BENEFICIOS -->
   <section class="bg-slate-900/60 backdrop-blur-md text-slate-200 py-8 border-t border-b border-slate-800 my-8">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6">
-      
       <div class="flex items-center space-x-4 text-left p-2">
         <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
         </div>
         <div>
-          <h4 class="font-bold text-sm text-white leading-tight"></h4>
-          <p class="text-xs text-slate-400 mt-0.5"></p>
+          <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p>
         </div>
       </div>
 
@@ -431,41 +365,16 @@
           <p class="text-xs text-slate-400 mt-0.5">Garantía oficial protegida</p>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- SEPARACIÓN 2: DIVISOR ENTRE BENEFICIOS Y SUSCRIPCIÓN -->
-  <div class="max-w-7xl mx-auto px-4 w-full my-6">
-    <div class="border-t border-slate-800/40"></div>
-  </div>
-
-<!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER CON IMAGEN DE FONDO -->
-<!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN SIN CAPA OSCURA -->
-  <section class="relative w-full rounded-3xl border border-slate-700/60 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center bg-transparent">
-    
-    <!-- Imagen de fondo al 100% de brillo y nitidez -->
-    <div class="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-      <img src="fondo.png" 
-           alt="Fondo Ferretería" 
-           class="w-full h-full object-cover object-center"
-           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
-    </div>
-
-    <!-- Contenido del Formulario con sombras de texto para legibilidad -->
-    <!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN CORREGIDA Y LEGIBLE -->
+  <!-- CAJA DE SUSCRIPCIÓN CON TARJETA GLASS -->
   <section class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
-    
-    <!-- Imagen de fondo de la fachada con encuadre completo -->
     <div class="absolute inset-0 w-full h-full -z-10">
-      <img src="fondo.png" 
-           alt="Fachada Ferretería Alejandro" 
-           class="w-full h-full object-cover object-center"
-           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+      <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
       <div class="absolute inset-0 bg-slate-950/50"></div>
     </div>
 
-    <!-- Tarjeta translúcida flotante para lectura clara del formulario -->
     <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
       <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
@@ -475,34 +384,23 @@
       </p>
       
       <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
-        <input type="email" 
-               id="emailSuscribirse" 
-               required 
-               placeholder="Tu E-mail para novedades" 
-               class="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
-        <button type="submit" 
-                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
+        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+        <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
           <span>Suscribirme</span>
-          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-          </svg>
+          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
       </form>
     </div>
-
-  </section>
   </section>
 
-  <!-- 5. FOOTER OSCURO COMPLETO -->
+  <!-- FOOTER -->
   <footer class="bg-industrial-900/85 backdrop-blur-md text-white py-10 text-xs border-t border-slate-800 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-      
       <div class="space-y-3">
         <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Navegación</h5>
         <ul class="space-y-1.5 text-slate-300">
           <li><a href="#" class="hover:underline">Inicio</a></li>
           <li><a href="productos.html" class="hover:underline">Productos</a></li>
-          <li><a href="#" class="hover:underline">Ofertas</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
         </ul>
       </div>
@@ -534,7 +432,6 @@
           <li>25 de mayo 3394 - Lanus Oeste</li>
         </ul>
       </div>
-
     </div>
   </footer>
 
@@ -546,7 +443,6 @@
   <!-- MODAL DE PRODUCTO AMPLIADO -->
   <div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
-      
       <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
@@ -574,7 +470,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -589,8 +484,9 @@
     
     let todosLosProductos = [];
     let swiperInstance = null;
+    window.indicesImagenes = {};
 
-    // CONTROL Y SINCRONIZACIÓN DE MODO CLARO / OSCURO
+    // MODO CLARO / OSCURO
     const btnTheme = document.getElementById('themeToggleBtn');
     const themeIcon = document.getElementById('themeIcon');
 
@@ -608,7 +504,7 @@
       if (esClaro) {
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
       } else {
-        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707M12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
       }
     }
 
@@ -629,7 +525,7 @@
       }
     });
 
-    // REPRODUCCIÓN AUTOMÁTICA DE VIDEO
+    // VIDEO AUTOPLAY
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('video').forEach(video => {
         video.muted = true;
@@ -659,8 +555,29 @@
       });
     }
 
-    // CARRUSEL ÚLTIMOS INGRESOS (CON EL MISMO ESTILO DE TARJETA DE PRODUCTOS)
-   function renderCarousel() {
+    // NAVEGADOR DE IMÁGENES DENTRO DE CADA TARJETA
+    window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
+      if (event) event.stopPropagation();
+      if (!window.indicesImagenes[id]) window.indicesImagenes[id] = 0;
+
+      window.indicesImagenes[id] += direccion;
+      if (window.indicesImagenes[id] < 0) window.indicesImagenes[id] = totalFotos - 1;
+      if (window.indicesImagenes[id] >= totalFotos) window.indicesImagenes[id] = 0;
+
+      const idx = window.indicesImagenes[id];
+      const p = todosLosProductos.find(item => item.id === id);
+      if (!p) return;
+
+      const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
+      const imgElem = document.getElementById(`img-card-${id}`);
+      const counterElem = document.getElementById(`counter-card-${id}`);
+
+      if (imgElem) imgElem.src = fotos[idx];
+      if (counterElem) counterElem.textContent = `${idx + 1}/${totalFotos}`;
+    };
+
+    // CARRUSEL ÚLTIMOS INGRESOS
+    function renderCarousel() {
       const carouselSection = document.getElementById('carouselSection');
       const wrapper = document.getElementById('carouselWrapper');
 
@@ -685,18 +602,33 @@
       wrapper.innerHTML = ultimos3.map(p => {
         const titulo = p.nombre || p.titulo || 'Producto sin nombre';
         const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-        const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
-        const portada = fotos[0];
+        const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
         const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+
+        if (!window.indicesImagenes[p.id]) window.indicesImagenes[p.id] = 0;
+        const currentIdx = window.indicesImagenes[p.id];
 
         return `
           <div class="swiper-slide">
             <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
               <div>
                 <div class="h-56 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
-                  <span class="absolute top-2 left-2 bg-brand-500 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded shadow z-10">Ingreso Destacado</span>
-                  <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
-                  ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
+                  <span class="absolute top-2 left-2 badge-stock text-[9px] font-black uppercase px-2.5 py-1 rounded shadow z-10">Ingreso Destacado</span>
+                  ${p.categoria ? `<span class="absolute top-2 right-2 badge-categoria text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
+
+                  <img id="img-card-${p.id}" src="${fotos[currentIdx]}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+
+                  ${fotos.length > 1 ? `
+                    <button onclick="cambiarImagenTarjeta('${p.id}', -1, ${fotos.length}, event)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button onclick="cambiarImagenTarjeta('${p.id}', 1, ${fotos.length}, event)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <span id="counter-card-${p.id}" class="absolute bottom-2 right-2 bg-slate-950/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full border border-slate-700 z-10">
+                      ${currentIdx + 1}/${fotos.length}
+                    </span>
+                  ` : ''}
                 </div>
                 <div class="p-4 space-y-2">
                   <h3 class="font-extrabold text-white text-base line-clamp-1">${titulo}</h3>
@@ -755,17 +687,32 @@
       contenedor.innerHTML = filtrados.map(p => {
         const titulo = p.nombre || p.titulo || 'Producto sin nombre';
         const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-        const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
-        const portada = fotos[0];
+        const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
         const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+
+        if (!window.indicesImagenes[p.id]) window.indicesImagenes[p.id] = 0;
+        const currentIdx = window.indicesImagenes[p.id];
 
         return `
           <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
             <div>
               <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
-                <span class="absolute top-2 left-2 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
-                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
-                ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+                <span class="absolute top-2 left-2 badge-stock text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
+                ${p.categoria ? `<span class="absolute top-2 right-2 badge-categoria text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
+
+                <img id="img-card-${p.id}" src="${fotos[currentIdx]}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+
+                ${fotos.length > 1 ? `
+                  <button onclick="cambiarImagenTarjeta('${p.id}', -1, ${fotos.length}, event)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                  </button>
+                  <button onclick="cambiarImagenTarjeta('${p.id}', 1, ${fotos.length}, event)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                  </button>
+                  <span id="counter-card-${p.id}" class="absolute bottom-2 right-2 bg-slate-950/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full border border-slate-700 z-10">
+                    ${currentIdx + 1}/${fotos.length}
+                  </span>
+                ` : ''}
               </div>
               <div class="p-4 space-y-2">
                 <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
@@ -797,7 +744,7 @@
 
       const titulo = producto.nombre || producto.titulo || 'Producto';
       const precio = producto.precio ? `$${Number(producto.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-      const fotos = producto.imagenes || (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
+      const fotos = producto.imagenes && producto.imagenes.length > 0 ? producto.imagenes : (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
       const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
 
       document.getElementById('modalImagen').src = fotos[0];
