@@ -60,7 +60,6 @@
       opacity: 0.55 !important;
     }
 
-    /* Header */
     html.light-mode header {
       background-color: rgba(255, 255, 255, 0.85) !important;
       border-color: rgba(226, 232, 240, 0.8) !important;
@@ -72,7 +71,6 @@
       color: #0f172a !important;
     }
 
-    /* Tarjetas y Secciones */
     html.light-mode #bannerHero,
     html.light-mode #searchFilterSection,
     html.light-mode .swiper,
@@ -123,7 +121,6 @@
       backdrop-filter: blur(10px) !important;
     }
 
-    /* CORRECCIÓN DE LEGIBILIDAD EN ETIQUETAS DE MODO CLARO Y OSCURO */
     .badge-stock {
       background-color: #059669 !important;
       color: #ffffff !important;
@@ -215,7 +212,7 @@
 
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-    <!-- BANNER HERO EXPRESS CON FOTO DEL LOCAL -->
+    <!-- BANNER HERO -->
     <section class="relative w-full rounded-3xl overflow-hidden border border-slate-800 shadow-2xl my-6 min-h-[260px] sm:min-h-[320px] flex items-center justify-center">
       <div class="absolute inset-0 w-full h-full -z-10">
         <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
@@ -285,10 +282,30 @@
       </div>
     </div>
 
-    <!-- MALLA PRINCIPAL DE PRODUCTOS -->
-    <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
+    <!-- SECCIÓN DE PRODUCTOS DESTACADOS / PORTADA -->
+    <div>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-base font-extrabold text-white">Productos Destacados</h3>
+        <span id="contadorProductos" class="text-xs text-slate-400 font-semibold"></span>
+      </div>
+
+      <div id="catalogo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
+      </div>
+
+      <!-- BOTONES DE NAVEGACIÓN Y CARGAR MÁS -->
+      <div class="mt-8 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button id="btnCargarMas" class="hidden bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-6 py-3 rounded-xl border border-slate-700 transition shadow-lg cursor-pointer">
+          Cargar más productos
+        </button>
+
+        <a href="productos.html" class="bg-brand-500 hover:bg-brand-600 text-white font-extrabold text-xs px-6 py-3 rounded-xl transition shadow-lg flex items-center gap-2">
+          <span>Ver catálogo completo</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+      </div>
     </div>
+
   </main>
 
   <div class="max-w-7xl mx-auto px-4 w-full my-6">
@@ -368,23 +385,23 @@
     </div>
   </section>
 
-  <!-- CAJA DE SUSCRIPCIÓN CON TARJETA GLASS -->
+  <!-- CAJA DE SUSCRIPCIÓN -->
   <section class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
     <div class="absolute inset-0 w-full h-full -z-10">
       <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
-      <div class="absolute inset-0 bg-slate-950/50"></div>
+      <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
     </div>
 
-    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/85 backdrop-blur-md border border-slate-700/60 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
+    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
       <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
       </h4>
-      <p class="text-xs text-slate-200 font-medium max-w-lg mx-auto">
+      <p class="text-xs text-slate-100 font-semibold max-w-lg mx-auto">
         Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
       </p>
       
       <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
-        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950/80 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
         <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
           <span>Suscribirme</span>
           <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
@@ -440,21 +457,18 @@
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
   </a>
 
-  <!-- MODAL AMPLIADO CON CARRUSEL DE IMÁGENES -->
+  <!-- MODAL DE PRODUCTO AMPLIADO -->
   <div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
       
-      <!-- BOTÓN CERRAR -->
       <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition z-30">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
 
-      <!-- SECTOR IZQUIERDO: CARRUSEL Y MINIATURAS DEL MODAL -->
       <div class="w-full sm:w-1/2 flex flex-col gap-3">
         <div class="h-64 sm:h-72 bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800 relative overflow-hidden group">
           <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain transition duration-300">
           
-          <!-- Controles del Modal (se activan sólo si hay más de 1 foto) -->
           <div id="modalControls" class="hidden">
             <button id="btnModalPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-2 transition shadow-lg border border-slate-700">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
@@ -468,11 +482,9 @@
           </div>
         </div>
 
-        <!-- Fila de Miniaturas -->
         <div id="modalThumbnails" class="flex gap-2 overflow-x-auto py-1"></div>
       </div>
 
-      <!-- SECTOR DERECHO: DETALLES Y COMPRA -->
       <div class="w-full sm:w-1/2 flex flex-col justify-between space-y-4">
         <div class="space-y-3">
           <span id="modalCategoria" class="bg-brand-500/20 text-brand-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-brand-500/30 uppercase tracking-wider inline-block">Categoría</span>
@@ -492,7 +504,6 @@
           </a>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -507,9 +518,10 @@
     
     let todosLosProductos = [];
     let swiperInstance = null;
+    let productosVisibles = 8; // Límite inicial en portada
     window.indicesImagenes = {};
 
-    // MODO CLARO / OSCURO
+    // TEMA
     const btnTheme = document.getElementById('themeToggleBtn');
     const themeIcon = document.getElementById('themeIcon');
 
@@ -548,7 +560,6 @@
       }
     });
 
-    // VIDEO AUTOPLAY
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('video').forEach(video => {
         video.muted = true;
@@ -578,7 +589,7 @@
       });
     }
 
-    // NAVEGADOR DE IMÁGENES DENTRO DE CADA TARJETA
+    // CAMBIAR IMAGEN DE TARJETA
     window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
       if (event) event.stopPropagation();
       if (!window.indicesImagenes[id]) window.indicesImagenes[id] = 0;
@@ -599,7 +610,7 @@
       if (counterElem) counterElem.textContent = `${idx + 1}/${totalFotos}`;
     };
 
-    // CARRUSEL ÚLTIMOS INGRESOS
+    // CARRUSEL
     function renderCarousel() {
       const carouselSection = document.getElementById('carouselSection');
       const wrapper = document.getElementById('carouselWrapper');
@@ -693,6 +704,8 @@
       const search = document.getElementById('searchInput').value.toLowerCase();
       const cat = document.getElementById('filterCategory').value;
       const contenedor = document.getElementById('catalogo');
+      const btnCargarMas = document.getElementById('btnCargarMas');
+      const contadorElem = document.getElementById('contadorProductos');
 
       const filtrados = todosLosProductos.filter(p => {
         const nombre = (p.nombre || p.titulo || '').toLowerCase();
@@ -704,10 +717,24 @@
 
       if (filtrados.length === 0) {
         contenedor.innerHTML = `<div class="col-span-full text-center py-12 bg-slate-900/80 rounded-2xl border border-dashed border-slate-800 text-slate-400 text-sm">No se encontraron productos disponibles.</div>`;
+        btnCargarMas.classList.add('hidden');
+        if (contadorElem) contadorElem.textContent = '';
         return;
       }
 
-      contenedor.innerHTML = filtrados.map(p => {
+      // Control de paginación
+      const mostrados = filtrados.slice(0, productosVisibles);
+      if (contadorElem) {
+        contadorElem.textContent = `Mostrando ${mostrados.length} de ${filtrados.length} productos`;
+      }
+
+      if (filtrados.length > productosVisibles) {
+        btnCargarMas.classList.remove('hidden');
+      } else {
+        btnCargarMas.classList.add('hidden');
+      }
+
+      contenedor.innerHTML = mostrados.map(p => {
         const titulo = p.nombre || p.titulo || 'Producto sin nombre';
         const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
         const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
@@ -757,10 +784,22 @@
       }).join('');
     }
 
-    document.getElementById('searchInput').addEventListener('input', renderProductos);
-    document.getElementById('filterCategory').addEventListener('change', renderProductos);
+    document.getElementById('btnCargarMas').addEventListener('click', () => {
+      productosVisibles += 8;
+      renderProductos();
+    });
 
-    // LÓGICA COMPLETA DEL MODAL CON CARRUSEL DE IMÁGENES
+    document.getElementById('searchInput').addEventListener('input', () => {
+      productosVisibles = 8;
+      renderProductos();
+    });
+
+    document.getElementById('filterCategory').addEventListener('change', () => {
+      productosVisibles = 8;
+      renderProductos();
+    });
+
+    // MODAL
     let modalFotosActuales = [];
     let modalIndexActual = 0;
 
