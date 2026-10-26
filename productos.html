@@ -30,7 +30,7 @@
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
 
-    /* REGLAS DE MODO CLARO CON ALTO CONTRASTE */
+    /* REGLAS MODO CLARO Y OSCURO DE ALTO CONTRASTE */
     html.light-mode {
       background-color: transparent !important;
       color: #0f172a !important;
@@ -73,7 +73,6 @@
       color: #0f172a !important;
     }
 
-    /* Categorías no seleccionadas en Modo Claro */
     html.light-mode #categoryList button:not(.text-brand-500) {
       color: #334155 !important;
       font-weight: 600 !important;
@@ -103,10 +102,6 @@
       font-weight: 500 !important;
     }
 
-    html.light-mode div[id="catalogo"] span {
-      color: #1e293b !important;
-    }
-
     html.light-mode #searchInput,
     html.light-mode #sortSelect {
       background-color: rgba(255, 255, 255, 0.95) !important;
@@ -115,73 +110,47 @@
       font-weight: 600 !important;
     }
 
-    html.light-mode section {
-      background-color: rgba(255, 255, 255, 0.75) !important;
-      backdrop-filter: blur(8px) !important;
-      border-color: rgba(203, 213, 225, 0.8) !important;
-      color: #0f172a !important;
-    }
-
-    html.light-mode section h3,
-    html.light-mode section h4,
-    html.light-mode section p {
-      color: #0f172a !important;
-    }
-
     html.light-mode footer {
       background-color: rgba(15, 23, 42, 0.92) !important;
       backdrop-filter: blur(10px) !important;
     }
-    /* FIX: BADGES Y ETIQUETAS SOBRE LAS IMÁGENES DE PRODUCTO EN MODO CLARO Y OSCURO */
-    
-    /* Badge Stock Disponible (Esquina Superior Izquierda) */
-    html.light-mode div[id="catalogo"] .bg-emerald-500\/20,
-    html.light-mode .swiper .bg-emerald-500\/20,
-    html.light-mode .swiper .bg-brand-500 {
-      background-color: #059669 !important; /* Verde esmeralda sólido */
-      color: #ffffff !important;           /* Texto blanco legibilidad 100% */
-      border-color: #047857 !important;
+
+    /* BADGES SOBRE IMÁGENES */
+    .badge-stock {
+      background-color: #059669 !important;
+      color: #ffffff !important;
+      border: 1px solid #047857 !important;
       font-weight: 800 !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
     }
 
-    /* Badge Categoría (Esquina Superior Derecha) */
-    html.light-mode div[id="catalogo"] span.absolute.top-2.right-2,
-    html.light-mode .swiper span.absolute.top-2.right-2 {
-      background-color: #0f172a !important; /* Azul/Gris muy oscuro sólido */
-      color: #ffffff !important;           /* Texto blanco legibilidad 100% */
-      border-color: #334155 !important;
-      font-weight: 700 !important;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-
-    /* Forzar que todos los spans dentro de las tarjetas tengan contraste adecuado */
-    html.light-mode div[id="catalogo"] .bg-slate-950\/90 {
+    .badge-categoria,
+    html.light-mode .badge-categoria,
+    html.light-mode span.absolute.top-2.right-2 {
       background-color: #0f172a !important;
       color: #ffffff !important;
-    }
-    /* Fondo del Newsletter en Modo Claro */
-    html.light-mode section relative img {
-      opacity: 0.25 !important;
+      border: 1px solid #334155 !important;
+      font-weight: 800 !important;
+      opacity: 1 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
     }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
 
-  <!-- VIDEO DE FONDO Y OVERLAY COMPLETO -->
+  <!-- VIDEO DE FONDO -->
   <div class="fixed inset-0 w-screen h-screen overflow-hidden -z-10 bg-slate-950 pointer-events-none">
     <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover">
-     
       <source src="video.mp4" type="video/mp4">
     </video>
     <div class="absolute inset-0 bg-slate-950/85 backdrop-blur-[2px]"></div>
   </div>
 
-  <!-- BARRA SUPERIOR INFORMATIVA -->
+  <!-- BARRA SUPERIOR -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
     <span class="flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-      
+      Envíos a todo el país
     </span>
     <span class="hidden sm:inline">•</span>
     <span class="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
@@ -191,16 +160,14 @@
     <span class="hidden md:inline">•</span>
     <span class="hidden md:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-      Garantía Oficial
+      Garantía Oficial Express
     </span>
   </div>
 
-  <!-- HEADER CON IMAGEN DE LOGO Y BOTÓN DE TEMA -->
+  <!-- HEADER -->
   <header class="bg-industrial-900/90 backdrop-blur-md border-b border-slate-800 text-white shadow-md sticky top-0 z-30 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        
-        <!-- LOGO CON IMAGEN Y NOMBRE -->
         <a href="index.html" class="flex items-center space-x-3 group">
           <div class="w-10 h-10 rounded-xl overflow-hidden bg-brand-500/20 border border-brand-500/40 p-1 flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition">
             <img src="logo.png" alt="Logo Ferretería Alejandro" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='assets/logo.png';">
@@ -211,7 +178,6 @@
           </div>
         </a>
 
-        <!-- NAVEGACIÓN Y BOTÓN TEMA AL LADO DE INICIO -->
         <nav class="hidden md:flex items-center space-x-6 text-xs font-semibold">
           <button id="themeToggleBtn" 
                   title="Cambiar tema (Claro / Oscuro)" 
@@ -230,26 +196,22 @@
           <a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-brand-500 transition">Dónde estamos</a>
         </nav>
 
-        <!-- ATENCIÓN ONLINE -->
         <div class="text-right">
           <span class="inline-block bg-emerald-500/10 text-emerald-400 text-[10px] font-extrabold px-2.5 py-1.5 rounded-full border border-emerald-500/20 uppercase tracking-wider">
             ● Atención Online
           </span>
         </div>
-
       </div>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL LAYOUT TIPO MERCADO LIBRE -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    
     <div class="flex flex-col md:flex-row gap-6">
       
       <!-- SIDEBAR DE FILTROS -->
       <aside class="w-full md:w-64 shrink-0 space-y-6">
         <div class="ml-sidebar bg-slate-900/80 backdrop-blur-md p-5 rounded-2xl border border-slate-800 shadow-xl">
-          
           <div class="mb-6">
             <h3 class="font-extrabold text-sm text-white mb-3">Buscar producto</h3>
             <div class="relative">
@@ -262,19 +224,14 @@
 
           <div>
             <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-400 mb-3 border-b border-slate-800 pb-2">Categorías</h4>
-            <ul class="space-y-2 text-xs" id="categoryList">
-              <!-- Renderizado dinámico de categorías por JS -->
-            </ul>
+            <ul class="space-y-2 text-xs" id="categoryList"></ul>
           </div>
-
         </div>
       </aside>
 
       <!-- ÁREA DE PRODUCTOS -->
       <section class="flex-1 space-y-4">
-        
         <div class="ml-topbar bg-slate-900/80 backdrop-blur-md p-4 rounded-2xl border border-slate-800 shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-          
           <div>
             <span id="resultCount" class="text-xs font-bold text-slate-300">Cargando resultados...</span>
           </div>
@@ -299,30 +256,26 @@
               </button>
             </div>
           </div>
-
         </div>
 
         <div id="catalogo" class="flex flex-col gap-4">
           <div class="col-span-full text-center py-12 text-slate-400 text-sm">Cargando catálogo...</div>
         </div>
-
       </section>
 
     </div>
-
   </main>
 
   <!-- BARRA DE BENEFICIOS -->
   <section class="bg-slate-900/60 backdrop-blur-md text-slate-200 py-8 border-t border-b border-slate-800 my-8">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-6">
-      
       <div class="flex items-center space-x-4 text-left p-2">
         <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
         </div>
         <div>
-          <h4 class="font-bold text-sm text-white leading-tight"></h4>
-          <p class="text-xs text-slate-400 mt-0.5"></p>
+          <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4>
+          <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p>
         </div>
       </div>
 
@@ -345,59 +298,42 @@
           <p class="text-xs text-slate-400 mt-0.5">Garantía oficial protegida</p>
         </div>
       </div>
-
     </div>
   </section>
 
-
-  <!-- 4. CAJA DE SUSCRIPCIÓN / NEWSLETTER CON IMAGEN DE FONDO -->
-<!-- SECCIÓN NEWSLETTER / SUSCRIPCIÓN SIN CAPA OSCURA -->
-  <section class="relative w-full rounded-3xl border border-slate-700/60 my-8 shadow-2xl overflow-hidden min-h-[220px] flex items-center justify-center bg-transparent">
-    
-    <!-- Imagen de fondo al 100% de brillo y nitidez -->
-    <div class="absolute inset-0 w-full h-full -z-10 overflow-hidden">
-      <img src="fondo.png" 
-           alt="Fondo Ferretería" 
-           class="w-full h-full object-cover object-center"
-           onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+  <!-- CAJA DE SUSCRIPCIÓN CON MÁXIMO CONTRASTE -->
+  <section class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
+    <div class="absolute inset-0 w-full h-full -z-10">
+      <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+      <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
     </div>
 
-    <!-- Contenido del Formulario con sombras de texto para legibilidad -->
-    <div class="w-full max-w-3xl mx-auto px-6 py-10 space-y-4 text-center relative z-10 bg-transparent">
-      <h4 class="text-brand-500 font-black text-base sm:text-lg tracking-wide uppercase [text-shadow:_0_2px_4px_rgba(0,0,0,0.8)]">
+    <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
+      <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
         ¡Suscribite y recibí las ofertas en tu WhatsApp!
       </h4>
-      <p class="text-xs text-white font-bold max-w-lg mx-auto [text-shadow:_0_1px_3px_rgba(0,0,0,0.9)]">
+      <p class="text-xs text-slate-100 font-semibold max-w-lg mx-auto">
         Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
       </p>
       
-      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2 bg-transparent">
-        <input type="email" 
-               id="emailSuscribirse" 
-               required 
-               placeholder="Tu E-mail para novedades" 
-               class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-lg">
-        <button type="submit" 
-                class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-xl whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
+      <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
+        <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+        <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer">
           <span>Suscribirme</span>
-          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-          </svg>
+          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
       </form>
     </div>
-
   </section>
-  <!-- FOOTER OSCURO COMPLETO -->
+
+  <!-- FOOTER -->
   <footer class="bg-industrial-900/85 backdrop-blur-md text-white py-10 text-xs border-t border-slate-800 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-      
       <div class="space-y-3">
         <h5 class="font-bold uppercase tracking-wider text-brand-500 text-[11px]">Navegación</h5>
         <ul class="space-y-1.5 text-slate-300">
           <li><a href="index.html" class="hover:underline">Inicio</a></li>
-          <li><a href="#" class="hover:underline">Productos</a></li>
-          <li><a href="#" class="hover:underline">Ofertas</a></li>
+          <li><a href="productos.html" class="hover:underline">Productos</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&query=25+de+mayo+3394,+Lanus+Oeste" target="_blank" rel="noopener noreferrer" class="hover:underline">Dónde estamos</a></li>
         </ul>
       </div>
@@ -429,7 +365,6 @@
           <li>25 de mayo 3394 - Lanus Oeste</li>
         </ul>
       </div>
-
     </div>
   </footer>
 
@@ -438,17 +373,36 @@
     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
   </a>
 
-  <!-- MODAL AMPLIADO -->
+  <!-- MODAL AMPLIADO CON CARRUSEL DE IMÁGENES -->
   <div id="modalProducto" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full p-6 relative shadow-2xl flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto">
-      <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition">
+      
+      <button id="cerrarModal" class="absolute top-4 right-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-full p-2 transition z-30">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
 
-      <div class="w-full sm:w-1/2 h-64 sm:h-auto bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800">
-        <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain">
+      <!-- CARRUSEL Y MINIATURAS DEL MODAL -->
+      <div class="w-full sm:w-1/2 flex flex-col gap-3">
+        <div class="h-64 sm:h-72 bg-slate-950 rounded-2xl flex items-center justify-center p-4 border border-slate-800 relative overflow-hidden group">
+          <img id="modalImagen" src="" alt="" class="max-h-full max-w-full object-contain transition duration-300">
+          
+          <div id="modalControls" class="hidden">
+            <button id="btnModalPrev" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-2 transition shadow-lg border border-slate-700">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="btnModalNext" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-2 transition shadow-lg border border-slate-700">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+            <span id="modalCounter" class="absolute bottom-2 right-2 bg-slate-950/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-slate-700">
+              1/1
+            </span>
+          </div>
+        </div>
+
+        <div id="modalThumbnails" class="flex gap-2 overflow-x-auto py-1"></div>
       </div>
 
+      <!-- DETALLES Y COMPRA -->
       <div class="w-full sm:w-1/2 flex flex-col justify-between space-y-4">
         <div class="space-y-3">
           <span id="modalCategoria" class="bg-brand-500/20 text-brand-500 text-[10px] font-bold px-2.5 py-1 rounded-full border border-brand-500/30 uppercase tracking-wider inline-block">Categoría</span>
@@ -481,9 +435,10 @@
     
     let todosLosProductos = [];
     let categoriaSeleccionada = '';
-    let modoVista = 'list'; // 'list' por defecto estilo MercadoLibre
+    let modoVista = 'list';
+    window.indicesImagenes = {};
 
-    // CONTROL MODO CLARO / OSCURO
+    // TEMA
     const btnTheme = document.getElementById('themeToggleBtn');
     const themeIcon = document.getElementById('themeIcon');
 
@@ -501,7 +456,7 @@
       if (esClaro) {
         themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
       } else {
-        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
+        themeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707M12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>`;
       }
     }
 
@@ -522,7 +477,7 @@
       }
     });
 
-    // VIDEO REPRODUCCIÓN
+    // VIDEO AUTOPLAY
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('video').forEach(video => {
         video.muted = true;
@@ -532,28 +487,65 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-    // CARGAR FIRESTORE
+    const formSusc = document.getElementById('formSuscribirse');
+    if (formSusc) {
+      formSusc.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('emailSuscribirse').value;
+        const copia = [...todosLosProductos];
+        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+        const ultimos10 = copia.slice(0, 10);
+
+        let mensaje = `Hola Ferretería Alejandro! Me gustaría suscribirme a las ofertas.\n\n*Mi E-mail:* ${email}\n\n*Quisiera consultar disponibilidad de los últimos productos:*\n`;
+        ultimos10.forEach((p, idx) => {
+          const nom = p.nombre || p.titulo || 'Producto';
+          const prec = p.precio ? `$${p.precio}` : 'Consultar';
+          mensaje += `${idx + 1}. ${nom} (${prec})\n`;
+        });
+
+        window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
+      });
+    }
+
+    // NAVEGACIÓN EN TARJETAS
+    window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
+      if (event) event.stopPropagation();
+      if (!window.indicesImagenes[id]) window.indicesImagenes[id] = 0;
+
+      window.indicesImagenes[id] += direccion;
+      if (window.indicesImagenes[id] < 0) window.indicesImagenes[id] = totalFotos - 1;
+      if (window.indicesImagenes[id] >= totalFotos) window.indicesImagenes[id] = 0;
+
+      const idx = window.indicesImagenes[id];
+      const p = todosLosProductos.find(item => item.id === id);
+      if (!p) return;
+
+      const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
+      const imgElem = document.getElementById(`img-card-${id}`);
+      const counterElem = document.getElementById(`counter-card-${id}`);
+
+      if (imgElem) imgElem.src = fotos[idx];
+      if (counterElem) counterElem.textContent = `${idx + 1}/${totalFotos}`;
+    };
+
+    // FIRESTORE
     onSnapshot(collection(db, "productos"), (snapshot) => {
       todosLosProductos = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       renderCategoriasSidebar();
       renderProductos();
     });
 
-    // SIDEBAR CATEGORÍAS
     function renderCategoriasSidebar() {
       const categoryList = document.getElementById('categoryList');
 
       const conteoCat = {};
       todosLosProductos.forEach(p => {
-        if (p.categoria) {
-          conteoCat[p.categoria] = (conteoCat[p.categoria] || 0) + 1;
-        }
+        if (p.categoria) conteoCat[p.categoria] = (conteoCat[p.categoria] || 0) + 1;
       });
 
       const categorias = Object.keys(conteoCat);
       const itemsHtml = categorias.map(cat => {
         const estaActiva = categoriaSeleccionada === cat;
-        // Escape de comillas simples para evitar rotura sintáctica
         const catEscapada = cat.replace(/'/g, "\\'");
         return `
           <li>
@@ -576,7 +568,6 @@
       `;
     }
 
-    // EXPOSICIÓN GLOBAL A WINDOW PARA LOS HANDLERS ONCLICK
     window.seleccionarCategoria = function(cat) {
       categoriaSeleccionada = cat;
       renderCategoriasSidebar();
@@ -604,7 +595,6 @@
       const sortValue = document.getElementById('sortSelect').value;
       const contenedor = document.getElementById('catalogo');
 
-      // Filtrar
       let filtrados = todosLosProductos.filter(p => {
         const nombre = (p.nombre || p.titulo || '').toLowerCase();
         const desc = (p.descripcion || '').toLowerCase();
@@ -615,7 +605,6 @@
         return coincideBusqueda && coincideCategoria;
       });
 
-      // Ordenar
       if (sortValue === 'menorPrecio') {
         filtrados.sort((a, b) => (Number(a.precio) || 0) - (Number(b.precio) || 0));
       } else if (sortValue === 'mayorPrecio') {
@@ -632,23 +621,37 @@
         return;
       }
 
-      // Renderizar segun vista
       if (modoVista === 'grid') {
         contenedor.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6";
         contenedor.innerHTML = filtrados.map(p => {
           const titulo = p.nombre || p.titulo || 'Producto sin nombre';
           const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-          const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
-          const portada = fotos[0];
+          const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
           const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+
+          if (!window.indicesImagenes[p.id]) window.indicesImagenes[p.id] = 0;
+          const currentIdx = window.indicesImagenes[p.id];
 
           return `
             <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition flex flex-col justify-between group">
               <div>
                 <div class="h-48 bg-slate-950/60 relative overflow-hidden flex items-center justify-center p-3 border-b border-slate-800/80">
-                  <span class="absolute top-2 left-2 bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
-                  <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
-                  ${p.categoria ? `<span class="absolute top-2 right-2 bg-slate-950/90 text-white text-[10px] font-semibold px-2.5 py-1 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+                  <span class="absolute top-2 left-2 badge-stock text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
+                  ${p.categoria ? `<span class="absolute top-2 right-2 badge-categoria text-white text-[10px] font-bold px-2.5 py-1 rounded-full border border-slate-700 z-10">${p.categoria}</span>` : ''}
+
+                  <img id="img-card-${p.id}" src="${fotos[currentIdx]}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+
+                  ${fotos.length > 1 ? `
+                    <button onclick="cambiarImagenTarjeta('${p.id}', -1, ${fotos.length}, event)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button onclick="cambiarImagenTarjeta('${p.id}', 1, ${fotos.length}, event)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1.5 transition z-20 shadow-lg border border-slate-700">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                    <span id="counter-card-${p.id}" class="absolute bottom-2 right-2 bg-slate-950/90 text-white text-[9px] font-bold px-2 py-0.5 rounded-full border border-slate-700 z-10">
+                      ${currentIdx + 1}/${fotos.length}
+                    </span>
+                  ` : ''}
                 </div>
                 <div class="p-4 space-y-2">
                   <h3 class="font-bold text-white text-sm line-clamp-1">${titulo}</h3>
@@ -673,19 +676,33 @@
         contenedor.innerHTML = filtrados.map(p => {
           const titulo = p.nombre || p.titulo || 'Producto sin nombre';
           const precio = p.precio ? `$${Number(p.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-          const fotos = p.imagenes || (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
-          const portada = fotos[0];
+          const fotos = p.imagenes && p.imagenes.length > 0 ? p.imagenes : (p.imagen ? [p.imagen] : [DEFAULT_IMG]);
           const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+
+          if (!window.indicesImagenes[p.id]) window.indicesImagenes[p.id] = 0;
+          const currentIdx = window.indicesImagenes[p.id];
 
           return `
             <div onclick="abrirModal('${p.id}')" class="cursor-pointer bg-slate-900/90 backdrop-blur-md rounded-2xl border border-slate-800 overflow-hidden shadow-xl hover:border-brand-500/50 transition p-4 flex flex-col sm:flex-row items-center gap-6 group">
               <div class="w-full sm:w-44 h-36 bg-slate-950/60 rounded-xl overflow-hidden flex items-center justify-center p-2 relative border border-slate-800/80 shrink-0">
-                <img src="${portada}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+                <img id="img-card-${p.id}" src="${fotos[currentIdx]}" alt="${titulo}" class="max-h-full max-w-full object-contain group-hover:scale-105 transition duration-300" onerror="this.src='${DEFAULT_IMG}'">
+
+                ${fotos.length > 1 ? `
+                  <button onclick="cambiarImagenTarjeta('${p.id}', -1, ${fotos.length}, event)" class="absolute left-1 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1 transition z-20 border border-slate-700">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                  </button>
+                  <button onclick="cambiarImagenTarjeta('${p.id}', 1, ${fotos.length}, event)" class="absolute right-1 top-1/2 -translate-y-1/2 bg-slate-950/80 hover:bg-brand-500 text-white rounded-full p-1 transition z-20 border border-slate-700">
+                    <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+                  </button>
+                  <span id="counter-card-${p.id}" class="absolute bottom-1 right-1 bg-slate-950/90 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full border border-slate-700 z-10">
+                    ${currentIdx + 1}/${fotos.length}
+                  </span>
+                ` : ''}
               </div>
               <div class="flex-1 space-y-2 text-left w-full">
                 <div class="flex items-center gap-2">
-                  <span class="bg-emerald-500/20 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">Stock Disponible</span>
-                  ${p.categoria ? `<span class="bg-slate-950/90 text-slate-300 text-[10px] font-semibold px-2.5 py-0.5 rounded-full border border-slate-700">${p.categoria}</span>` : ''}
+                  <span class="badge-stock text-[9px] font-bold px-2 py-0.5 rounded">Stock Disponible</span>
+                  ${p.categoria ? `<span class="badge-categoria text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">${p.categoria}</span>` : ''}
                 </div>
                 <h3 class="font-bold text-white text-base leading-snug">${titulo}</h3>
                 <p class="text-xs text-slate-400 line-clamp-2">${p.descripcion || 'Sin descripción disponible.'}</p>
@@ -709,25 +726,77 @@
     document.getElementById('searchInput').addEventListener('input', renderProductos);
     document.getElementById('sortSelect').addEventListener('change', renderProductos);
 
-    // MODAL AMPLIADO
+    // LÓGICA DEL MODAL CON CARRUSEL DE IMÁGENES
+    let modalFotosActuales = [];
+    let modalIndexActual = 0;
+
+    function actualizarImagenModal() {
+      const imgElem = document.getElementById('modalImagen');
+      const counterElem = document.getElementById('modalCounter');
+      
+      imgElem.src = modalFotosActuales[modalIndexActual] || DEFAULT_IMG;
+      counterElem.textContent = `${modalIndexActual + 1}/${modalFotosActuales.length}`;
+
+      const thumbs = document.querySelectorAll('#modalThumbnails img');
+      thumbs.forEach((t, i) => {
+        if (i === modalIndexActual) {
+          t.className = "w-12 h-12 object-contain rounded-lg bg-slate-950 border-2 border-brand-500 cursor-pointer p-1 shrink-0";
+        } else {
+          t.className = "w-12 h-12 object-contain rounded-lg bg-slate-950 border border-slate-800 opacity-60 hover:opacity-100 cursor-pointer p-1 shrink-0 transition";
+        }
+      });
+    }
+
     window.abrirModal = function(id) {
       const producto = todosLosProductos.find(p => p.id === id);
       if (!producto) return;
 
       const titulo = producto.nombre || producto.titulo || 'Producto';
       const precio = producto.precio ? `$${Number(producto.precio).toLocaleString('es-AR', { minimumFractionDigits: 2 })}` : 'Consultar';
-      const fotos = producto.imagenes || (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
-      const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
+      
+      modalFotosActuales = producto.imagenes && producto.imagenes.length > 0 
+        ? producto.imagenes 
+        : (producto.imagen ? [producto.imagen] : [DEFAULT_IMG]);
+      
+      modalIndexActual = 0;
 
-      document.getElementById('modalImagen').src = fotos[0];
       document.getElementById('modalTitulo').textContent = titulo;
       document.getElementById('modalCategoria').textContent = producto.categoria || 'General';
       document.getElementById('modalDescripcion').textContent = producto.descripcion || 'Sin descripción adicional.';
       document.getElementById('modalPrecio').textContent = precio;
-      document.getElementById('modalWaLink').href = waLink;
+      document.getElementById('modalWaLink').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20me%20interesa%20el%20producto:%20${encodeURIComponent(titulo)}`;
 
+      const controlsElem = document.getElementById('modalControls');
+      const thumbsElem = document.getElementById('modalThumbnails');
+
+      if (modalFotosActuales.length > 1) {
+        controlsElem.classList.remove('hidden');
+        thumbsElem.innerHTML = modalFotosActuales.map((f, i) => `
+          <img src="${f}" onclick="window.seleccionarFotoModal(${i})" class="w-12 h-12 object-contain rounded-lg bg-slate-950 border border-slate-800 cursor-pointer p-1 shrink-0" onerror="this.src='${DEFAULT_IMG}'">
+        `).join('');
+      } else {
+        controlsElem.classList.add('hidden');
+        thumbsElem.innerHTML = '';
+      }
+
+      actualizarImagenModal();
       document.getElementById('modalProducto').classList.remove('hidden');
     };
+
+    window.seleccionarFotoModal = function(idx) {
+      modalIndexActual = idx;
+      actualizarImagenModal();
+    };
+
+    document.getElementById('btnModalPrev').addEventListener('click', () => {
+      modalIndexActual = (modalIndexActual - 1 + modalFotosActuales.length) % modalFotosActuales.length;
+      actualizarImagenModal();
+    });
+
+    document.getElementById('btnModalNext').addEventListener('click', () => {
+      modalIndexActual = (modalIndexActual + 1) % modalFotosActuales.length;
+      actualizarImagenModal();
+    });
 
     document.getElementById('cerrarModal').addEventListener('click', () => {
       document.getElementById('modalProducto').classList.add('hidden');
