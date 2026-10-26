@@ -589,41 +589,57 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-   const formSusc = document.getElementById('formSuscribirse');
-if (formSusc) {
-  formSusc.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const emailInput = document.getElementById('emailSuscribirse');
-    const emailCliente = emailInput.value;
+ // FORMULARIO DE SUSCRIPCIÓN CON EMAILJS
+    const formSusc = document.getElementById('formSuscribirse');
+    if (formSusc) {
+      formSusc.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('emailSuscribirse');
+        const btnSub = document.getElementById('btnSuscribirse');
+        const txtBtn = document.getElementById('txtBtnSuscribirse');
+        const emailCliente = emailInput.value.trim();
 
-    // Obtener los últimos 6 productos ingresados
-    const copia = [...todosLosProductos];
-    copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
-    const ultimos6 = copia.slice(0, 6);
+        if (!emailCliente) return;
 
-    // Formatear la lista de productos para el correo
-    let listaTexto = "";
-    ultimos6.forEach((p, idx) => {
-      const nom = p.nombre || p.titulo || 'Producto';
-      const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
-      listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
-    });
+        // Cambiar estado del botón a cargando
+        btnSub.disabled = true;
+        txtBtn.textContent = "Enviando...";
 
-    try {
-      // Enviar el correo directo al cliente usando EmailJS
-      await emailjs.send("service_sb02njm", "template_uax5jsj", {
-        to_email: emailCliente,
-        productos_lista: listaTexto
+        // Obtener los últimos 6 productos ingresados
+        const copia = [...todosLosProductos];
+        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+        const ultimos6 = copia.slice(0, 6);
+
+        // Formatear lista de productos
+        let listaTexto = "";
+        if (ultimos6.length > 0) {
+          ultimos6.forEach((p, idx) => {
+            const nom = p.nombre || p.titulo || 'Producto';
+            const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
+            listaTexto += `${idx + 1}. ${nom} (${prec})\n`;
+          });
+        } else {
+          listaTexto = "Actualmente no hay productos registrados.";
+        }
+
+        try {
+          // Envío usando los IDs ingresados de tu cuenta EmailJS
+          await emailjs.send("service_sb02njm", "template_uax5jsj", {
+            to_email: emailCliente,
+            productos_lista: listaTexto
+          });
+
+          alert("¡Suscripción exitosa! Revisá tu bandeja de entrada o spam para ver los últimos 6 productos.");
+          emailInput.value = "";
+        } catch (error) {
+          console.error("Error al enviar e-mail:", error);
+          alert("Hubo un inconveniente al enviar el correo. Verificá tu Public Key de EmailJS o intentá más tarde.");
+        } finally {
+          btnSub.disabled = false;
+          txtBtn.textContent = "Suscribirme";
+        }
       });
-
-      alert("¡Suscripción exitosa! Te enviamos los últimos 6 productos a tu correo.");
-      emailInput.value = "";
-    } catch (error) {
-      console.error("Error al enviar e-mail:", error);
-      alert("Hubo un inconveniente al enviar el correo. Intentalo más tarde.");
     }
-  });
-}
     // CAMBIAR IMAGEN DE TARJETA
     window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
       if (event) event.stopPropagation();
