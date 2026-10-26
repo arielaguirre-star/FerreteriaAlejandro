@@ -178,6 +178,17 @@
     html.light-mode section p {
       color: #0f172a !important;
     }
+    /* FORZAR LEGIBILIDAD EN BADGES DE CATEGORÍA SOBRE IMÁGENES EN MODO CLARO Y OSCURO */
+    html.light-mode .swiper-slide .badge-categoria,
+    html.light-mode div[id="catalogo"] .badge-categoria,
+    html.light-mode span.absolute.top-2.right-2 {
+      background-color: #0f172a !important; /* Azul oscuro Slate-900 */
+      color: #ffffff !important;           /* Texto blanco puro */
+      border: 1px solid #334155 !important; /* Borde gris definido */
+      font-weight: 800 !important;
+      opacity: 1 !important;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative">
