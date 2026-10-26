@@ -19,7 +19,13 @@
       }
     }
   </script>
-  
+  <!-- CDN de EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function(){
+     emailjs.init("TU_PUBLIC_KEY_AQUI"); // Reemplazar con tu Public Key de EmailJS
+  })();
+</script>
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -371,10 +377,10 @@
         <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
         </div>
-       <!-- <div>
-        <!--  <h4 class="font-bold text-sm text-white leading-tight">Enviamos tu compra</h4> -->
-       <!--   <p class="text-xs text-slate-400 mt-0.5">Entregas directas a todo el país</p> -->
-        </div> -->
+         <div>
+          <h4 class="font-bold text-sm text-white leading-tight">Visita Nuestro Local</h4> 
+         <p class="text-xs text-slate-400 mt-0.5">Stock Inmediato</p>
+        </div> 
       </div>
 
       <div class="flex items-center space-x-4 text-left p-2">
@@ -583,26 +589,41 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-    const formSusc = document.getElementById('formSuscribirse');
-    if (formSusc) {
-      formSusc.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('emailSuscribirse').value;
-        const copia = [...todosLosProductos];
-        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
-        const ultimos10 = copia.slice(0, 10);
+   const formSusc = document.getElementById('formSuscribirse');
+if (formSusc) {
+  formSusc.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const emailInput = document.getElementById('emailSuscribirse');
+    const emailCliente = emailInput.value;
 
-        let mensaje = `Hola Ferretería Alejandro! Me gustaría suscribirme a las ofertas.\n\n*Mi E-mail:* ${email}\n\n*Quisiera consultar disponibilidad de los últimos productos:*\n`;
-        ultimos10.forEach((p, idx) => {
-          const nom = p.nombre || p.titulo || 'Producto';
-          const prec = p.precio ? `$${p.precio}` : 'Consultar';
-          mensaje += `${idx + 1}. ${nom} (${prec})\n`;
-        });
+    // Obtener los últimos 6 productos ingresados
+    const copia = [...todosLosProductos];
+    copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+    const ultimos6 = copia.slice(0, 6);
 
-        window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(mensaje)}`, '_blank');
+    // Formatear la lista de productos para el correo
+    let listaTexto = "";
+    ultimos6.forEach((p, idx) => {
+      const nom = p.nombre || p.titulo || 'Producto';
+      const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
+      listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
+    });
+
+    try {
+      // Enviar el correo directo al cliente usando EmailJS
+      await emailjs.send("TU_SERVICE_ID", "TU_TEMPLATE_ID", {
+        to_email: emailCliente,
+        productos_lista: listaTexto
       });
-    }
 
+      alert("¡Suscripción exitosa! Te enviamos los últimos 6 productos a tu correo.");
+      emailInput.value = "";
+    } catch (error) {
+      console.error("Error al enviar e-mail:", error);
+      alert("Hubo un inconveniente al enviar el correo. Intentalo más tarde.");
+    }
+  });
+}
     // CAMBIAR IMAGEN DE TARJETA
     window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
       if (event) event.stopPropagation();
