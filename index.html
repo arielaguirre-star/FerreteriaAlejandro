@@ -584,57 +584,59 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-    // MANEJADOR DEL FORMULARIO DE SUSCRIPCIÓN
-    const formSusc = document.getElementById('formSuscribirse');
-    if (formSusc) {
-      formSusc.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const emailInput = document.getElementById('emailSuscribirse');
-        const btnSub = document.getElementById('btnSuscribirse');
-        const txtBtn = document.getElementById('txtBtnSuscribirse');
-        const emailCliente = emailInput.value.trim();
+   // MANEJADOR DEL FORMULARIO DE SUSCRIPCIÓN
+const formSusc = document.getElementById('formSuscribirse');
+if (formSusc) {
+  formSusc.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const emailInput = document.getElementById('emailSuscribirse');
+    const btnSub = document.getElementById('btnSuscribirse');
+    const txtBtn = document.getElementById('txtBtnSuscribirse');
+    const emailCliente = emailInput.value.trim();
 
-        if (!emailCliente) return;
+    if (!emailCliente) return;
 
-        // Feedback visual mientras envía
-        btnSub.disabled = true;
-        txtBtn.textContent = "Enviando...";
+    btnSub.disabled = true;
+    txtBtn.textContent = "Enviando...";
 
-        // Seleccionar los últimos 6 productos ordenados por fecha
-        const copia = [...todosLosProductos];
-        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
-        const ultimos6 = copia.slice(0, 6);
+    const copia = [...todosLosProductos];
+    copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+    const ultimos6 = copia.slice(0, 6);
 
-        let listaTexto = "";
-        if (ultimos6.length > 0) {
-          ultimos6.forEach((p, idx) => {
-            const nom = p.nombre || p.titulo || 'Producto';
-            const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
-            listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
-          });
-        } else {
-          listaTexto = "Actualmente no hay productos cargados.";
-        }
-
-        try {
-          // Enviar mail vía EmailJS
-          await emailjs.send("service_sb02njm", "template_86twmye", {
-            to_email: emailCliente,
-            productos_lista: listaTexto
-          });
-
-          alert("¡Suscripción realizada con éxito! Te enviamos los últimos 6 productos a tu correo.");
-          emailInput.value = "";
-        } catch (error) {
-          console.error("Error al enviar e-mail con EmailJS:", error);
-          alert("No se pudo enviar el correo. Verificá que la Public Key configurada sea la correcta.");
-        } finally {
-          btnSub.disabled = false;
-          txtBtn.textContent = "Suscribirme";
-        }
+    let listaTexto = "";
+    if (ultimos6.length > 0) {
+      ultimos6.forEach((p, idx) => {
+        const nom = p.nombre || p.titulo || 'Producto';
+        const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
+        listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
       });
+    } else {
+      listaTexto = "Actualmente no hay productos cargados.";
     }
+
+    try {
+      // Enviar mail vía EmailJS
+      const response = await emailjs.send("service_sb02njm", "template_uax5jsj", {
+        to_email: emailCliente,
+        productos_lista: listaTexto
+      });
+
+      console.log("Respuesta Exitosa EmailJS:", response);
+      alert("¡Suscripción realizada con éxito! Te enviamos los últimos 6 productos a tu correo.");
+      emailInput.value = "";
+    } catch (error) {
+      // Muestra en la consola (F12) la causa exacta del error
+      console.error("Detalle del error de EmailJS:", error);
+      
+      const detalle = error?.text || error?.message || JSON.stringify(error);
+      alert(`Error de EmailJS: ${detalle}\n\nVerificá en EmailJS que la Public Key, Service ID y Template ID pertenezcan a la misma cuenta.`);
+    } finally {
+      btnSub.disabled = false;
+      txtBtn.textContent = "Suscribirme";
+    }
+  });
+}
 
     // CAMBIAR IMAGEN DE TARJETA
     window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
