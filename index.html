@@ -19,13 +19,7 @@
       }
     }
   </script>
-  <!-- CDN de EmailJS -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  (function(){
-     emailjs.init("oau9BV3WQbTEP1aQP"); // Reemplazar con tu Public Key de EmailJS
-  })();
-</script>
+
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -173,10 +167,6 @@
 
   <!-- BARRA DE BENEFICIOS SUPERIOR -->
   <div class="bg-brand-600 text-white text-[11px] font-bold py-1.5 px-4 text-center tracking-wide uppercase shadow-inner flex justify-center items-center gap-6 overflow-x-auto">
-    <!-- <span class="flex items-center gap-1.5 whitespace-nowrap">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-      Envíos a todo el país
-    </span> -->
     <span class="hidden sm:inline">•</span>
     <span class="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
@@ -377,9 +367,9 @@
         <div class="p-3 bg-brand-500/10 text-brand-500 rounded-2xl border border-brand-500/20 shrink-0">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
         </div>
-         <div>
+        <div>
           <h4 class="font-bold text-sm text-white leading-tight">Visita Nuestro Local</h4> 
-         <p class="text-xs text-slate-400 mt-0.5">Stock Inmediato</p>
+          <p class="text-xs text-slate-400 mt-0.5">Stock Inmediato</p>
         </div> 
       </div>
 
@@ -405,7 +395,7 @@
     </div>
   </section>
 
-  <!-- CAJA DE SUSCRIPCIÓN -->
+  <!-- CAJA DE SUSCRIPCIÓN POR E-MAIL -->
   <section id="secSuscribirse" class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
     <div class="absolute inset-0 w-full h-full -z-10">
       <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
@@ -414,17 +404,17 @@
 
     <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
       <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
-        ¡Suscribite y recibí las ofertas en tu WhatsApp!
+        ¡Suscribite y recibí las novedades en tu correo!
       </h4>
       <p class="text-xs text-slate-100 font-semibold max-w-lg mx-auto">
-        Ingresá tu correo electrónico para enterarte antes que nadie de los nuevos ingresos y promociones exclusivas.
+        Ingresá tu correo electrónico para recibir de forma inmediata la lista de los últimos 6 productos disponibles en nuestra tienda.
       </p>
       
       <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
         <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
-        <button type="submit" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
-          <span>Suscribirme</span>
-          <svg class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+        <button type="submit" id="btnSuscribirse" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
+          <span id="txtBtnSuscribirse">Suscribirme</span>
+          <svg id="iconBtnSuscribirse" class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
         </button>
       </form>
     </div>
@@ -532,10 +522,15 @@
     import { db } from './firebase-config.js';
     import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+    import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/+esm';
 
     const PHONE_NUMBER = "5491156946499";
     const DEFAULT_IMG = "https://via.placeholder.com/300x300?text=Sin+Imagen";
     
+    // INICIALIZACIÓN DE EMAILJS CON TU PUBLIC KEY
+    // Si obtenés tu Public Key de EmailJS, reemplazá esta línea si es diferente.
+    emailjs.init("TU_PUBLIC_KEY_AQUI");
+
     let todosLosProductos = [];
     let swiperInstance = null;
     let productosVisibles = 8;
@@ -589,11 +584,12 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
- // FORMULARIO DE SUSCRIPCIÓN CON EMAILJS
+    // MANEJADOR DEL FORMULARIO DE SUSCRIPCIÓN
     const formSusc = document.getElementById('formSuscribirse');
     if (formSusc) {
       formSusc.addEventListener('submit', async (e) => {
         e.preventDefault();
+        
         const emailInput = document.getElementById('emailSuscribirse');
         const btnSub = document.getElementById('btnSuscribirse');
         const txtBtn = document.getElementById('txtBtnSuscribirse');
@@ -601,45 +597,45 @@
 
         if (!emailCliente) return;
 
-        // Cambiar estado del botón a cargando
+        // Feedback visual mientras envía
         btnSub.disabled = true;
         txtBtn.textContent = "Enviando...";
 
-        // Obtener los últimos 6 productos ingresados
+        // Seleccionar los últimos 6 productos ordenados por fecha
         const copia = [...todosLosProductos];
         copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
         const ultimos6 = copia.slice(0, 6);
 
-        // Formatear lista de productos
         let listaTexto = "";
         if (ultimos6.length > 0) {
           ultimos6.forEach((p, idx) => {
             const nom = p.nombre || p.titulo || 'Producto';
             const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
-            listaTexto += `${idx + 1}. ${nom} (${prec})\n`;
+            listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
           });
         } else {
-          listaTexto = "Actualmente no hay productos registrados.";
+          listaTexto = "Actualmente no hay productos cargados.";
         }
 
         try {
-          // Envío usando los IDs ingresados de tu cuenta EmailJS
+          // Enviar mail vía EmailJS
           await emailjs.send("service_sb02njm", "template_uax5jsj", {
             to_email: emailCliente,
             productos_lista: listaTexto
           });
 
-          alert("¡Suscripción exitosa! Revisá tu bandeja de entrada o spam para ver los últimos 6 productos.");
+          alert("¡Suscripción realizada con éxito! Te enviamos los últimos 6 productos a tu correo.");
           emailInput.value = "";
         } catch (error) {
-          console.error("Error al enviar e-mail:", error);
-          alert("Hubo un inconveniente al enviar el correo. Verificá tu Public Key de EmailJS o intentá más tarde.");
+          console.error("Error al enviar e-mail con EmailJS:", error);
+          alert("No se pudo enviar el correo. Verificá que la Public Key configurada sea la correcta.");
         } finally {
           btnSub.disabled = false;
           txtBtn.textContent = "Suscribirme";
         }
       });
     }
+
     // CAMBIAR IMAGEN DE TARJETA
     window.cambiarImagenTarjeta = function(id, direccion, totalFotos, event) {
       if (event) event.stopPropagation();
