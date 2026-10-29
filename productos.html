@@ -445,7 +445,7 @@
     const DEFAULT_IMG = "https://via.placeholder.com/300x300?text=Sin+Imagen";
     
     // INICIALIZACIÓN EMAILJS
-    emailjs.init("TU_PUBLIC_KEY_AQUI");
+    emailjs.init("THAsaSlc6LZHXcAJe");
 
     let todosLosProductos = [];
     let categoriaSeleccionada = '';
@@ -545,7 +545,7 @@
         }
 
         try {
-          await emailjs.send("service_sb02njm", "template_uax5jsj", {
+          await emailjs.send("service_sb02njm", "template_86twmye", {
             to_email: emailCliente,
             productos_lista: listaHTML
           });
