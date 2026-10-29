@@ -29,6 +29,17 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: #0f172a; }
     ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+    /* FORZAR LEGIBILIDAD DEL NEWSLETTER */
+    #secSuscribirse h4 {
+      color: #f97316 !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    #secSuscribirse p {
+      color: #ffffff !important;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+      font-weight: 700 !important;
+    }
   </style>
 </head>
 <body class="h-full text-slate-100 antialiased flex flex-col min-h-screen relative bg-slate-900">
@@ -98,7 +109,7 @@
       </div>
     </header>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Formulario de carga -->
@@ -170,17 +181,50 @@
         </section>
 
       </div>
+
+      <!-- ========================================================= -->
+      <!-- SECCIÓN DE SUSCRIPCIÓN (IDÉNTICA A INDEX.HTML) -->
+      <!-- ========================================================= -->
+      <section id="secSuscribirse" class="relative w-full rounded-3xl border border-slate-800 shadow-2xl overflow-hidden my-8 min-h-[280px] flex items-center justify-center">
+        <div class="absolute inset-0 w-full h-full -z-10">
+          <img src="fondo.png" alt="Fachada Ferretería Alejandro" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80';">
+          <div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div class="m-4 p-6 sm:p-8 rounded-2xl bg-slate-900/90 backdrop-blur-md border border-slate-700/80 text-center max-w-2xl mx-auto space-y-4 shadow-2xl w-full">
+          <h4 class="text-brand-500 font-black text-base sm:text-xl tracking-wide uppercase">
+            ¡Suscribite y recibí las novedades en tu correo!
+          </h4>
+          <p class="text-xs text-slate-100 font-semibold max-w-lg mx-auto">
+            Ingresá tu correo electrónico para recibir de forma inmediata la lista de los últimos 6 productos disponibles en nuestra tienda.
+          </p>
+          
+          <form id="formSuscribirse" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto pt-2">
+            <input type="email" id="emailSuscribirse" required placeholder="Tu E-mail para novedades" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-400 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 transition shadow-inner">
+            <button type="submit" id="btnSuscribirse" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white px-6 py-2.5 rounded-xl text-xs font-extrabold transition shadow-lg whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer border border-brand-400/30">
+              <span id="txtBtnSuscribirse">Suscribirme</span>
+              <svg id="iconBtnSuscribirse" class="w-4 h-4 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+            </button>
+          </form>
+        </div>
+      </section>
+
     </main>
   </div>
 
-  <!-- SCRIPT DE FIREBASE & IMGBB OPTIMIZADO -->
+  <!-- SCRIPT DE FIREBASE, IMGBB Y EMAILJS -->
   <script type="module">
     import { db, auth } from './firebase-config.js';
     import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/+esm';
 
     const IMGBB_API_KEY = "ccbc65f4bea21908a11adb119c673316"; 
+    const PHONE_NUMBER = "5491156946499";
     const DEFAULT_IMG = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="%2394a3b8" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+
+    // INICIALIZACIÓN EMAILJS
+    emailjs.init("TU_PUBLIC_KEY_AQUI");
 
     let productos = [];
     let selectedImages = [];
@@ -216,6 +260,67 @@
     document.getElementById('btnLogout').addEventListener('click', async () => {
       await signOut(auth);
     });
+
+    // MANEJADOR DE SUSCRIPCIÓN EMAILJS
+    const formSusc = document.getElementById('formSuscribirse');
+    if (formSusc) {
+      formSusc.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('emailSuscribirse');
+        const btnSub = document.getElementById('btnSuscribirse');
+        const txtBtn = document.getElementById('txtBtnSuscribirse');
+        const emailCliente = emailInput.value.trim();
+
+        if (!emailCliente) return;
+
+        btnSub.disabled = true;
+        txtBtn.textContent = "Enviando...";
+
+        const copia = [...productos];
+        copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
+        const ultimos6 = copia.slice(0, 6);
+
+        let listaHTML = "";
+        if (ultimos6.length > 0) {
+          ultimos6.forEach((p) => {
+            const nom = p.nombre || p.titulo || 'Producto';
+            const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
+            const foto = (p.imagenes && p.imagenes.length > 0) ? p.imagenes[0] : (p.imagen || DEFAULT_IMG);
+            const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20consultar%20por:%20${encodeURIComponent(nom)}`;
+
+            listaHTML += `
+              <div style="border: 1px solid #334155; background-color: #0f172a; border-radius: 12px; padding: 16px; margin-bottom: 16px; font-family: sans-serif; text-align: center; color: #ffffff;">
+                <img src="${foto}" alt="${nom}" style="max-width: 100%; max-height: 180px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; background-color: #020617; padding: 8px;" />
+                <h3 style="font-size: 16px; margin: 0 0 8px 0; color: #ffffff;">${nom}</h3>
+                <p style="font-size: 18px; font-weight: bold; color: #f97316; margin: 0 0 14px 0;">${prec}</p>
+                <a href="${waLink}" target="_blank" style="background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 13px; font-weight: bold; border-radius: 8px; display: inline-block;">
+                  Consultar por WhatsApp
+                </a>
+              </div>
+            `;
+          });
+        } else {
+          listaHTML = "<p style='color: #ffffff;'>Actualmente no hay productos registrados.</p>";
+        }
+
+        try {
+          await emailjs.send("service_sb02njm", "template_uax5jsj", {
+            to_email: emailCliente,
+            productos_lista: listaHTML
+          });
+
+          alert("¡Suscripción realizada con éxito! Revisá tu casilla de correo para ver los productos.");
+          emailInput.value = "";
+        } catch (error) {
+          console.error("Error al enviar e-mail:", error);
+          alert("Hubo un error al enviar el correo. Por favor intenta de nuevo.");
+        } finally {
+          btnSub.disabled = false;
+          txtBtn.textContent = "Suscribirme";
+        }
+      });
+    }
 
     // COMPRESIÓN LOCAL EN NAVEGADOR (Máx 1200px, JPEG al 75%)
     function compressImageToFile(file, maxWidth = 1200, quality = 0.75) {
@@ -272,10 +377,8 @@
     async function uploadFileToImgBB(file) {
       if (!IMGBB_API_KEY) throw new Error("No se ha especificado la API Key de ImgBB.");
 
-      // 1. Comprimir archivo de imagen antes de subir
       const compressedFile = await compressImageToFile(file, 1200, 0.75);
 
-      // 2. Adjuntar archivo súper liviano a FormData
       const formData = new FormData();
       formData.append('image', compressedFile);
 
