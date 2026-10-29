@@ -584,7 +584,7 @@
 
     document.getElementById('btnWhatsappFlotante').href = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20hacer%20una%20consulta%20general.`;
 
-   // MANEJADOR DEL FORMULARIO DE SUSCRIPCIÓN
+  // MANEJADOR DEL FORMULARIO DE SUSCRIPCIÓN
 const formSusc = document.getElementById('formSuscribirse');
 if (formSusc) {
   formSusc.addEventListener('submit', async (e) => {
@@ -600,37 +600,47 @@ if (formSusc) {
     btnSub.disabled = true;
     txtBtn.textContent = "Enviando...";
 
+    // Obtener los últimos 6 productos ordenados por fecha
     const copia = [...todosLosProductos];
     copia.sort((a, b) => new Date(b.creadoEn || 0) - new Date(a.creadoEn || 0));
     const ultimos6 = copia.slice(0, 6);
 
-    let listaTexto = "";
+    // Formatear lista de productos en HTML con foto y botón de WhatsApp
+    let listaHTML = "";
     if (ultimos6.length > 0) {
-      ultimos6.forEach((p, idx) => {
+      ultimos6.forEach((p) => {
         const nom = p.nombre || p.titulo || 'Producto';
         const prec = p.precio ? `$${Number(p.precio).toLocaleString('es-AR')}` : 'Consultar';
-        listaTexto += `${idx + 1}. ${nom} - ${prec}\n`;
+        const foto = (p.imagenes && p.imagenes.length > 0) ? p.imagenes[0] : (p.imagen || DEFAULT_IMG);
+        const waLink = `https://wa.me/${PHONE_NUMBER}?text=Hola%20Ferreter%C3%ADa%20Alejandro,%20quisiera%20consultar%20por:%20${encodeURIComponent(nom)}`;
+
+        listaHTML += `
+          <div style="border: 1px solid #334155; background-color: #0f172a; border-radius: 12px; padding: 16px; margin-bottom: 16px; font-family: sans-serif; text-align: center; color: #ffffff;">
+            <img src="${foto}" alt="${nom}" style="max-width: 100%; max-height: 180px; object-fit: contain; border-radius: 8px; margin-bottom: 12px; background-color: #020617; padding: 8px;" />
+            <h3 style="font-size: 16px; margin: 0 0 8px 0; color: #ffffff;">${nom}</h3>
+            <p style="font-size: 18px; font-weight: bold; color: #f97316; margin: 0 0 14px 0;">${prec}</p>
+            <a href="${waLink}" target="_blank" style="background-color: #059669; color: #ffffff; text-decoration: none; padding: 10px 18px; font-size: 13px; font-weight: bold; border-radius: 8px; display: inline-block;">
+              Consultar por WhatsApp
+            </a>
+          </div>
+        `;
       });
     } else {
-      listaTexto = "Actualmente no hay productos cargados.";
+      listaHTML = "<p style='color: #ffffff;'>Actualmente no hay productos registrados.</p>";
     }
 
     try {
-      // Enviar mail vía EmailJS
-      const response = await emailjs.send("service_sb02njm", "template_86twmye", {
+      // Enviar mail con HTML incluido
+      await emailjs.send("service_sb02njm", "THAsaSlc6LZHXcAJe", {
         to_email: emailCliente,
-        productos_lista: listaTexto
+        productos_lista: listaHTML
       });
 
-      console.log("Respuesta Exitosa EmailJS:", response);
-      alert("¡Suscripción realizada con éxito! Te enviamos los últimos 6 productos a tu correo.");
+      alert("¡Suscripción realizada con éxito! Revisá tu casilla de correo para ver los productos.");
       emailInput.value = "";
     } catch (error) {
-      // Muestra en la consola (F12) la causa exacta del error
-      console.error("Detalle del error de EmailJS:", error);
-      
-      const detalle = error?.text || error?.message || JSON.stringify(error);
-      alert(`Error de EmailJS: ${detalle}\n\nVerificá en EmailJS que la Public Key, Service ID y Template ID pertenezcan a la misma cuenta.`);
+      console.error("Error al enviar e-mail:", error);
+      alert("Hubo un error al enviar el correo. Por favor intenta de nuevo.");
     } finally {
       btnSub.disabled = false;
       txtBtn.textContent = "Suscribirme";
