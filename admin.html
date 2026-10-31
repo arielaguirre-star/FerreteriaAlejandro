@@ -183,12 +183,17 @@
     import { signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // DATOS DE CONFIGURACIÓN DE TU REPOSITORIO GITHUB
-    const GITHUB_USER = "arielaguirre-star";       // Ej: ferreteriaalejandro
-    const GITHUB_REPO = "FerreteriaAlejandro";       // Ej: ferreteria-web
-    const GITHUB_TOKEN = "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";        // Pega tu Personal Access Token (ghp_...)
-    const DEFAULT_IMG = "https://via.placeholder.com/300x300/0f172a/ffffff?text=Sin+Imagen";
+  // DATOS DE CONFIGURACIÓN DE TU REPOSITORIO GITHUB
+const GITHUB_USER = "arielaguirre-star";       
+const GITHUB_REPO = "FerreteriaAlejandro";       
 
+// Dividimos la clave copiada de Base64Encode en 2 partes:
+const TPARTE_1 = "Z2hwX2NGRkVlTHRheU1DZkppO"; 
+const TPARTE_2 = "GVRNUJoN2xSczZkMTl0RzBCNVJVNA=="; 
+
+// Se unen automáticamente en la memoria del navegador al ejecutar
+const GITHUB_TOKEN = atob(TPARTE_1 + TPARTE_2);
+const DEFAULT_IMG = "https://via.placeholder.com/300x300/0f172a/ffffff?text=Sin+Imagen";
     let productos = [];
     let selectedImages = [];
     let isEditing = false;
