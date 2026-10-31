@@ -340,7 +340,7 @@
       renderPreviews();
     };
 
-  // Guardar Producto en Firestore usando la ruta local del repositorio
+// Guardar Producto en Firestore usando la ruta de la carpeta local
 document.getElementById('btnSaveProduct').addEventListener('click', async () => {
   const id = document.getElementById('productId').value;
   const nombre = document.getElementById('prodNombre').value.trim();
@@ -350,24 +350,26 @@ document.getElementById('btnSaveProduct').addEventListener('click', async () => 
 
   if (!nombre || isNaN(precio)) return alert('Por favor complete los campos obligatorios (*)');
 
+  const btnText = document.getElementById('btnSaveText');
   const btn = document.getElementById('btnSaveProduct');
   btn.disabled = true;
 
   try {
     const fotosUrls = [];
 
-    // Mapear los nombres de los archivos subidos a la ruta local 'assets/productos/'
     for (let i = 0; i < selectedImages.length; i++) {
       const img = selectedImages[i];
-      if (img.url && !img.file) {
-        // Mantener URL existente si se está editando
+      if (img.url && img.url.startsWith('http')) {
+        // Mantener URL existente si se está editando una foto web
         fotosUrls.push(img.url);
       } else if (img.file) {
-        // Generar la ruta relativa correspondiente a la carpeta assets/productos/
-        const nombreLimpio = img.file.name.toLowerCase().replace(/\s+/g, '-');
-        fotosUrls.push(`assets/productos/${nombreLimpio}`);
+        // Generar la ruta relativa a tu carpeta assets/productos/
+        const nombreArchivo = img.file.name.toLowerCase().replace(/\s+/g, '-');
+        fotosUrls.push(`assets/productos/${nombreArchivo}`);
       }
     }
+
+    btnText.textContent = "Guardando en Firestore...";
 
     const productoData = {
       nombre,
@@ -384,7 +386,7 @@ document.getElementById('btnSaveProduct').addEventListener('click', async () => 
     } else {
       productoData.creadoEn = new Date().toISOString();
       await addDoc(collection(db, "productos"), productoData);
-      alert("¡Producto guardado en Firestore! Recordá colocar las imágenes físicas en la carpeta assets/productos/ de tu repositorio.");
+      alert("¡Producto guardado en Firestore con la ruta local!");
     }
 
     resetForm();
@@ -393,7 +395,9 @@ document.getElementById('btnSaveProduct').addEventListener('click', async () => 
     alert("Ocurrió un error: " + err.message);
   } finally {
     btn.disabled = false;
+    btnText.textContent = "Guardar Producto en Firebase";
   }
+});
 });
     function renderProducts() {
       const query = document.getElementById('adminSearchInput').value.toLowerCase().trim();
