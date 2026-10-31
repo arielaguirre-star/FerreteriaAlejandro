@@ -340,64 +340,61 @@
       renderPreviews();
     };
 
-    // Guardar Producto
-    document.getElementById('btnSaveProduct').addEventListener('click', async () => {
-      const id = document.getElementById('productId').value;
-      const nombre = document.getElementById('prodNombre').value.trim();
-      const categoria = document.getElementById('prodCategoria').value;
-      const precio = parseFloat(document.getElementById('prodPrecio').value);
-      const descripcion = document.getElementById('prodDescripcion').value.trim();
+  // Guardar Producto en Firestore usando la ruta local del repositorio
+document.getElementById('btnSaveProduct').addEventListener('click', async () => {
+  const id = document.getElementById('productId').value;
+  const nombre = document.getElementById('prodNombre').value.trim();
+  const categoria = document.getElementById('prodCategoria').value;
+  const precio = parseFloat(document.getElementById('prodPrecio').value);
+  const descripcion = document.getElementById('prodDescripcion').value.trim();
 
-      if (!nombre || isNaN(precio)) return alert('Por favor complete los campos obligatorios (*)');
+  if (!nombre || isNaN(precio)) return alert('Por favor complete los campos obligatorios (*)');
 
-      const btnText = document.getElementById('btnSaveText');
-      const btn = document.getElementById('btnSaveProduct');
-      btn.disabled = true;
+  const btn = document.getElementById('btnSaveProduct');
+  btn.disabled = true;
 
-      try {
-        const fotosUrls = [];
+  try {
+    const fotosUrls = [];
 
-        for (let i = 0; i < selectedImages.length; i++) {
-          const img = selectedImages[i];
-          if (img.url && img.url.startsWith('http')) {
-            fotosUrls.push(img.url);
-          } else if (img.file) {
-            btnText.textContent = `Optimizando y subiendo foto ${i + 1} de ${selectedImages.length}...`;
-            const cloudUrl = await uploadFileToImgBB(img.file);
-            fotosUrls.push(cloudUrl);
-          }
-        }
-
-        btnText.textContent = "Guardando en Firestore...";
-
-        const productoData = {
-          nombre,
-          categoria,
-          precio,
-          descripcion,
-          imagenes: fotosUrls.length > 0 ? fotosUrls : [DEFAULT_IMG],
-          actualizadoEn: new Date().toISOString()
-        };
-
-        if (isEditing && id) {
-          await updateDoc(doc(db, "productos", id), productoData);
-          alert("¡Producto actualizado con éxito!");
-        } else {
-          productoData.creadoEn = new Date().toISOString();
-          await addDoc(collection(db, "productos"), productoData);
-          alert("¡Producto optimizado, subido a ImgBB y guardado en Firebase!");
-        }
-
-        resetForm();
-      } catch (err) {
-        console.error("Error en la operación:", err);
-        alert("Ocurrió un error: " + err.message);
-      } finally {
-        btn.disabled = false;
-        btnText.textContent = "Guardar Producto en Firebase";
+    // Mapear los nombres de los archivos subidos a la ruta local 'assets/productos/'
+    for (let i = 0; i < selectedImages.length; i++) {
+      const img = selectedImages[i];
+      if (img.url && !img.file) {
+        // Mantener URL existente si se está editando
+        fotosUrls.push(img.url);
+      } else if (img.file) {
+        // Generar la ruta relativa correspondiente a la carpeta assets/productos/
+        const nombreLimpio = img.file.name.toLowerCase().replace(/\s+/g, '-');
+        fotosUrls.push(`assets/productos/${nombreLimpio}`);
       }
-    });
+    }
 
+    const productoData = {
+      nombre,
+      categoria,
+      precio,
+      descripcion,
+      imagenes: fotosUrls.length > 0 ? fotosUrls : [DEFAULT_IMG],
+      actualizadoEn: new Date().toISOString()
+    };
+
+    if (isEditing && id) {
+      await updateDoc(doc(db, "productos", id), productoData);
+      alert("¡Producto actualizado!");
+    } else {
+      productoData.creadoEn = new Date().toISOString();
+      await addDoc(collection(db, "productos"), productoData);
+      alert("¡Producto guardado en Firestore! Recordá colocar las imágenes físicas en la carpeta assets/productos/ de tu repositorio.");
+    }
+
+    resetForm();
+  } catch (err) {
+    console.error("Error en la operación:", err);
+    alert("Ocurrió un error: " + err.message);
+  } finally {
+    btn.disabled = false;
+  }
+});
     function renderProducts() {
       const query = document.getElementById('adminSearchInput').value.toLowerCase().trim();
       const grid = document.getElementById('productsGrid');
